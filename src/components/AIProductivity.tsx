@@ -21,7 +21,44 @@ export function AIProductivity() {
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           
-          {/* Left Column */}
+          {/* Left Column - Synthetic Illustration */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="relative aspect-square lg:aspect-auto lg:h-[600px] w-full bg-brand-surface-container rounded-2xl border border-brand-border overflow-hidden flex items-center justify-center p-8"
+          >
+            {/* Background elements */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-brand-primary/20 rounded-full blur-[100px]"></div>
+            
+            {/* Server cluster abstraction */}
+            <div className="relative z-10 w-full h-full border border-brand-border/30 rounded-xl bg-brand-surface-low/50 backdrop-blur-sm shadow-2xl p-6 flex flex-col gap-4">
+              <div className="flex justify-between items-center mb-4">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-400/50"></div>
+                  <div className="w-3 h-3 rounded-full bg-brand-primary/50"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-400/50"></div>
+                </div>
+                <div className="text-[10px] font-mono text-brand-text-muted">SYSTEM_CORE_ACTIVE</div>
+              </div>
+              
+              <div className="flex-1 grid grid-cols-3 gap-4">
+                {[1, 2, 3].map((col) => (
+                  <div key={col} className="flex flex-col gap-3">
+                    {[1, 2, 3, 4, 5].map((row) => (
+                      <div key={row} className="h-full bg-brand-surface border border-brand-border rounded relative overflow-hidden group">
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-brand-secondary/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                        <div className="absolute left-2 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-brand-primary animate-pulse"></div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Column */}
           <div>            
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
@@ -73,42 +110,6 @@ export function AIProductivity() {
             </div>
           </div>
 
-          {/* Right Column - Synthetic Illustration */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative aspect-square lg:aspect-auto lg:h-[600px] w-full bg-brand-surface-container rounded-2xl border border-brand-border overflow-hidden flex items-center justify-center p-8"
-          >
-            {/* Background elements */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-brand-primary/20 rounded-full blur-[100px]"></div>
-            
-            {/* Server cluster abstraction */}
-            <div className="relative z-10 w-full h-full border border-brand-border/30 rounded-xl bg-brand-surface-low/50 backdrop-blur-sm shadow-2xl p-6 flex flex-col gap-4">
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-400/50"></div>
-                  <div className="w-3 h-3 rounded-full bg-brand-primary/50"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-400/50"></div>
-                </div>
-                <div className="text-[10px] font-mono text-brand-text-muted">SYSTEM_CORE_ACTIVE</div>
-              </div>
-              
-              <div className="flex-1 grid grid-cols-3 gap-4">
-                {[1, 2, 3].map((col) => (
-                  <div key={col} className="flex flex-col gap-3">
-                    {[1, 2, 3, 4, 5].map((row) => (
-                      <div key={row} className="h-full bg-brand-surface border border-brand-border rounded relative overflow-hidden group">
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-brand-secondary/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
-                        <div className="absolute left-2 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-brand-primary animate-pulse"></div>
-                      </div>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>
