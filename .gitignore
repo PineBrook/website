@@ -9,3 +9,6 @@ coverage/
 
 .vercel
 .env*
+.impeccable
+DESIGN.md 
+PRODUCT.md 
