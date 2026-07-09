@@ -101,29 +101,10 @@ export function AIProductivity() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-brand-text-muted text-lg mb-12 max-w-lg leading-relaxed"
+              className="text-brand-text-muted text-lg mb-16 max-w-lg leading-relaxed"
             >
               We move beyond basic script automation. By integrating cognitive AI models and self-healing architectures, we engineer operational systems that learn, adapt, and scale dynamically.
             </motion.p>
-
-            <div className="grid grid-cols-2 gap-4 mb-16">
-              {chips.map((chip, i) => {
-                const Icon = chip.icon;
-                return (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 + (i * 0.05) }}
-                    className="flex items-center gap-3 p-3 rounded-lg border border-brand-border bg-brand-surface-container transition-all duration-300 hover:border-brand-secondary hover:shadow-[0_0_20px_rgba(90,200,250,0.1)] cursor-default"
-                  >
-                    <Icon className="w-5 h-5 text-brand-secondary" />
-                    <span className="text-sm font-medium text-white">{chip.label}</span>
-                  </motion.div>
-                )
-              })}
-            </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-brand-border">
               {stats.map((stat, i) => (
