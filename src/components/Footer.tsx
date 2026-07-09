@@ -30,43 +30,8 @@ export function Footer() {
               </div>
             </div>
             <p className="text-brand-text-muted text-sm leading-relaxed max-w-xs mb-8">
-              Simplifying IT. Accelerating Growth. Enterprise expertise and practical execution from Uttarakhand to the world.
+              Simplifying IT. Accelerating Growth. Enterprise expertise.
             </p>
-              <div className="mt-6 pt-6 border-t border-brand-border space-y-4">
-                <div className="flex items-center gap-3 text-xs">
-                  <div className="w-8 h-8 rounded-full border border-brand-border flex items-center justify-center bg-brand-surface-low text-brand-text-muted flex-shrink-0">
-                    <MapPin className="w-4 h-4" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-[10px] eyebrow text-brand-text-muted">Location</span>
-                    <span className="text-white font-medium">518, 519 CPL-1 Tower, 43-A, IT Park, Dehradun, India, 248001</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 text-xs">
-                  <div className="w-8 h-8 rounded-full border border-brand-border flex items-center justify-center bg-brand-surface-low text-brand-text-muted flex-shrink-0">
-                    <Mail className="w-4 h-4" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-[10px] eyebrow text-brand-text-muted">Mail</span>
-                    <a href="mailto:mail@pinebrooktechnologies.com" className="text-white hover:text-brand-primary transition-colors font-medium">mail@pinebrooktechnologies.com</a>
-                  </div>
-                </div>
-              </div>
-            <div className="flex items-center gap-4">
-              <a href="#" className="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-text-muted hover:text-white hover:border-brand-primary transition-colors">
-                <span className="sr-only">LinkedIn</span>
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fillRule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clipRule="evenodd" />
-                </svg>
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-text-muted hover:text-white hover:border-brand-primary transition-colors">
-                <span className="sr-only">Facebook</span>
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-                </svg>
-              </a>
-              --  
-            </div>
           </div>
 
           {/* Links Col 1 */}
@@ -105,18 +70,44 @@ export function Footer() {
         </div>
 
         {/* Jony Ive Inspired Map Section */}
-        <div className="mb-12 overflow-hidden rounded-2xl border border-brand-border bg-brand-surface-container/20 backdrop-blur-md transition-all duration-500 hover:border-brand-primary/30">
+        <div className="mb-12 overflow-hidden rounded-2xl border border-brand-border bg-brand-surface-container/20 backdrop-blur-md">
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d539.9770747203743!2d78.0880842!3d30.3653618!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3908d76678504689%3A0x2568cd7dfedfd167!2sPineBrook%20Technologies!5e1!3m2!1sen!2sin!4v1783490942652!5m2!1sen!2sin" 
             width="100%" 
             height="200" 
-            style={{ border: 0, filter: "invert(90%) hue-rotate(180deg) brightness(85%) contrast(90%)" }} 
+            style={{ border: 0 }} 
             allowFullScreen={true}
             loading="lazy" 
             referrerPolicy="strict-origin-when-cross-origin"
             title="PineBrook Technologies Office Map"
-            className="w-full block hover:filter-none transition-all duration-700"
+            className="w-full block"
           ></iframe>
+        </div>
+
+        {/* Contact details in one line */}
+        <div className="py-6 border-t border-brand-border flex flex-col md:flex-row flex-wrap items-center justify-between gap-x-8 gap-y-4 text-xs text-brand-text-muted">
+          <div className="flex flex-col md:flex-row md:items-center gap-x-6 gap-y-2">
+            <span className="flex items-center gap-1.5">
+              <span className="font-semibold text-white">Location:</span> 
+              <span>518, 519 CPL-1 Tower, 43-A, IT Park, Dehradun, India, 248001</span>
+            </span>
+            <span className="hidden md:inline text-brand-border">|</span>
+            <span className="flex items-center gap-1.5">
+              <span className="font-semibold text-white">Mail:</span>
+              <a href="mailto:mail@pinebrooktechnologies.com" className="hover:text-brand-primary transition-colors text-brand-text">mail@pinebrooktechnologies.com</a>
+            </span>
+          </div>
+          <div className="flex items-center gap-4">
+            <a href="#" className="hover:text-white transition-colors flex items-center gap-1.5">
+              <svg className="w-4 h-4 fill-current text-[#0A66C2]" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+            <span className="text-brand-border">|</span>
+            <a href="#" className="hover:text-white transition-colors flex items-center gap-1.5">
+              <svg className="w-4 h-4 fill-current text-[#1877F2]" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <span>Facebook</span>
+            </a>
+          </div>
         </div>
 
         <div className="pt-8 border-t border-brand-border flex flex-col md:flex-row items-center justify-between gap-4">
@@ -126,6 +117,7 @@ export function Footer() {
             <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
           </div>
         </div>
+
       </div>
     </footer>
   );

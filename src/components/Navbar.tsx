@@ -66,7 +66,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
-          <Button className="group" withArrow>Inquire</Button>
+          <Button className="group">Inquire</Button>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -123,7 +123,7 @@ export function Navbar() {
               ))}
             </nav>
             <div className="mt-auto flex flex-col gap-4">
-              <Button className="w-full justify-center group" withArrow>Inquire</Button>
+              <Button className="w-full justify-center group">Inquire</Button>
             </div>
           </motion.div>
         )}
