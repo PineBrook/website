@@ -115,33 +115,24 @@ export function CorePillars() {
                       </div>
                     </div>
 
-                    <div className="relative h-[300px] rounded-xl border border-brand-border bg-brand-surface-container overflow-hidden flex items-center justify-center">
-                       {/* Synthetic visual for tabs */}
+                    <div className="relative h-[300px] rounded-xl border border-brand-border bg-brand-surface-container overflow-hidden flex flex-col items-center justify-center p-6">
+                       {/* Synthetic background grid */}
                        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:24px_24px]"></div>
                        
-                       <div className="relative z-10 flex items-end gap-6 h-[200px] w-full max-w-[240px] justify-between px-4">
-                          {pillars.map((p, idx) => {
-                            const isGlowing = p.id === pillar.id;
-                            const heights = ["33%", "66%", "100%"];
-                            const barHeight = heights[idx];
-                            return (
-                              <div key={p.id} className="flex flex-col items-center gap-3 flex-1 h-full justify-end">
-                                <div 
-                                  style={{ height: barHeight }}
-                                  className={`w-full rounded-t-md transition-all duration-500 border ${
-                                    isGlowing 
-                                      ? "bg-brand-primary border-brand-primary/80 shadow-[0_0_25px_rgba(0,122,255,0.7)]" 
-                                      : "bg-white/10 border-white/5"
-                                  }`}
-                                />
-                                <span className={`text-[9px] uppercase tracking-wider font-semibold transition-colors duration-300 whitespace-nowrap ${
-                                  isGlowing ? "text-brand-secondary" : "text-brand-text-muted"
-                                }`}>
-                                  Pillar {idx + 1}
-                                </span>
-                              </div>
-                            );
-                          })}
+                       <div className="relative z-10 flex flex-col items-center gap-4 w-full max-w-[280px]">
+                         <span className="text-[10px] font-semibold tracking-wider text-brand-secondary eyebrow mb-2">OPERATIONAL WORKFLOW</span>
+                         {pillar.process.map((step, idx) => (
+                           <div key={step} className="flex flex-col items-center w-full">
+                             <div className="w-full py-2.5 px-4 rounded-lg bg-brand-surface-low border border-brand-border/80 flex items-center justify-between shadow-lg">
+                               <span className="text-xs font-mono text-brand-accent">0{idx + 1}</span>
+                               <span className="text-sm font-semibold text-white">{step}</span>
+                               <div className="w-2 h-2 rounded-full bg-brand-primary shadow-[0_0_8px_rgba(0,122,255,0.8)]"></div>
+                             </div>
+                             {idx < pillar.process.length - 1 && (
+                               <div className="w-px h-4 bg-gradient-to-b from-brand-primary to-transparent my-1"></div>
+                             )}
+                           </div>
+                         ))}
                        </div>
                     </div>
                   </div>
