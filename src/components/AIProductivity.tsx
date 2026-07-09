@@ -55,8 +55,7 @@ export function AIProductivity() {
                 { label: "Process Automation", angle: 240 },
                 { label: "Operational Intelligence", angle: 300 }
               ].map((node, i) => {
-                // Calculate position on a circle with radius 135px
-                const radius = 130;
+                const radius = 125;
                 const radians = (node.angle * Math.PI) / 180;
                 const x = radius * Math.cos(radians);
                 const y = radius * Math.sin(radians);
@@ -70,11 +69,12 @@ export function AIProductivity() {
                     transition={{ delay: i * 0.1 }}
                     whileHover={{ scale: 1.05 }}
                     style={{
-                      transform: `translate(${x}px, ${y}px)`
+                      left: `calc(50% + ${x}px - 56px)`,
+                      top: `calc(50% + ${y}px - 24px)`
                     }}
-                    className="absolute z-10 w-28 p-2 rounded-lg bg-brand-surface-low border border-brand-border/60 hover:border-brand-secondary text-center cursor-default shadow-xl backdrop-blur-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(90,200,250,0.2)]"
+                    className="absolute z-10 w-28 h-12 flex items-center justify-center p-2 rounded-lg bg-brand-surface-low border border-brand-border/60 hover:border-brand-secondary text-center cursor-default shadow-xl backdrop-blur-sm transition-colors duration-300 hover:shadow-[0_0_15px_rgba(90,200,250,0.2)]"
                   >
-                    <span className="text-[10px] leading-tight font-medium text-white/90 block">
+                    <span className="text-[10px] leading-tight font-medium text-white/90">
                       {node.label}
                     </span>
                   </motion.div>
