@@ -97,39 +97,23 @@ export function CorePillars() {
                           ))}
                         </ul>
                       </div>
-
-                      <div>
-                        <span className="text-xs font-semibold eyebrow text-brand-secondary block mb-3">Our Process</span>
-                        <div className="flex items-center gap-1.5 flex-wrap">
-                          {pillar.process.map((step, idx) => (
-                            <span key={step} className="flex items-center gap-1.5">
-                              <span className="text-xs px-2.5 py-1 rounded bg-brand-surface-high border border-brand-border text-brand-text font-mono">
-                                {step}
-                              </span>
-                              {idx < pillar.process.length - 1 && (
-                                <span className="text-brand-text-muted text-[10px]">→</span>
-                              )}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
                     </div>
 
-                    <div className="relative h-[300px] rounded-xl border border-brand-border bg-brand-surface-container overflow-hidden flex flex-col items-center justify-center p-6">
+                    <div className="relative h-[380px] rounded-xl border border-brand-border bg-brand-surface-container overflow-hidden flex flex-col items-center justify-center p-6">
                        {/* Synthetic background grid */}
                        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:24px_24px]"></div>
                        
-                       <div className="relative z-10 flex flex-col items-center gap-4 w-full max-w-[280px]">
-                         <span className="text-[10px] font-semibold tracking-wider text-brand-secondary eyebrow mb-2">OPERATIONAL WORKFLOW</span>
+                       <div className="relative z-10 flex flex-col items-center gap-2 w-full max-w-[280px]">
+                         <span className="text-[10px] font-semibold tracking-wider text-brand-secondary eyebrow mb-3">OPERATIONAL WORKFLOW</span>
                          {pillar.process.map((step, idx) => (
                            <div key={step} className="flex flex-col items-center w-full">
-                             <div className="w-full py-2.5 px-4 rounded-lg bg-brand-surface-low border border-brand-border/80 flex items-center justify-between shadow-lg">
+                             <div className="w-full py-2 px-4 rounded-lg bg-brand-surface-low border border-brand-border/80 flex items-center justify-between shadow-lg">
                                <span className="text-xs font-mono text-brand-accent">0{idx + 1}</span>
                                <span className="text-sm font-semibold text-white">{step}</span>
                                <div className="w-2 h-2 rounded-full bg-brand-primary shadow-[0_0_8px_rgba(0,122,255,0.8)]"></div>
                              </div>
                              {idx < pillar.process.length - 1 && (
-                               <div className="w-px h-4 bg-gradient-to-b from-brand-primary to-transparent my-1"></div>
+                               <div className="w-px h-3 bg-gradient-to-b from-brand-primary to-transparent my-0.5"></div>
                              )}
                            </div>
                          ))}
