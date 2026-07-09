@@ -60,11 +60,6 @@ export function Comparison() {
           >
             <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 to-transparent pointer-events-none"></div>
             
-            {/* Background watermark */}
-            <div className="absolute top-7 right-0 text-9xl text-brand-secondary/10 pointer-events-none leading-none select-none overflow-hidden">
-              ✨
-            </div>
-
             <div className="relative z-10">
               <div className="eyebrow text-xs text-brand-text-muted mb-4 flex items-center gap-1">
                 <div className="flex items-center text-brand-secondary mr-2">
