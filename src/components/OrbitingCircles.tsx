@@ -1,3 +1,4 @@
+import * as React from "react";
 import { cn } from "../lib/utils";
 
 export interface OrbitingCirclesProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -20,6 +21,9 @@ export function OrbitingCircles({
   path = true,
   ...props
 }: OrbitingCirclesProps) {
+  // Convert children to array to compute spacing angles
+  const childrenArray = React.Children.toArray(children);
+
   return (
     <>
       {path && (
@@ -39,23 +43,34 @@ export function OrbitingCircles({
         </svg>
       )}
 
-      <div
-        style={
-          {
-            "--duration": duration,
-            "--radius": radius,
-            "--delay": -delay,
-          } as React.CSSProperties
-        }
-        className={cn(
-          "absolute flex size-full transform-gpu items-center justify-center rounded-full border border-transparent [animation-delay:calc(var(--delay)*1s)]",
-          reverse ? "animate-[orbit_calc(var(--duration)*1s)_linear_infinite_reverse]" : "animate-[orbit_calc(var(--duration)*1s)_linear_infinite]",
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </div>
+      {childrenArray.map((child, index) => {
+        // Distribute items evenly along the 360 degree circle
+        const angleOffset = (360 / childrenArray.length) * index;
+
+        return (
+          <div
+            key={index}
+            style={
+              {
+                "--duration": duration,
+                "--radius": radius,
+                "--delay": -delay,
+                "--angle-offset": `${angleOffset}deg`,
+              } as React.CSSProperties
+            }
+            className={cn(
+              "absolute flex size-full transform-gpu items-center justify-center rounded-full border border-transparent [animation-delay:calc(var(--delay)*1s)]",
+              reverse 
+                ? "animate-[orbit_calc(var(--duration)*1s)_linear_infinite_reverse]" 
+                : "animate-[orbit_calc(var(--duration)*1s)_linear_infinite]",
+              className
+            )}
+            {...props}
+          >
+            {child}
+          </div>
+        );
+      })}
     </>
   );
 }

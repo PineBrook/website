@@ -46,45 +46,29 @@ export function AIProductivity() {
                {/* Clockwise Orbit (Inner: 3 items) */}
                <OrbitingCircles radius={85} duration={25} path={true}>
                  {[
-                   { label: "AI Automation", delay: 0 },
-                   { label: "Observability Platforms", delay: 8.3 },
-                   { label: "Auto-Healing Systems", delay: 16.6 }
-                 ].map((node, i) => (
-                   <div
-                     key={i}
-                     style={{
-                       animationDelay: `${-node.delay}s`
-                     }}
-                     className="absolute w-32 h-14 flex items-center justify-center pointer-events-auto [animation-delay:calc(var(--delay)*1s)]"
-                   >
-                     <div className="w-full h-full flex items-center justify-center p-2 rounded-lg bg-brand-surface-low border border-brand-border/60 hover:border-brand-secondary text-center cursor-default shadow-xl backdrop-blur-sm transition-colors duration-300 hover:shadow-[0_0_15px_rgba(90,200,250,0.2)]">
-                       <span className="text-[10px] leading-tight font-semibold text-white/95">
-                         {node.label}
-                       </span>
-                     </div>
+                   "AI Automation",
+                   "Observability Platforms",
+                   "Auto-Healing Systems"
+                 ].map((label, i) => (
+                   <div key={i} className="absolute w-32 h-14 flex items-center justify-center p-2 rounded-lg bg-brand-surface-low border border-brand-border/60 hover:border-brand-secondary text-center cursor-default shadow-xl backdrop-blur-sm transition-colors duration-300 hover:shadow-[0_0_15px_rgba(90,200,250,0.2)]">
+                     <span className="text-[10px] leading-tight font-semibold text-white/95">
+                       {label}
+                     </span>
                    </div>
                  ))}
                </OrbitingCircles>
 
                {/* Counter-Clockwise Orbit (Outer: 3 items, reverse) */}
-               <OrbitingCircles radius={135} duration={35} delay={0} reverse path={true}>
+               <OrbitingCircles radius={135} duration={35} reverse path={true}>
                  {[
-                   { label: "Predictive Analytics", delay: 0 },
-                   { label: "Process Automation", delay: 11.6 },
-                   { label: "Operational Intelligence", delay: 23.3 }
-                 ].map((node, i) => (
-                   <div
-                     key={i}
-                     style={{
-                       animationDelay: `${-node.delay}s`
-                     }}
-                     className="absolute w-32 h-14 flex items-center justify-center pointer-events-auto [animation-delay:calc(var(--delay)*1s)]"
-                   >
-                     <div className="w-full h-full flex items-center justify-center p-2 rounded-lg bg-brand-surface-low border border-brand-border/60 hover:border-brand-secondary text-center cursor-default shadow-xl backdrop-blur-sm transition-colors duration-300 hover:shadow-[0_0_15px_rgba(90,200,250,0.2)]">
-                       <span className="text-[10px] leading-tight font-semibold text-white/95">
-                         {node.label}
-                       </span>
-                     </div>
+                   "Predictive Analytics",
+                   "Process Automation",
+                   "Operational Intelligence"
+                 ].map((label, i) => (
+                   <div key={i} className="absolute w-32 h-14 flex items-center justify-center p-2 rounded-lg bg-brand-surface-low border border-brand-border/60 hover:border-brand-secondary text-center cursor-default shadow-xl backdrop-blur-sm transition-colors duration-300 hover:shadow-[0_0_15px_rgba(90,200,250,0.2)]">
+                     <span className="text-[10px] leading-tight font-semibold text-white/95">
+                       {label}
+                     </span>
                    </div>
                  ))}
                </OrbitingCircles>

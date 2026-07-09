@@ -26,10 +26,10 @@
 
   @keyframes orbit {
     0% {
-      transform: rotate(0deg) translateY(calc(var(--radius) * 1px)) rotate(0deg);
+      transform: rotate(var(--angle-offset, 0deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(-1 * var(--angle-offset, 0deg)));
     }
     100% {
-      transform: rotate(360deg) translateY(calc(var(--radius) * 1px)) rotate(-360deg);
+      transform: rotate(calc(var(--angle-offset, 0deg) + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(-1 * (var(--angle-offset, 0deg) + 360deg)));
     }
   }
 }
