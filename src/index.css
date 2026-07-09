@@ -23,6 +23,15 @@
   --color-brand-text-muted: #8b90a0;
 
   --color-brand-border: rgba(255, 255, 255, 0.08);
+
+  @keyframes orbit {
+    0% {
+      transform: rotate(0deg) translateY(calc(var(--radius) * 1px)) rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg) translateY(calc(var(--radius) * 1px)) rotate(-360deg);
+    }
+  }
 }
 
 body {
