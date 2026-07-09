@@ -89,7 +89,7 @@ export function AIProductivity() {
               <div className="flex justify-between items-center mb-4">
                 <div className="flex gap-2">
                   <div className="w-3 h-3 rounded-full bg-red-400/50"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-400/50"></div>
+                  <div className="w-3 h-3 rounded-full bg-brand-primary/50"></div>
                   <div className="w-3 h-3 rounded-full bg-green-400/50"></div>
                 </div>
                 <div className="text-[10px] font-mono text-brand-text-muted">SYSTEM_CORE_ACTIVE</div>
