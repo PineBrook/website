@@ -1,12 +1,14 @@
 import { motion } from "motion/react";
-import { Bot, Activity, ShieldCheck, TrendingUp } from "lucide-react";
+import { Bot, Activity, ShieldCheck, TrendingUp, Cpu, Network } from "lucide-react";
 
 export function AIProductivity() {
   const chips = [
     { icon: Bot, label: "AI Automation" },
     { icon: Activity, label: "Observability Platforms" },
     { icon: ShieldCheck, label: "Auto-Healing Systems" },
-    { icon: TrendingUp, label: "Predictive Analytics" }
+    { icon: TrendingUp, label: "Predictive Analytics" },
+    { icon: Cpu, label: "Process Automation" },
+    { icon: Network, label: "Operational Intelligence" }
   ];
 
   const stats = [
@@ -21,40 +23,63 @@ export function AIProductivity() {
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           
-          {/* Left Column - Synthetic Illustration */}
+          {/* Left Column - Premium Circular Flowchart */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="relative aspect-square lg:aspect-auto lg:h-[600px] w-full bg-brand-surface-container rounded-2xl border border-brand-border overflow-hidden flex items-center justify-center p-8"
           >
-            {/* Background elements */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-brand-primary/20 rounded-full blur-[100px]"></div>
-            
-            {/* Server cluster abstraction */}
-            <div className="relative z-10 w-full h-full border border-brand-border/30 rounded-xl bg-brand-surface-low/50 backdrop-blur-sm shadow-2xl p-6 flex flex-col gap-4">
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-400/50"></div>
-                  <div className="w-3 h-3 rounded-full bg-brand-primary/50"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-400/50"></div>
-                </div>
-                <div className="text-[10px] font-mono text-brand-text-muted">SYSTEM_CORE_ACTIVE</div>
+            {/* Background grid */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-brand-primary/10 rounded-full blur-[80px] pointer-events-none"></div>
+
+            {/* Circular Network Wrapper */}
+            <div className="relative z-10 w-[360px] h-[360px] flex items-center justify-center">
+              {/* Decorative dotted orbits */}
+              <div className="absolute inset-4 rounded-full border border-dashed border-white/5 animate-[spin_120s_linear_infinite]"></div>
+              <div className="absolute inset-16 rounded-full border border-dashed border-brand-primary/10 animate-[spin_80s_linear_infinite]"></div>
+
+              {/* Central Core Node */}
+              <div className="absolute z-20 w-24 h-24 rounded-full bg-brand-surface border-2 border-brand-primary flex flex-col items-center justify-center text-center p-2 shadow-[0_0_30px_rgba(0,122,255,0.4)] backdrop-blur-md">
+                <span className="text-[9px] font-mono text-brand-secondary tracking-widest leading-none mb-1">PRECISION</span>
+                <span className="text-xs font-display font-bold text-white leading-tight">ENGINE</span>
               </div>
-              
-              <div className="flex-1 grid grid-cols-3 gap-4">
-                {[1, 2, 3].map((col) => (
-                  <div key={col} className="flex flex-col gap-3">
-                    {[1, 2, 3, 4, 5].map((row) => (
-                      <div key={row} className="h-full bg-brand-surface border border-brand-border rounded relative overflow-hidden group">
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-brand-secondary/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
-                        <div className="absolute left-2 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-brand-primary animate-pulse"></div>
-                      </div>
-                    ))}
-                  </div>
-                ))}
-              </div>
+
+              {/* Outer Circular Nodes */}
+              {[
+                { label: "AI Automation", angle: 0 },
+                { label: "Observability Platforms", angle: 60 },
+                { label: "Auto-Healing Systems", angle: 120 },
+                { label: "Predictive Analytics", angle: 180 },
+                { label: "Process Automation", angle: 240 },
+                { label: "Operational Intelligence", angle: 300 }
+              ].map((node, i) => {
+                // Calculate position on a circle with radius 135px
+                const radius = 130;
+                const radians = (node.angle * Math.PI) / 180;
+                const x = radius * Math.cos(radians);
+                const y = radius * Math.sin(radians);
+
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                    style={{
+                      transform: `translate(${x}px, ${y}px)`
+                    }}
+                    className="absolute z-10 w-28 p-2 rounded-lg bg-brand-surface-low border border-brand-border/60 hover:border-brand-secondary text-center cursor-default shadow-xl backdrop-blur-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(90,200,250,0.2)]"
+                  >
+                    <span className="text-[10px] leading-tight font-medium text-white/90 block">
+                      {node.label}
+                    </span>
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
 
