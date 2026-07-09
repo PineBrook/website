@@ -61,7 +61,7 @@ export function Comparison() {
             <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 to-transparent pointer-events-none"></div>
             
             {/* Background watermark */}
-            <div className="absolute top-7 right-0 text-9xl text-brand-surface pointer-events-none leading-none select-none overflow-hidden">
+            <div className="absolute top-7 right-0 text-9xl text-brand-secondary/10 pointer-events-none leading-none select-none overflow-hidden">
               ✨
             </div>
 
