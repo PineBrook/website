@@ -1,0 +1,6 @@
+{
+  "name": "PineBrook Technologies",
+  "description": "Enterprise-grade digital workforce scaling platform with AI engineering and managed operations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
