@@ -1,43 +1,38 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./Tabs";
-import { Layers, Zap, Cpu, Settings2 } from "lucide-react";
+import { Layers, Zap, Cpu } from "lucide-react";
 
 export function CorePillars() {
-  const [activeTab, setActiveTab] = useState("architecture");
+  const [activeTab, setActiveTab] = useState("gcc");
 
   const pillars = [
     {
-      id: "architecture",
-      label: "Architecture",
+      id: "gcc",
+      label: "GCC",
       icon: Layers,
-      title: "Resilient by Design.",
-      desc: "We don't just patch legacy systems; we re-architect them for fault tolerance and limitless scale.",
-      features: ["Microservices Transition", "Cloud-Native Infrastructure", "Zero-Trust Security"]
+      title: "REDUCE COST. IMPROVE RELIABILITY.",
+      desc: "Establish a scalable managed operations center that drives vendor consolidation, enforces strict governance, and guarantees 98% SLA compliance.",
+      features: ["30-40% Cost Savings", "98% SLA Compliance", "Vendor Consolidation", "Structured Governance", "Managed Operations"],
+      process: ["Assess", "Transition", "Stabilize", "Optimize", "Automate"]
     },
     {
-      id: "automation",
-      label: "Automation",
+      id: "productivity",
+      label: "Productivity",
       icon: Zap,
-      title: "Frictionless Operations.",
-      desc: "Replacing repetitive manual toil with intelligent, deterministic automation pipelines.",
-      features: ["RPA Integration", "CI/CD Pipeline Optimization", "Automated Remediation"]
+      title: "AI + AUTOMATION FOR BUSINESS PRODUCTIVITY",
+      desc: "Modernize manual workflows with tailored AI solutions and digital accelerators that generate immediate efficiency gains.",
+      features: ["Workflow Automation", "Process Digitization", "Operational Dashboards", "AI-Powered Productivity", "Reusable Accelerators"],
+      process: ["Map", "Design", "Build", "Deploy", "Reuse"]
     },
     {
-      id: "intelligence",
-      label: "Intelligence",
+      id: "advisory",
+      label: "Advisory",
       icon: Cpu,
-      title: "Data-Driven Execution.",
-      desc: "Transforming raw operational data into predictive insights that drive autonomous decision-making.",
-      features: ["Predictive Maintenance", "Operational Dashboards", "AI-Assisted Triage"]
-    },
-    {
-      id: "governance",
-      label: "Governance",
-      icon: Settings2,
-      title: "Controlled Velocity.",
-      desc: "Ensuring that rapid innovation doesn't compromise compliance, security, or enterprise standards.",
-      features: ["Policy-as-Code", "Automated Auditing", "Cost FinOps"]
+      title: "EMBEDDED TECHNOLOGY LEADERSHIP",
+      desc: "Bridge the gap between business goals and IT capabilities with veteran technology leadership providing architectural roadmaps and execution oversight.",
+      features: ["CTO Advisory", "Technology Roadmaps", "Vendor Governance", "Execution Oversight", "Transformation Planning"],
+      process: ["Diagnose", "Align", "Govern", "Execute", "Track"]
     }
   ];
 
@@ -57,12 +52,12 @@ export function CorePillars() {
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-4xl mx-auto">
           <div className="flex justify-center mb-12">
-            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 max-w-2xl h-auto p-1">
+            <TabsList className="grid w-full grid-cols-3 max-w-xl h-auto p-1">
               {pillars.map((pillar) => (
                 <TabsTrigger 
                   key={pillar.id} 
                   value={pillar.id} 
-                  className="py-2.5"
+                  className="py-2.5 text-xs sm:text-sm"
                   onMouseEnter={() => setActiveTab(pillar.id)}
                 >
                   {pillar.label}
@@ -88,27 +83,46 @@ export function CorePillars() {
                       <div className="w-12 h-12 rounded-lg bg-brand-surface-highest border border-brand-border flex items-center justify-center mb-6">
                         <Icon className="w-6 h-6 text-brand-secondary" />
                       </div>
-                      <h3 className="text-3xl font-display font-bold text-white mb-4">{pillar.title}</h3>
-                      <p className="text-brand-text-muted text-lg mb-8 leading-relaxed">{pillar.desc}</p>
+                      <h3 className="text-2xl font-display font-bold text-white mb-4 leading-tight">{pillar.title}</h3>
+                      <p className="text-brand-text-muted text-base mb-8 leading-relaxed">{pillar.desc}</p>
                       
-                      <ul className="space-y-4">
-                        {pillar.features.map((feature, i) => (
-                          <li key={i} className="flex items-center gap-3 text-white font-medium">
-                            <div className="w-2 h-2 rounded-full bg-brand-primary"></div>
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="mb-6">
+                        <span className="text-xs font-semibold eyebrow text-brand-secondary block mb-3">Key Benefits</span>
+                        <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
+                          {pillar.features.map((feature, i) => (
+                            <li key={i} className="flex items-center gap-2 text-white/90 text-sm font-medium">
+                              <div className="w-1.5 h-1.5 rounded-full bg-brand-primary"></div>
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <span className="text-xs font-semibold eyebrow text-brand-secondary block mb-3">Our Process</span>
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          {pillar.process.map((step, idx) => (
+                            <span key={step} className="flex items-center gap-1.5">
+                              <span className="text-xs px-2.5 py-1 rounded bg-brand-surface-high border border-brand-border text-brand-text font-mono">
+                                {step}
+                              </span>
+                              {idx < pillar.process.length - 1 && (
+                                <span className="text-brand-text-muted text-[10px]">→</span>
+                              )}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
 
                     <div className="relative h-[300px] rounded-xl border border-brand-border bg-brand-surface-container overflow-hidden flex items-center justify-center">
                        {/* Synthetic visual for tabs */}
                        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:24px_24px]"></div>
                        
-                       <div className="relative z-10 flex items-end gap-6 h-[200px] w-full max-w-[280px] justify-between px-4">
+                       <div className="relative z-10 flex items-end gap-6 h-[200px] w-full max-w-[240px] justify-between px-4">
                           {pillars.map((p, idx) => {
                             const isGlowing = p.id === pillar.id;
-                            const heights = ["25%", "50%", "75%", "100%"];
+                            const heights = ["33%", "66%", "100%"];
                             const barHeight = heights[idx];
                             return (
                               <div key={p.id} className="flex flex-col items-center gap-3 flex-1 h-full justify-end">
@@ -120,7 +134,7 @@ export function CorePillars() {
                                       : "bg-white/10 border-white/5"
                                   }`}
                                 />
-                                <span className={`text-[10px] uppercase tracking-wider font-semibold transition-colors duration-300 whitespace-nowrap ${
+                                <span className={`text-[9px] uppercase tracking-wider font-semibold transition-colors duration-300 whitespace-nowrap ${
                                   isGlowing ? "text-brand-secondary" : "text-brand-text-muted"
                                 }`}>
                                   Pillar {idx + 1}
