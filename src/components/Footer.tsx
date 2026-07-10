@@ -1,16 +1,18 @@
 import { Button } from "./Button";
 import { MapPin, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
+import { openCal } from "../hooks/useCal";
 
 export function Footer() {
   return (
-    <footer className="bg-brand-surface pt-24 pb-12 border-t border-brand-border">
+    <footer className="bg-brand-surface pt-14 pb-12 border-t border-brand-border">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 mb-20">
           
           {/* Brand Col */}
           <div className="lg:col-span-2 flex flex-col items-start">
             <div className="flex items-center mb-6">
-              <div className="premium-wordmark-container">
+              <Link to="/" className="premium-wordmark-container bg-white/95 backdrop-blur-sm px-4 py-1 rounded-xl border border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.15)] transition-all duration-300 hover:bg-white flex items-center gap-2">
                 <div className="h-9 w-9 overflow-hidden relative flex-shrink-0">
                   <img 
                     src="/logo.png" 
@@ -18,19 +20,19 @@ export function Footer() {
                     className="h-full w-auto object-contain object-left absolute left-0 top-0" 
                   />
                 </div>
-                <div className="flex flex-col justify-center leading-none">
-                  <div className="premium-wordmark-title select-none">
-                    <span className="text-[#007AFF]">Pine</span>
-                    <span className="text-[#5AC8FA]">Brook</span>
-                  </div>
-                  <div className="font-sans italic text-[10px] tracking-wider text-[#5AC8FA]/90 mt-0.5 select-none font-medium">
-                    Technologies
-                  </div>
+                <div className="h-15 w-20 overflow-visible relative flex-shrink-0"> 
+                  <img
+                    src="/pinebrook_logo.png"
+                    alt="PineBrook Text"
+                    className="h-full w-auto object-contain object-left absolute left-0 top-0 filter drop-shadow-[0_0_10px_rgba(59,130,246,0.25)]"
+                  />            
                 </div>
-              </div>
+              </Link>
             </div>
             <p className="text-brand-text-muted text-sm leading-relaxed max-w-xs mb-8">
-              Simplifying IT. Accelerating Growth. Enterprise expertise.
+              Simplifying IT. <br />
+              Accelerating Growth. <br />
+              Enterprise expertise.
             </p>
           </div>
 
@@ -63,7 +65,15 @@ export function Footer() {
             <div className="p-6 rounded-xl bg-brand-surface-container border border-brand-border transition-all duration-300 hover:border-brand-secondary hover:shadow-[0_0_20px_rgba(90,200,250,0.1)]">
               <h4 className="font-semibold text-white mb-2">Scale Operations</h4>
               <p className="text-xs text-brand-text-muted mb-6">Discover hidden productivity gains with our 2-week quick assessment.</p>
-              <Button size="sm" className="w-full">Quick Assessment</Button>
+              <Button 
+                size="sm" 
+                className="w-full"
+                onClick={openCal}
+                data-cal-link="pinebrook"
+                data-cal-config='{"layout":"month_view"}'
+              >
+                Quick Assessment
+              </Button>
             </div>
           </div>
 
@@ -94,7 +104,7 @@ export function Footer() {
             <span className="hidden md:inline text-brand-border">|</span>
             <span className="flex items-center gap-1.5">
               <span className="font-semibold text-white">Mail:</span>
-              <a href="mailto:mail@pinebrooktechnologies.com" className="hover:text-brand-primary transition-colors text-brand-text">mail@pinebrooktechnologies.com</a>
+              <a href="mailto:info@pinebrooktechnologies.com" className="hover:text-brand-primary transition-colors text-brand-text">info@pinebrooktechnologies.com</a>
             </span>
           </div>
           <div className="flex items-center gap-4">

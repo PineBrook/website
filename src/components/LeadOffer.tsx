@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { Button } from "./Button";
 import { CheckCircle2 } from "lucide-react";
+import { openCal } from "../hooks/useCal";
 
 export function LeadOffer() {
   const deliverables = [
@@ -64,7 +65,16 @@ export function LeadOffer() {
               ))}
             </ul>
             
-            <Button size="lg" className="w-full group" withArrow>Quick Assessment</Button>
+            <Button 
+              size="lg" 
+              className="w-full group" 
+              withArrow
+              onClick={openCal}
+              data-cal-link="pinebrook"
+              data-cal-config='{"layout":"month_view"}'
+            >
+              Quick Assessment
+            </Button>
           </div>
         </motion.div>
       </div>

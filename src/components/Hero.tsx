@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Button } from "./Button";
+import { openCal } from "../hooks/useCal";
 
 export function Hero() {
   return (
@@ -12,8 +13,8 @@ export function Hero() {
       </div>
       
       {/* Decorative Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-primary/10 rounded-full blur-[140px] pointer-events-none"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-secondary/5 rounded-full blur-[140px] pointer-events-none"></div>
+      <div className="absolute top-[10%] left-[10%] w-120 h-120 bg-brand-primary/10 rounded-full blur-[140px] pointer-events-none"></div>
+      <div className="absolute bottom-[10%] right-[10%] w-100 h-120 bg-brand-secondary/5 rounded-full blur-[140px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10 flex flex-col items-center text-center">
         <motion.h1
@@ -40,10 +41,18 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row gap-4"
+          className="flex flex-col sm:flex-row gap-4 mt-8"
         >
-          <Button size="lg" className="group" withArrow>Quick Assessment</Button>
-          <Button size="lg" variant="secondary">Schedule Discovery Call</Button>
+          <Button
+            size="lg"
+            variant="secondary"
+            onClick={openCal}
+            data-cal-link="pinebrook"
+            data-cal-config='{"layout":"month_view"}'
+            className="bg-transparent hover:bg-brand-accent hover:text-brand-surface border border-white/10 hover:border-brand-accent hover:scale-[1.03] hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(173,198,255,0.6)] transition-all duration-300"
+          >
+            Schedule Discovery Call
+          </Button>
         </motion.div>
       </div>
     </section>

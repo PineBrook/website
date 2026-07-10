@@ -8,8 +8,11 @@ import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
 import { Mission } from "./pages/Mission";
+import { useCalEmbed } from "./hooks/useCal";
 
 export default function App() {
+  useCalEmbed();
+
   return (
     <Router>
       <div className="min-h-screen bg-brand-surface selection:bg-brand-primary/30 selection:text-white">
