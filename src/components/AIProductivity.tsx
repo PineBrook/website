@@ -36,7 +36,7 @@ export function AIProductivity() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-brand-primary/10 rounded-full blur-[80px] pointer-events-none"></div>
 
              {/* Circular Network Wrapper */}
-             <div className="relative z-10 w-[360px] h-[360px] flex items-center justify-center overflow-hidden">
+             <div className="relative z-10 w-[500px] h-[500px] flex items-center justify-center overflow-visible">
                {/* Central Core Node */}
                <div className="absolute z-20 w-28 h-28 rounded-full bg-brand-surface border-2 border-brand-primary flex flex-col items-center justify-center text-center p-3 shadow-[0_0_35px_rgba(0,122,255,0.4)] backdrop-blur-md">
                  <span className="text-[10px] font-mono text-brand-secondary tracking-widest leading-none mb-1">PRECISION</span>
@@ -44,7 +44,7 @@ export function AIProductivity() {
                </div>
 
                {/* Clockwise Orbit (Inner: 3 items) */}
-               <OrbitingCircles radius={85} duration={25} path={true}>
+               <OrbitingCircles radius={125} duration={30} path={true}>
                  {[
                    "AI Automation",
                    "Observability Platforms",
@@ -59,7 +59,7 @@ export function AIProductivity() {
                </OrbitingCircles>
 
                {/* Counter-Clockwise Orbit (Outer: 3 items, reverse) */}
-               <OrbitingCircles radius={135} duration={35} reverse path={true}>
+               <OrbitingCircles radius={240} duration={40} reverse path={true}>
                  {[
                    "Predictive Analytics",
                    "Process Automation",
