@@ -27,15 +27,15 @@ export function Navbar() {
       >
       <div className="w-full max-w-7xl mx-auto flex items-center justify-between md:grid md:grid-cols-3">
         <div className="flex items-center justify-start">
-          <Link to="/" className="premium-wordmark-container bg-white/95 backdrop-blur-sm px-4 py-1 rounded-xl border border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.15)] transition-all duration-300 hover:bg-white flex items-center gap-2">
-            <div className="h-9 w-9 overflow-hidden relative flex-shrink-0">
+          <Link to="/" className="premium-wordmark-container bg-white/95 backdrop-blur-sm px-0.1 py-01 rounded-xl border border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.15)] transition-all duration-300 hover:bg-white flex items-center gap-0.5">
+            <div className="h-11 w-11 overflow-hidden relative flex-shrink-0">
               <img 
                 src="/logo.png" 
                 alt="PineBrook Logo Icon" 
                 className="h-full w-auto object-contain object-left absolute left-0 top-0" 
               />
             </div>
-            <div className="h-15 w-20 overflow-visible relative flex-shrink-0"> 
+            <div className="h-11 w-22 overflow-visible relative flex-shrink-0"> 
               <img
                 src="/pinebrook_logo.png"
                 alt="PineBrook Text"
@@ -77,7 +77,7 @@ export function Navbar() {
       </div>
       </header>
 
-      {/* 2. Floating Dock Navbar (slides down when scrolled, showing ONLY the 3 menu links) */}
+      {/* 2. Floating Dock Navbar (slides down when scrolled, showing ONLY the 3 menu links, desktop only) */}
       <AnimatePresence>
         {isScrolled && (
           <motion.div
@@ -85,7 +85,7 @@ export function Navbar() {
             animate={{ y: 0, x: "-50%", opacity: 1 }}
             exit={{ y: -100, x: "-50%", opacity: 0 }}
             transition={{ type: "tween", ease: "easeIn", duration: 0.3 }}
-            className="fixed top-4 left-1/2 z-50 rounded-full bg-brand-surface-container/60 backdrop-blur-lg border border-brand-border/40 py-2.5 px-8 shadow-2xl flex items-center justify-center gap-8"
+            className="hidden md:flex fixed top-4 left-1/2 z-50 rounded-full bg-brand-surface-container/60 backdrop-blur-lg border border-brand-border/40 py-2.5 px-8 shadow-2xl items-center justify-center gap-8"
           >
             {["Solutions", "Industries", "Mission"].map((item) => (
               <Link
@@ -97,12 +97,23 @@ export function Navbar() {
                 <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-brand-primary transition-all duration-300 ease-out group-hover:w-full"></span>
               </Link>
             ))}
-            
-            {/* Mobile menu toggle inside the floating dock for small screens */}
-            <button className="md:hidden text-white ml-2" onClick={() => setMobileMenuOpen(true)}>
-              <Menu className="w-5 h-5" />
-            </button>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 3. Floating Mobile Hamburger Trigger (visible when scrolled on mobile viewports) */}
+      <AnimatePresence>
+        {isScrolled && (
+          <motion.button
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            className="md:hidden fixed top-6 right-6 z-50 p-3 rounded-full bg-brand-surface-container/80 backdrop-blur-lg border border-brand-border/40 shadow-xl text-white hover:bg-brand-surface-container transition-colors"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open Menu"
+          >
+            <Menu className="w-6 h-6" />
+          </motion.button>
         )}
       </AnimatePresence>
 
@@ -117,22 +128,20 @@ export function Navbar() {
           >
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center">
-                <Link to="/" onClick={() => setMobileMenuOpen(false)} className="premium-wordmark-container">
-                  <div className="h-8 w-8 overflow-hidden relative flex-shrink-0">
+                <Link to="/" onClick={() => setMobileMenuOpen(false)} className="premium-wordmark-container bg-white/95 backdrop-blur-sm px-1.5 py-0.5 rounded-xl border border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.15)] transition-all duration-300 hover:bg-white flex items-center gap-0.5">
+                  <div className="h-11 w-11 overflow-hidden relative flex-shrink-0">
                     <img 
                       src="/logo.png" 
                       alt="PineBrook Logo Icon" 
                       className="h-full w-auto object-contain object-left absolute left-0 top-0" 
                     />
                   </div>
-                  <div className="flex flex-col justify-center leading-none">
-                    <div className="premium-wordmark-title text-lg select-none">
-                      <span className="text-[#007AFF]">Pine</span>
-                      <span className="text-[#5AC8FA]">Brook</span>
-                    </div>
-                    <div className="font-sans italic text-[9px] tracking-wider text-[#5AC8FA]/90 mt-0.5 select-none font-medium">
-                      Technologies
-                    </div>
+                  <div className="h-11 w-26 overflow-visible relative flex-shrink-0"> 
+                    <img
+                      src="/pinebrook_logo.png"
+                      alt="PineBrook Text"
+                      className="h-full w-auto object-contain object-left absolute left-0 top-0 filter drop-shadow-[0_0_10px_rgba(59,130,246,0.25)]"
+                    />            
                   </div>
                 </Link>
               </div>

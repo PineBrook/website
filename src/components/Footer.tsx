@@ -12,15 +12,15 @@ export function Footer() {
           {/* Brand Col */}
           <div className="lg:col-span-2 flex flex-col items-start">
             <div className="flex items-center mb-6">
-              <Link to="/" className="premium-wordmark-container bg-white/95 backdrop-blur-sm px-4 py-1 rounded-xl border border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.15)] transition-all duration-300 hover:bg-white flex items-center gap-2">
-                <div className="h-9 w-9 overflow-hidden relative flex-shrink-0">
+              <Link to="/" className="premium-wordmark-container bg-white/95 backdrop-blur-sm px-1.5 py-0.5 rounded-xl border border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.15)] transition-all duration-300 hover:bg-white flex items-center gap-0.5">
+                <div className="h-11 w-11 overflow-hidden relative flex-shrink-0">
                   <img 
                     src="/logo.png" 
                     alt="PineBrook Logo Icon" 
                     className="h-full w-auto object-contain object-left absolute left-0 top-0" 
                   />
                 </div>
-                <div className="h-15 w-20 overflow-visible relative flex-shrink-0"> 
+                <div className="h-11 w-26 overflow-visible relative flex-shrink-0"> 
                   <img
                     src="/pinebrook_logo.png"
                     alt="PineBrook Text"
