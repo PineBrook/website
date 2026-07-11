@@ -3,6 +3,7 @@ import { useEffect } from "react";
 declare global {
   interface Window {
     Cal?: any;
+    CalIsLoaded?: boolean;
   }
 }
 
@@ -10,7 +11,7 @@ export function openCal(e?: React.MouseEvent<HTMLElement>) {
   if (typeof window !== "undefined") {
     const target = e?.currentTarget;
     const calLink = target?.getAttribute("data-cal-link") || "pinebrook";
-    if (window.Cal) {
+    if (window.CalIsLoaded && window.Cal) {
       window.Cal("openModal", {
         calLink,
         config: { layout: "month_view" }
@@ -32,6 +33,9 @@ export function useCalEmbed() {
       let p = A.createElement(L);
       p.src = t;
       p.async = true;
+      p.onload = () => {
+        C["CalIsLoaded"] = true;
+      };
       let firstScript = A.getElementsByTagName(L)[0];
       if (firstScript && firstScript.parentNode) {
         firstScript.parentNode.insertBefore(p, firstScript);
