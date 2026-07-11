@@ -121,7 +121,7 @@ export function ExecutionGap() {
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 border-t border-l border-brand-border/30">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 border-t border-l border-white/10">
           {cards.map((card, index) => {
             const Icon = card.icon;
             const isActive = activeCardIndex === index;
@@ -137,10 +137,10 @@ export function ExecutionGap() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 className={cn(
-                  "group relative flex flex-col items-center justify-between p-10 sm:p-12 h-[380px] border-r border-b border-brand-border/30 overflow-hidden transition-all duration-500",
+                  "group relative flex flex-col items-center justify-between p-10 sm:p-12 h-[380px] border-r border-b border-white/10 overflow-hidden transition-all duration-300",
                   isActive 
                     ? "bg-brand-surface-container/30 border-brand-secondary/40 shadow-[0_0_25px_rgba(90,200,250,0.1)]" 
-                    : "bg-brand-surface-container/10 hover:bg-brand-surface-container/25"
+                    : "bg-brand-surface-container/10 hover:bg-brand-surface-lowest hover:shadow-[inset_0_0_30px_rgba(0,0,0,0.3)]"
                 )}
               >
                 {/* Hover/Active Gradient */}
