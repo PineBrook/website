@@ -46,7 +46,7 @@ export function Footer() {
                 data-cal-link="pinebrook"
                 data-cal-config='{"layout":"month_view"}'
               >
-                Inquire
+                Schedule Discovery Call
               </Button>
             </div>
           </div>
