@@ -46,7 +46,7 @@ export function Footer() {
                 data-cal-link="pinebrook"
                 data-cal-config='{"layout":"month_view"}'
               >
-                Quick Assessment
+                Inquire
               </Button>
             </div>
           </div>
