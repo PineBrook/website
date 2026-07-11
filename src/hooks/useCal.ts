@@ -6,15 +6,17 @@ declare global {
   }
 }
 
-export function openCal() {
+export function openCal(e?: React.MouseEvent<HTMLElement>) {
   if (typeof window !== "undefined") {
+    const target = e?.currentTarget;
+    const calLink = target?.getAttribute("data-cal-link") || "pinebrook";
     if (window.Cal) {
       window.Cal("openModal", {
-        calLink: "pinebrook",
+        calLink,
         config: { layout: "month_view" }
       });
     } else {
-      window.open("https://cal.com/pinebrook", "_blank");
+      window.open(`https://cal.com/${calLink}`, "_blank");
     }
   }
 }
