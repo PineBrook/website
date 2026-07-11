@@ -34,6 +34,21 @@ export function Footer() {
               Accelerating Growth. <br />
               Enterprise expertise.
             </p>
+            
+            {/* Scale Operations CTA */}
+            <div className="p-6 rounded-xl bg-brand-surface-container border border-brand-border transition-all duration-300 hover:border-brand-secondary hover:shadow-[0_0_20px_rgba(90,200,250,0.1)] w-full max-w-sm">
+              <h4 className="font-semibold text-white mb-2">Scale Operations</h4>
+              <p className="text-xs text-brand-text-muted mb-6">Discover hidden productivity gains with our 2-week quick assessment.</p>
+              <Button 
+                size="sm" 
+                className="w-full"
+                onClick={openCal}
+                data-cal-link="pinebrook"
+                data-cal-config='{"layout":"month_view"}'
+              >
+                Quick Assessment
+              </Button>
+            </div>
           </div>
 
           {/* Links Col 1 */}
@@ -60,38 +75,23 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* CTA Col */}
-          <div className="lg:col-span-1">
-            <div className="p-6 rounded-xl bg-brand-surface-container border border-brand-border transition-all duration-300 hover:border-brand-secondary hover:shadow-[0_0_20px_rgba(90,200,250,0.1)]">
-              <h4 className="font-semibold text-white mb-2">Scale Operations</h4>
-              <p className="text-xs text-brand-text-muted mb-6">Discover hidden productivity gains with our 2-week quick assessment.</p>
-              <Button 
-                size="sm" 
-                className="w-full"
-                onClick={openCal}
-                data-cal-link="pinebrook"
-                data-cal-config='{"layout":"month_view"}'
-              >
-                Quick Assessment
-              </Button>
+          {/* Map Col */}
+          <div className="lg:col-span-1 flex lg:justify-end">
+            <div className="h-full w-full lg:w-[300px] overflow-hidden rounded-xl border border-brand-border bg-brand-surface-container/20 backdrop-blur-md min-h-[220px]">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d539.9770747203743!2d78.0880842!3d30.3653618!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3908d76678504689%3A0x2568cd7dfedfd167!2sPineBrook%20Technologies!5e1!3m2!1sen!2sin!4v1783490942652!5m2!1sen!2sin" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0, minHeight: "220px" }} 
+                allowFullScreen={true}
+                loading="lazy" 
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="PineBrook Technologies Office Map"
+                className="w-full h-full block"
+              ></iframe>
             </div>
           </div>
 
-        </div>
-
-        {/* Jony Ive Inspired Map Section */}
-        <div className="mb-12 overflow-hidden rounded-2xl border border-brand-border bg-brand-surface-container/20 backdrop-blur-md">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d539.9770747203743!2d78.0880842!3d30.3653618!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3908d76678504689%3A0x2568cd7dfedfd167!2sPineBrook%20Technologies!5e1!3m2!1sen!2sin!4v1783490942652!5m2!1sen!2sin" 
-            width="100%" 
-            height="200" 
-            style={{ border: 0 }} 
-            allowFullScreen={true}
-            loading="lazy" 
-            referrerPolicy="strict-origin-when-cross-origin"
-            title="PineBrook Technologies Office Map"
-            className="w-full block"
-          ></iframe>
         </div>
 
         {/* Contact details in one line */}
