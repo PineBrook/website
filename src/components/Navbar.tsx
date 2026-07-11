@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "./Button";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Home } from "lucide-react";
 import { openCal } from "../hooks/useCal";
-
+ 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+ 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -16,7 +16,7 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
+ 
   return (
     <>
       {/* 1. Default Transparent Fixed Navbar (visible when NOT scrolled) */}
@@ -44,7 +44,7 @@ export function Navbar() {
             </div>
           </Link>
         </div>
-
+ 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center justify-center gap-12">
           {["Solutions", "Industries", "Mission"].map((item) => (
@@ -58,7 +58,7 @@ export function Navbar() {
             </Link>
           ))}
         </nav>
-
+ 
         <div className="hidden md:flex items-center justify-end gap-4">
           <Button 
             className="group"
@@ -69,14 +69,14 @@ export function Navbar() {
             Inquire
           </Button>
         </div>
-
+ 
         {/* Mobile Menu Toggle */}
         <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(true)}>
           <Menu className="w-6 h-6" />
         </button>
       </div>
       </header>
-
+ 
       {/* 2. Floating Dock Navbar (slides down when scrolled, showing ONLY the 3 menu links, desktop only) */}
       <AnimatePresence>
         {isScrolled && (
@@ -85,8 +85,13 @@ export function Navbar() {
             animate={{ y: 0, x: "-50%", opacity: 1 }}
             exit={{ y: -100, x: "-50%", opacity: 0 }}
             transition={{ type: "tween", ease: "easeIn", duration: 0.3 }}
-            className="hidden md:flex fixed top-4 left-1/2 z-50 rounded-full bg-brand-surface-container/60 backdrop-blur-lg border border-brand-border/40 py-2.5 px-8 shadow-2xl items-center justify-center gap-8"
+            className="hidden md:flex fixed top-4 left-1/2 z-50 rounded-full bg-brand-surface-container/60 backdrop-blur-lg border border-brand-border/40 py-2.5 px-6 shadow-2xl items-center justify-center gap-4"
           >
+            <Link to="/" className="text-white hover:text-brand-primary transition-colors flex items-center justify-center relative group p-1.5 rounded-full hover:bg-white/5">
+              <Home className="w-5 h-5" />
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-brand-primary transition-all duration-300 ease-out group-hover:w-1/2"></span>
+            </Link>
+            <div className="w-px h-5 bg-brand-border/30"></div>
             {["Solutions", "Industries", "Mission"].map((item) => (
               <Link
                 key={item}
