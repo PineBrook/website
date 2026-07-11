@@ -87,7 +87,16 @@ export function Navbar() {
             transition={{ type: "tween", ease: "easeIn", duration: 0.3 }}
             className="hidden md:flex fixed top-4 left-1/2 z-50 rounded-full bg-brand-surface-container/60 backdrop-blur-lg border border-brand-border/40 py-2.5 px-6 shadow-2xl items-center justify-center gap-4"
           >
-            <Link to="/" className="text-white hover:text-brand-primary transition-colors flex items-center justify-center relative group p-1.5 rounded-full hover:bg-white/5">
+            <Link 
+              to="/" 
+              onClick={(e) => {
+                if (window.location.pathname === "/") {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+              }}
+              className="text-white hover:text-brand-primary transition-colors flex items-center justify-center relative group p-1.5 rounded-full hover:bg-white/5"
+            >
               <Home className="w-5 h-5" />
               <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-brand-primary transition-all duration-300 ease-out group-hover:w-1/2"></span>
             </Link>
