@@ -35,44 +35,44 @@ export function AIProductivity() {
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-brand-primary/10 rounded-full blur-[80px] pointer-events-none"></div>
 
-             {/* Circular Network Wrapper */}
-             <div className="relative z-10 w-[500px] h-[500px] flex items-center justify-center overflow-visible">
-               {/* Central Core Node */}
-               <div className="absolute z-20 w-28 h-28 rounded-full bg-brand-surface border-2 border-brand-primary flex flex-col items-center justify-center text-center p-3 shadow-[0_0_35px_rgba(0,122,255,0.4)] backdrop-blur-md">
-                 <span className="text-[10px] font-mono text-brand-secondary tracking-widest leading-none mb-1">PRECISION</span>
-                 <span className="text-sm font-display font-bold text-white leading-tight">ENGINE</span>
-               </div>
+              {/* Circular Network Wrapper */}
+              <div className="relative z-10 w-[500px] h-[500px] flex items-center justify-center overflow-visible scale-[0.52] xs:scale-[0.62] sm:scale-[0.8] md:scale-100 transition-transform duration-300">
+                {/* Central Core Node */}
+                <div className="absolute z-20 w-32 h-32 rounded-full bg-brand-surface border-2 border-brand-primary flex flex-col items-center justify-center text-center p-3 shadow-[0_0_35px_rgba(0,122,255,0.4)] backdrop-blur-md">
+                  <span className="text-[11px] font-mono text-brand-secondary tracking-widest leading-none mb-1">PRECISION</span>
+                  <span className="text-base font-display font-bold text-white leading-tight">ENGINE</span>
+                </div>
 
-               {/* Clockwise Orbit (Inner: 3 items) */}
-               <OrbitingCircles radius={125} duration={30} path={true}>
-                 {[
-                   "AI Automation",
-                   "Observability Platforms",
-                   "Auto-Healing Systems"
-                 ].map((label, i) => (
-                   <div key={i} className="absolute w-32 h-14 flex items-center justify-center p-2 rounded-lg bg-brand-surface-low border border-brand-border/60 hover:border-brand-secondary text-center cursor-default shadow-xl backdrop-blur-sm transition-colors duration-300 hover:shadow-[0_0_15px_rgba(90,200,250,0.2)]">
-                     <span className="text-[10px] leading-tight font-semibold text-white/95">
-                       {label}
-                     </span>
-                   </div>
-                 ))}
-               </OrbitingCircles>
+                {/* Clockwise Orbit (Inner: 3 items) */}
+                <OrbitingCircles radius={135} duration={30} path={true}>
+                  {[
+                    "AI Automation",
+                    "Observability Platforms",
+                    "Auto-Healing Systems"
+                  ].map((label, i) => (
+                    <div key={i} className="absolute w-36 h-16 flex items-center justify-center p-3 rounded-lg bg-brand-surface-low border border-brand-border/60 hover:border-brand-secondary text-center cursor-default shadow-xl backdrop-blur-sm transition-colors duration-300 hover:shadow-[0_0_15px_rgba(90,200,250,0.2)]">
+                      <span className="text-xs sm:text-sm leading-tight font-semibold text-white/95">
+                        {label}
+                      </span>
+                    </div>
+                  ))}
+                </OrbitingCircles>
 
-               {/* Counter-Clockwise Orbit (Outer: 3 items, reverse) */}
-               <OrbitingCircles radius={240} duration={40} reverse path={true}>
-                 {[
-                   "Predictive Analytics",
-                   "Process Automation",
-                   "Operational Intelligence"
-                 ].map((label, i) => (
-                   <div key={i} className="absolute w-32 h-14 flex items-center justify-center p-2 rounded-lg bg-brand-surface-low border border-brand-border/60 hover:border-brand-secondary text-center cursor-default shadow-xl backdrop-blur-sm transition-colors duration-300 hover:shadow-[0_0_15px_rgba(90,200,250,0.2)]">
-                     <span className="text-[10px] leading-tight font-semibold text-white/95">
-                       {label}
-                     </span>
-                   </div>
-                 ))}
-               </OrbitingCircles>
-             </div>
+                {/* Counter-Clockwise Orbit (Outer: 3 items, reverse) */}
+                <OrbitingCircles radius={250} duration={40} reverse path={true}>
+                  {[
+                    "Predictive Analytics",
+                    "Process Automation",
+                    "Operational Intelligence"
+                  ].map((label, i) => (
+                    <div key={i} className="absolute w-36 h-16 flex items-center justify-center p-3 rounded-lg bg-brand-surface-low border border-brand-border/60 hover:border-brand-secondary text-center cursor-default shadow-xl backdrop-blur-sm transition-colors duration-300 hover:shadow-[0_0_15px_rgba(90,200,250,0.2)]">
+                      <span className="text-xs sm:text-sm leading-tight font-semibold text-white/95">
+                        {label}
+                      </span>
+                    </div>
+                  ))}
+                </OrbitingCircles>
+              </div>
           </motion.div>
 
           {/* Right Column */}
