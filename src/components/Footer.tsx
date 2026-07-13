@@ -89,7 +89,7 @@ export function Footer() {
                 loading="lazy" 
                 referrerPolicy="strict-origin-when-cross-origin"
                 title="PineBrook Technologies Office Map"
-                className="w-full h-full block"
+                className="w-full h-full block opacity-75 transition-opacity duration-300 hover:opacity-100"
               ></iframe>
             </div>
           </div>
