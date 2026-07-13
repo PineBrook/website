@@ -79,12 +79,12 @@ export function Footer() {
 
           {/* Map Col */}
           <div className="lg:col-span-1 flex lg:justify-end">
-            <div className="h-full w-full lg:w-[300px] overflow-hidden rounded-xl border border-brand-border bg-brand-surface-container/20 backdrop-blur-md min-h-[220px]">
+            <div className="w-full lg:w-[300px] aspect-[4/3] lg:aspect-auto lg:h-[220px] overflow-hidden rounded-xl border border-brand-border bg-brand-surface-container/20 backdrop-blur-md">
               <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d539.9770747203743!2d78.0880842!3d30.3653618!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3908d76678504689%3A0x2568cd7dfedfd167!2sPineBrook%20Technologies!5e1!3m2!1sen!2sin!4v1783490942652!5m2!1sen!2sin" 
                 width="100%" 
                 height="100%" 
-                style={{ border: 0, minHeight: "220px" }} 
+                style={{ border: 0 }} 
                 allowFullScreen={true}
                 loading="lazy" 
                 referrerPolicy="strict-origin-when-cross-origin"
