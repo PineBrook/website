@@ -102,7 +102,7 @@ export function AIProductivity() {
               {stats.map((stat, i) => (
                 <div key={i}>
                   <div className="text-2xl font-display font-bold text-white mb-1">{stat.value}</div>
-                  <div className="eyebrow text-[9px] text-brand-text-muted">{stat.label}</div>
+                  <div className="eyebrow text-[11px] font-normal text-white/80 tracking-wide">{stat.label}</div>
                 </div>
               ))}
             </div>

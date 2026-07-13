@@ -73,7 +73,7 @@ export function Statistics() {
               <div className="text-4xl md:text-5xl font-display font-bold text-white mb-2">
                 <Counter value={stat.value} />
               </div>
-              <div className="eyebrow text-xs text-brand-text-muted">
+              <div className="eyebrow text-sm font-normal text-white/80 tracking-wide">
                 {stat.label}
               </div>
             </motion.div>
