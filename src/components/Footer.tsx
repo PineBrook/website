@@ -15,15 +15,17 @@ export function Footer() {
               <Link to="/" className="premium-wordmark-container bg-white/95 backdrop-blur-sm px-1.5 py-0.5 rounded-xl border border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.15)] transition-all duration-300 hover:bg-white flex items-center gap-0.5">
                 <div className="h-11 w-11 overflow-hidden relative flex-shrink-0">
                   <img 
-                    src="/logo.png" 
+                    src="/logo.webp" 
                     alt="PineBrook Logo Icon" 
+                    loading="lazy"
                     className="h-full w-auto object-contain object-left absolute left-0 top-0" 
                   />
                 </div>
                 <div className="h-11 w-26 overflow-visible relative flex-shrink-0"> 
                   <img
-                    src="/pinebrook_logo.png"
+                    src="/pinebrook_logo.webp"
                     alt="PineBrook Text"
+                    loading="lazy"
                     className="h-full w-auto object-contain object-left absolute left-0 top-0 filter drop-shadow-[0_0_10px_rgba(59,130,246,0.25)]"
                   />            
                 </div>
