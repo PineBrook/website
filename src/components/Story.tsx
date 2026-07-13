@@ -54,22 +54,22 @@ export function Story() {
 
             <div className="grid sm:grid-cols-2 gap-8 mb-12">
               <div>
-                <h4 className="font-semibold text-white mb-4 text-lg">Community Impact</h4>
+                <h3 className="font-semibold text-white mb-4 text-lg">Community Impact</h3>
                 <ul className="space-y-3">
                   {["Local Employment", "Skill Development", "Sustainable Growth"].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-brand-text-muted text-sm">
-                      <div className="w-1.5 h-1.5 rounded-full bg-brand-primary"></div>
+                       <div className="w-1.5 h-1.5 rounded-full bg-brand-primary"></div>
                       {item}
                     </li>
                   ))}
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-white mb-4 text-lg">Operational Edge</h4>
+                <h3 className="font-semibold text-white mb-4 text-lg">Operational Edge</h3>
                 <ul className="space-y-3">
                   {["Low Attrition Rates", "Dedicated Centers", "Inherent Synergy"].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-brand-text-muted text-sm">
-                      <div className="w-1.5 h-1.5 rounded-full bg-brand-secondary"></div>
+                       <div className="w-1.5 h-1.5 rounded-full bg-brand-secondary"></div>
                       {item}
                     </li>
                   ))}

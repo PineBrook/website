@@ -43,7 +43,7 @@ export function Comparison() {
                 >
                   <XCircle className="w-6 h-6 text-red-400 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="font-semibold text-white mb-1">{item.title}</h4>
+                    <h3 className="font-semibold text-white mb-1 text-base">{item.title}</h3>
                     <p className="text-sm text-brand-text-muted">{item.desc}</p>
                   </div>
                 </motion.div>

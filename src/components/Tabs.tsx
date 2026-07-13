@@ -28,6 +28,7 @@ export function Tabs({
 export function TabsList({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
+      role="tablist"
       className={cn(
         "inline-flex h-12 items-center justify-center rounded-lg bg-brand-surface-container p-1 text-brand-text-muted border border-brand-border",
         className

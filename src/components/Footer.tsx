@@ -37,7 +37,7 @@ export function Footer() {
             
             {/* Scale Operations CTA */}
             <div className="p-6 rounded-xl bg-brand-surface-container border border-brand-border transition-all duration-300 hover:border-brand-secondary hover:shadow-[0_0_20px_rgba(90,200,250,0.1)] w-full max-w-sm">
-              <h4 className="font-semibold text-white mb-2">Scale Operations</h4>
+              <div className="font-semibold text-white mb-2 text-base">Scale Operations</div>
               <p className="text-xs text-brand-text-muted mb-6">Discover hidden productivity gains with our 2-week quick assessment.</p>
               <Button 
                 size="sm" 
@@ -53,7 +53,7 @@ export function Footer() {
 
           {/* Links Col 1 */}
           <div>
-            <h4 className="eyebrow text-xs text-white mb-6">SOLUTIONS</h4>
+            <div className="eyebrow text-xs text-white mb-6 font-semibold">SOLUTIONS</div>
             <ul className="space-y-4">
               {["Managed Operations", "AI & Automation", "Digital Advisory", "Global Delivery"].map((item) => (
                 <li key={item}>
@@ -65,7 +65,7 @@ export function Footer() {
 
           {/* Links Col 2 */}
           <div>
-            <h4 className="eyebrow text-xs text-white mb-6">COMPANY</h4>
+            <div className="eyebrow text-xs text-white mb-6 font-semibold">COMPANY</div>
             <ul className="space-y-4">
               {["About Us", "Case Studies", "Careers", "Contact"].map((item) => (
                 <li key={item}>
