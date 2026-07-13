@@ -7,7 +7,7 @@ export function Hero() {
     <section className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-brand-surface-lowest">
       {/* Background Decor - World Map abstraction/Grid */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-x-0 bottom-0 h-[100%] bg-[url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg')] bg-no-repeat bg-[center_top] md:bg-bottom bg-[length:180%] md:bg-[length:110%] opacity-75 invert mix-blend-screen"></div>
+        <div className="absolute inset-x-0 bottom-0 h-full bg-[url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg')] bg-no-repeat bg-[center_top] md:bg-bottom bg-[length:180%] md:bg-[length:110%] opacity-75 invert mix-blend-screen"></div>
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(2,6,15,0.2)_0%,var(--color-brand-surface-lowest)_95%)]"></div>
       </div>
