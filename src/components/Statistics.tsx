@@ -26,7 +26,7 @@ function Counter({ value }: { value: string }) {
 
     const target = parseInt(match[1], 10);
     const suffix = match[2];
-    const duration = 1500; // 1.5 seconds
+    const duration = 2500;
     const startTime = performance.now();
 
     let animationFrameId: number;
