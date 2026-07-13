@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 import { Button } from "./Button";
 import { openCal } from "../hooks/useCal";
-import { Magnetic } from "./Magnetic";
 
 export function Hero() {
   return (
@@ -44,18 +43,16 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-col sm:flex-row gap-4 mt-8"
         >
-          <Magnetic>
-            <Button
-              size="lg"
-              variant="secondary"
-              onClick={openCal}
-              data-cal-link="pinebrook"
-              data-cal-config='{"layout":"month_view"}'
-              className="bg-transparent hover:bg-brand-accent hover:text-brand-surface border border-white/10 hover:border-brand-accent hover:shadow-[0_0_20px_rgba(173,198,255,0.6)] transition-[background-color,border-color,color,box-shadow] duration-300 cursor-pointer"
-            >
-              Schedule Discovery Call
-            </Button>
-          </Magnetic>
+          <Button
+            size="lg"
+            variant="secondary"
+            onClick={openCal}
+            data-cal-link="pinebrook"
+            data-cal-config='{"layout":"month_view"}'
+            className="bg-transparent hover:bg-brand-accent hover:text-brand-surface border border-white/10 hover:border-brand-accent shadow-[0_0_15px_rgba(0,122,255,0.15)] hover:shadow-[0_0_25px_rgba(0,122,255,0.45)] hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+          >
+            Schedule Discovery Call
+          </Button>
         </motion.div>
       </div>
     </section>
