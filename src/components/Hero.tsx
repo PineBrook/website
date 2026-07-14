@@ -25,7 +25,7 @@ export function Hero() {
         >
           <span className="text-3xl sm:text-4xl md:text-5xl text-white/90 mb-3 md:mb-4">YOUR BUSINESS IS</span>
           <span className="text-[3.5rem] sm:text-6xl md:text-[4.5rem] lg:text-[6rem] leading-[1.1] sm:leading-none bg-gradient-to-r from-white via-brand-accent to-brand-secondary bg-clip-text text-transparent mb-4 md:mb-4 drop-shadow-[0_0_15px_rgba(0,122,255,0.3)] text-center pb-2">GROWING FASTER</span>
-          <span className="text-3xl sm:text-2xl md:text-5xl text-white/90 text-center">THAN OPERATIONS.</span>
+          <span className="text-3xl sm:text-4xl md:text-5xl text-white/90 text-center">THAN OPERATIONS.</span>
         </motion.h1>
 
         <motion.p

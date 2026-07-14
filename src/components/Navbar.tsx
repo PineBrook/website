@@ -142,8 +142,8 @@ export function Navbar() {
             exit={{ opacity: 0, y: -20 }}
             className="fixed inset-0 z-50 bg-brand-surface p-6 flex flex-col"
           >
-            <div className="flex items-center">
-              <Link to="/" onClick={() => setMobileMenuOpen(false)} className="premium-wordmark-container bg-white/95 backdrop-blur-sm px-1.5 py-0.5 rounded-xl border border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.15)] transition-all duration-300 hover:bg-white flex items-center gap-0.5">
+            <div className="flex items-center justify-between mb-8">
+              <Link to="/" onClick={() => setMobileMenuOpen(false)} className="premium-wordmark-container bg-white/95 backdrop-blur-sm px-0.1 py-01 rounded-xl border border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.15)] transition-all duration-300 hover:bg-white flex items-center gap-0.5">
                 <div className="h-11 w-11 overflow-hidden relative flex-shrink-0">
                   <img 
                     src="/logo.webp" 
@@ -152,7 +152,7 @@ export function Navbar() {
                     className="h-full w-auto object-contain object-left absolute left-0 top-0" 
                   />
                 </div>
-                <div className="h-11 w-26 overflow-visible relative flex-shrink-0"> 
+                <div className="h-11 w-22 overflow-visible relative flex-shrink-0"> 
                   <img
                     src="/pinebrook_logo.webp"
                     alt="PineBrook Text"
@@ -161,26 +161,26 @@ export function Navbar() {
                   />            
                 </div>
               </Link>
+              <button className="text-white" onClick={() => setMobileMenuOpen(false)}>
+                <X className="w-6 h-6" />
+              </button>
             </div>
-            <button className="text-white" onClick={() => setMobileMenuOpen(false)}>
-              <X className="w-6 h-6" />
-            </button>
             
-            <nav className="flex flex-col gap-6 flex-1">
+            <nav className="flex flex-col items-center justify-center gap-8 flex-1 my-8">
               {["Solutions", "Industries", "Mission"].map((item) => (
                 <Link
                   key={item}
                   to={item === "Mission" ? "/mission" : `/#${item.toLowerCase()}`}
-                  className="text-2xl font-display font-medium text-white"
+                  className="text-3xl font-display font-medium text-white hover:text-brand-primary transition-colors text-center"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item}
                 </Link>
               ))}
             </nav>
-            <div className="mt-auto flex flex-col gap-4">
+            <div className="flex flex-col gap-4 w-full max-w-sm mx-auto">
               <Button 
-                className="w-full justify-center group"
+                className="w-full justify-center group py-4 text-lg"
                 onClick={openCal}
                 data-cal-link="pinebrook"
                 data-cal-config='{"layout":"month_view"}'
