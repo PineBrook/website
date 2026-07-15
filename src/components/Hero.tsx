@@ -16,7 +16,7 @@ export function Hero() {
           className="absolute inset-0 w-full h-full object-cover opacity-[0.18] mix-blend-screen"
         >
           <source 
-            src="https://assets.mixkit.co/videos/preview/mixkit-tech-digital-earth-loop-42861-large.mp4" 
+            src="/videos/hero-background.mp4" 
             type="video/mp4" 
           />
         </video>
