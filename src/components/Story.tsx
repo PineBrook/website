@@ -91,96 +91,39 @@ export function Story() {
         
         {/* Glowing Scroll Light Beam Overlay */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
-          {/* Desktop Swaying & Splitting Beam */}
-          <svg className="hidden md:block w-full h-full absolute inset-0" viewBox="0 0 1000 1200" preserveAspectRatio="none" fill="none">
-            {/* Ambient Background Blur Paths */}
-            <motion.path
-              d="M 500 0 C 500 150, 450 300, 480 450 C 520 600, 500 750, 500 780 C 500 850, 160 880, 160 1050"
-              stroke="#007AFF"
-              strokeWidth="12"
-              strokeLinecap="round"
-              className="opacity-5 blur-[12px]"
-              style={{ pathLength }}
-            />
-            <motion.path
-              d="M 500 0 C 500 150, 450 300, 480 450 C 520 600, 500 750, 500 780 C 500 850, 500 880, 500 1050"
-              stroke="#5AC8FA"
-              strokeWidth="12"
-              strokeLinecap="round"
-              className="opacity-5 blur-[12px]"
-              style={{ pathLength }}
-            />
-            <motion.path
-              d="M 500 0 C 500 150, 450 300, 480 450 C 520 600, 500 750, 500 780 C 500 850, 840 880, 840 1050"
-              stroke="#007AFF"
-              strokeWidth="12"
-              strokeLinecap="round"
-              className="opacity-5 blur-[12px]"
-              style={{ pathLength }}
-            />
-
-            {/* Sharp Glowing Foreground Paths (Translucent) */}
-            <motion.path
-              d="M 500 0 C 500 150, 450 300, 480 450 C 520 600, 500 750, 500 780 C 500 850, 160 880, 160 1050"
-              stroke="url(#beamBlueGrad)"
+          {/* Winding Flowing Brook Stream (Next.js inspired organic particle flow) */}
+          <svg className="w-full h-full absolute inset-0" viewBox="0 0 1000 1200" preserveAspectRatio="none" fill="none">
+            {/* The Riverbed - Faint background guide path */}
+            <path
+              d="M 500 0 C 350 150, 650 300, 500 480 C 350 660, 650 810, 500 960 C 350 1110, 650 1150, 500 1200"
+              stroke="rgba(0, 122, 255, 0.06)"
               strokeWidth="2.5"
-              strokeOpacity="0.45"
               strokeLinecap="round"
-              style={{ pathLength }}
             />
+            {/* Subtle glow layer */}
             <motion.path
-              d="M 500 0 C 500 150, 450 300, 480 450 C 520 600, 500 750, 500 780 C 500 850, 500 880, 500 1050"
-              stroke="url(#beamCyanGrad)"
-              strokeWidth="2.5"
-              strokeOpacity="0.45"
-              strokeLinecap="round"
-              style={{ pathLength }}
-            />
-            <motion.path
-              d="M 500 0 C 500 150, 450 300, 480 450 C 520 600, 500 750, 500 780 C 500 850, 840 880, 840 1050"
-              stroke="url(#beamBlueGrad)"
-              strokeWidth="2.5"
-              strokeOpacity="0.45"
-              strokeLinecap="round"
-              style={{ pathLength }}
-            />
-
-            <defs>
-              <linearGradient id="beamBlueGrad" x1="0" y1="0" x2="0" y2="100%">
-                <stop stopColor="#007AFF" />
-                <stop offset="1" stopColor="#5AC8FA" />
-              </linearGradient>
-              <linearGradient id="beamCyanGrad" x1="0" y1="0" x2="0" y2="100%">
-                <stop stopColor="#5AC8FA" />
-                <stop offset="1" stopColor="#007AFF" />
-              </linearGradient>
-            </defs>
-          </svg>
-
-          {/* Mobile Single Swaying Beam */}
-          <svg className="md:hidden w-full h-full absolute inset-0" viewBox="0 0 100 1200" preserveAspectRatio="none" fill="none">
-            {/* Ambient Background Blur Path */}
-            <motion.path
-              d="M 50 0 C 50 150, 30 300, 70 450 C 40 600, 60 750, 50 900 C 50 1000, 50 1100, 50 1150"
+              d="M 500 0 C 350 150, 650 300, 500 480 C 350 660, 650 810, 500 960 C 350 1110, 650 1150, 500 1200"
               stroke="#007AFF"
-              strokeWidth="10"
+              strokeWidth="8"
               strokeLinecap="round"
-              className="opacity-5 blur-[8px]"
+              className="opacity-[0.03] blur-[10px]"
               style={{ pathLength }}
             />
-            {/* Sharp Foreground Path (Translucent) */}
+            {/* The Winding Flowing Brook - Animated sharp foreground pulses */}
             <motion.path
-              d="M 50 0 C 50 150, 30 300, 70 450 C 40 600, 60 750, 50 900 C 50 1000, 50 1100, 50 1150"
-              stroke="url(#mobileBeamGrad)"
+              d="M 500 0 C 350 150, 650 300, 500 480 C 350 660, 650 810, 500 960 C 350 1110, 650 1150, 500 1200"
+              stroke="url(#brookGrad)"
               strokeWidth="2"
-              strokeOpacity="0.45"
               strokeLinecap="round"
+              className="animate-flow-brook"
               style={{ pathLength }}
             />
+
             <defs>
-              <linearGradient id="mobileBeamGrad" x1="0" y1="0" x2="0" y2="100%">
+              <linearGradient id="brookGrad" x1="0" y1="0" x2="0" y2="100%">
                 <stop stopColor="#007AFF" />
-                <stop offset="1" stopColor="#5AC8FA" />
+                <stop offset="0.5" stopColor="#5AC8FA" />
+                <stop offset="1" stopColor="#007AFF" />
               </linearGradient>
             </defs>
           </svg>

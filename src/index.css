@@ -150,3 +150,17 @@ h1, h2, h3, h4, h5, h6 {
   animation-direction: reverse;
 }
 
+@keyframes flow {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-flow-brook {
+  stroke-dasharray: 120 280;
+  animation: flow 10s linear infinite;
+}
+
