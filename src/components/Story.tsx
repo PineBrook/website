@@ -95,7 +95,7 @@ export function Story() {
           <svg className="hidden md:block w-full h-full absolute inset-0" viewBox="0 0 1000 1200" preserveAspectRatio="none" fill="none">
             {/* Ambient Background Blur Paths */}
             <motion.path
-              d="M 500 0 Q 420 200 520 400 T 500 700 C 500 800, 160 850, 160 1050"
+              d="M 500 0 C 500 150, 450 300, 480 450 C 520 600, 500 750, 500 780 C 500 850, 160 880, 160 1050"
               stroke="#007AFF"
               strokeWidth="12"
               strokeLinecap="round"
@@ -103,7 +103,7 @@ export function Story() {
               style={{ pathLength }}
             />
             <motion.path
-              d="M 500 0 Q 420 200 520 400 T 500 700 C 500 800, 500 850, 500 1050"
+              d="M 500 0 C 500 150, 450 300, 480 450 C 520 600, 500 750, 500 780 C 500 850, 500 880, 500 1050"
               stroke="#5AC8FA"
               strokeWidth="12"
               strokeLinecap="round"
@@ -111,7 +111,7 @@ export function Story() {
               style={{ pathLength }}
             />
             <motion.path
-              d="M 500 0 Q 420 200 520 400 T 500 700 C 500 800, 840 850, 840 1050"
+              d="M 500 0 C 500 150, 450 300, 480 450 C 520 600, 500 750, 500 780 C 500 850, 840 880, 840 1050"
               stroke="#007AFF"
               strokeWidth="12"
               strokeLinecap="round"
@@ -119,25 +119,28 @@ export function Story() {
               style={{ pathLength }}
             />
 
-            {/* Sharp Glowing Foreground Paths */}
+            {/* Sharp Glowing Foreground Paths (Translucent) */}
             <motion.path
-              d="M 500 0 Q 420 200 520 400 T 500 700 C 500 800, 160 850, 160 1050"
+              d="M 500 0 C 500 150, 450 300, 480 450 C 520 600, 500 750, 500 780 C 500 850, 160 880, 160 1050"
               stroke="url(#beamBlueGrad)"
               strokeWidth="2.5"
+              strokeOpacity="0.45"
               strokeLinecap="round"
               style={{ pathLength }}
             />
             <motion.path
-              d="M 500 0 Q 420 200 520 400 T 500 700 C 500 800, 500 850, 500 1050"
+              d="M 500 0 C 500 150, 450 300, 480 450 C 520 600, 500 750, 500 780 C 500 850, 500 880, 500 1050"
               stroke="url(#beamCyanGrad)"
               strokeWidth="2.5"
+              strokeOpacity="0.45"
               strokeLinecap="round"
               style={{ pathLength }}
             />
             <motion.path
-              d="M 500 0 Q 420 200 520 400 T 500 700 C 500 800, 840 850, 840 1050"
+              d="M 500 0 C 500 150, 450 300, 480 450 C 520 600, 500 750, 500 780 C 500 850, 840 880, 840 1050"
               stroke="url(#beamBlueGrad)"
               strokeWidth="2.5"
+              strokeOpacity="0.45"
               strokeLinecap="round"
               style={{ pathLength }}
             />
@@ -158,18 +161,19 @@ export function Story() {
           <svg className="md:hidden w-full h-full absolute inset-0" viewBox="0 0 100 1200" preserveAspectRatio="none" fill="none">
             {/* Ambient Background Blur Path */}
             <motion.path
-              d="M 50 0 Q 30 200 70 400 T 50 800 T 50 1150"
+              d="M 50 0 C 50 150, 30 300, 70 450 C 40 600, 60 750, 50 900 C 50 1000, 50 1100, 50 1150"
               stroke="#007AFF"
               strokeWidth="10"
               strokeLinecap="round"
               className="opacity-5 blur-[8px]"
               style={{ pathLength }}
             />
-            {/* Sharp Foreground Path */}
+            {/* Sharp Foreground Path (Translucent) */}
             <motion.path
-              d="M 50 0 Q 30 200 70 400 T 50 800 T 50 1150"
+              d="M 50 0 C 50 150, 30 300, 70 450 C 40 600, 60 750, 50 900 C 50 1000, 50 1100, 50 1150"
               stroke="url(#mobileBeamGrad)"
               strokeWidth="2"
+              strokeOpacity="0.45"
               strokeLinecap="round"
               style={{ pathLength }}
             />
