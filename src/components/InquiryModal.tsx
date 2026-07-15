@@ -260,9 +260,11 @@ export function InquiryModal() {
     setStatus("submitting");
     try {
       const payload = {
-        name: `${formData.firstName} ${formData.lastName}`.trim(),
-        email: formData.email,
-        phone: formData.phone ? `${selectedCountry.dialCode} ${formData.phone}` : "",
+        firstname: formData.firstName.trim(),
+        lastname: formData.lastName.trim(),
+        email: formData.email.trim(),
+        phoneExtension: formData.phone ? selectedCountry.dialCode : "",
+        phoneNumber: formData.phone ? formData.phone.trim() : "",
       };
 
       const response = await fetch("/api/inquire", {

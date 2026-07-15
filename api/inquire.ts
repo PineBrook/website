@@ -52,11 +52,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(451).json({ message: "Method Not Allowed" });
   }
 
-  const { name, email, phone } = req.body;
+  const { firstname, lastname, email, phoneExtension, phoneNumber } = req.body;
 
   // Validate request body
-  if (!name || !email || !phone) {
-    return res.status(400).json({ message: "Name, email, and phone are required." });
+  if (!firstname || (!email && !phoneNumber)) {
+    return res.status(400).json({ message: "First name and at least one contact method (email or phone) are required." });
   }
 
   const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
@@ -65,9 +65,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!webhookUrl) {
     console.log("Mocking Google Sheets Submission (GOOGLE_SHEETS_WEBHOOK_URL not configured):");
     console.log(`- Timestamp: ${new Date().toISOString()}`);
-    console.log(`- Name: ${name}`);
+    console.log(`- First Name: ${firstname}`);
+    console.log(`- Last Name: ${lastname}`);
     console.log(`- Email: ${email}`);
-    console.log(`- Phone: ${phone}`);
+    console.log(`- Phone Extension: ${phoneExtension}`);
+    console.log(`- Phone Number: ${phoneNumber}`);
     
     // Simulate slight delay
     await new Promise((resolve) => setTimeout(resolve, 800));
@@ -75,7 +77,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).json({
       success: true,
       message: "Success (Mocked local save - set GOOGLE_SHEETS_WEBHOOK_URL to connect to real Google Sheet)",
-      data: { name, email, phone },
+      data: { firstname, lastname, email, phoneExtension, phoneNumber },
     });
   }
 
@@ -85,7 +87,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, email, phone }),
+      body: JSON.stringify({ firstname, lastname, email, phoneExtension, phoneNumber }),
     });
 
     if (!response.ok) {
