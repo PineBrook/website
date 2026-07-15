@@ -14,21 +14,21 @@ export function Story() {
     {
       name: "Yashvardhan",
       role: "Founder & Managing Partner",
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop", // Professional female/male placeholder
+      image: "/images/yashvardhan.jpg",
       bio: "Veteran GCC architect and operational strategist. Deliberately building scalable delivery teams and AI capability centers in regional ecosystems.",
       linkedin: "#"
     },
     {
       name: "Dr. Alok Sharma",
       role: "Advisor, Talent & Academic Relations",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop", // Male corporate portrait placeholder
+      image: "/images/alok.jpg",
       bio: "Bridges the gap between regional technical universities and enterprise readiness, designing curricula centered on AI, logic, and operational excellence.",
       linkedin: "#"
     },
     {
       name: "Vikram Negi",
       role: "Director of Operations",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop",
+      image: "/images/vikram.jpg",
       bio: "Oversees local delivery centers, ensuring strict SLA compliance, infrastructure security, and high-performance managed teams.",
       linkedin: "#"
     }
@@ -41,7 +41,7 @@ export function Story() {
       <div className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
         {/* Background Himalayas Image with Dark Masking */}
         <div 
-          className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1800&auto=format&fit=crop')] bg-cover bg-center" 
+          className="absolute inset-0 bg-[url('/images/himalayas.jpg')] bg-cover bg-center" 
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0c0f17]/80 via-brand-surface/70 to-brand-surface" />
