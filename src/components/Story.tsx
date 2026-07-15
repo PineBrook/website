@@ -10,26 +10,23 @@ interface Leader {
 }
 
 export function Story() {
-  const leaders: Leader[] = [
+  const leaders = [
     {
-      name: "Yashvardhan",
+      name: "Anoop Singh",
       role: "Founder & Managing Partner",
-      image: "/images/yashvardhan.jpg",
       bio: "Veteran GCC architect and operational strategist. Deliberately building scalable delivery teams and AI capability centers in regional ecosystems.",
       linkedin: "#"
     },
     {
-      name: "Dr. Alok Sharma",
-      role: "Advisor, Talent & Academic Relations",
-      image: "/images/alok.jpg",
-      bio: "Bridges the gap between regional technical universities and enterprise readiness, designing curricula centered on AI, logic, and operational excellence.",
+      name: "Shobhit Tiwari",
+      role: "Co-Founder & Technology Lead",
+      bio: "Drives technology roadmap execution and precision AI engineering integrations, ensuring resilient architecture for enterprise workflows.",
       linkedin: "#"
     },
     {
-      name: "Vikram Negi",
+      name: "Bharat Singh",
       role: "Director of Operations",
-      image: "/images/vikram.jpg",
-      bio: "Oversees local delivery centers, ensuring strict SLA compliance, infrastructure security, and high-performance managed teams.",
+      bio: "Oversees regional delivery centers and campus talent pipelines in Uttarakhand, securing strict SLA compliance and operational excellence.",
       linkedin: "#"
     }
   ];
@@ -179,16 +176,6 @@ export function Story() {
                 transition={{ delay: i * 0.1 }}
                 className="p-6 rounded-[20px] bg-brand-surface-low border border-brand-border flex flex-col h-full hover:scale-[1.01] hover:border-brand-secondary hover:shadow-[0_10px_30px_rgba(90,200,250,0.05)] transition-all duration-300"
               >
-                {/* Photo container */}
-                <div className="aspect-[4/3] w-full rounded-xl overflow-hidden mb-6 bg-brand-surface-high border border-brand-border relative group">
-                  <img
-                    src={leader.image}
-                    alt={leader.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0f17]/90 via-[#0c0f17]/20 to-transparent opacity-60" />
-                </div>
-
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-lg font-bold text-white leading-none">{leader.name}</h3>
                   <a
