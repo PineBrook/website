@@ -28,7 +28,7 @@ export function Story() {
       step: "01",
       title: "Collegiate Sourcing",
       icon: GraduationCap,
-      desc: "Partnering directly with leading regional universities in Uttarakhand to identify and onboard top-tier engineering talent directly from campus."
+      desc: "We partner directly with universities in Uttarakhand to create high-value tech careers locally, so engineering graduates don't have to leave their families for saturated metro cities."
     },
     {
       step: "02",
@@ -52,7 +52,7 @@ export function Story() {
       step: "05",
       title: "Socio-Economic Impact",
       icon: TrendingUp,
-      desc: "Establishing high-value technical careers in Uttarakhand, preventing brain drain and reverse migration while building regional ecosystems."
+      desc: "Keeping talent local. We prevent brain drain, keep families together, and build a thriving technology ecosystem right here in the mountains."
     }
   ];
 
