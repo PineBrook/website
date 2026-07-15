@@ -13,20 +13,20 @@ export function Story() {
   const leaders = [
     {
       name: "Anoop Singh",
-      role: "Founder & Managing Partner",
+      role: "Managing Partner",
       bio: "Veteran GCC architect and operational strategist. Deliberately building scalable delivery teams and AI capability centers in regional ecosystems.",
       linkedin: "#"
     },
     {
       name: "Shobhit Tiwari",
-      role: "Co-Founder & Technology Lead",
-      bio: "Drives technology roadmap execution and precision AI engineering integrations, ensuring resilient architecture for enterprise workflows.",
+      role: "Director of Operations",
+      bio: "Oversees regional delivery centers and campus talent pipelines in Uttarakhand, securing strict SLA compliance and operational excellence.",
       linkedin: "#"
     },
     {
       name: "Bharat Singh",
-      role: "Director of Operations",
-      bio: "Oversees regional delivery centers and campus talent pipelines in Uttarakhand, securing strict SLA compliance and operational excellence.",
+      role: "",
+      bio: "Drives technology roadmap execution and precision AI engineering integrations, ensuring resilient architecture for enterprise workflows.",
       linkedin: "#"
     }
   ];
