@@ -10,6 +10,7 @@ import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
 import { Mission } from "./pages/Mission";
+import { NotFound } from "./pages/NotFound";
 import { useCalEmbed } from "./hooks/useCal";
 import { InquiryModalProvider } from "./contexts/InquiryModalContext";
 import { InquiryModal } from "./components/InquiryModal";
@@ -27,6 +28,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/mission" element={<Mission />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
           <Footer />
