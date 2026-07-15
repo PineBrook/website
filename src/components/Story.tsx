@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Compass, Award, Shield, Linkedin, GraduationCap, Zap, Heart } from "lucide-react";
+import { Linkedin } from "lucide-react";
 
 export function Story() {
   const leaders = [
@@ -26,38 +26,33 @@ export function Story() {
   const blueprintSteps = [
     {
       step: "01",
-      icon: GraduationCap,
       title: "Collegiate Sourcing",
-      desc: "We partner directly with leading regional universities in Uttarakhand (like UTU) to identify and onboard top-tier engineering talent directly from campus, bypassing saturated metro recruiting cycles.",
-      accent: "from-brand-primary to-[#0055ff]"
+      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=400&auto=format&fit=crop",
+      desc: "Partnering directly with leading regional universities in Uttarakhand to identify and onboard top-tier engineering talent directly from campus."
     },
     {
       step: "02",
-      icon: Zap,
       title: "SLA Bootcamp",
-      desc: "Onboarded graduates enter an intensive technical boot camp focused on enterprise delivery standards, production AI pipelines, modern data architectures, and strict ITIL operations governance.",
-      accent: "from-brand-secondary to-[#00b0ff]"
+      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=400&auto=format&fit=crop",
+      desc: "An intensive technical boot camp focused on enterprise standards, production AI pipelines, and strict operations governance."
     },
     {
       step: "03",
-      icon: Compass,
-      title: "Managed GCC Integration",
-      desc: "Boot camp graduates transition seamlessly into dedicated Global Capability Centres (GCC) with secure networking, structured oversight, and redundant operations.",
-      accent: "from-brand-accent to-[#8fa9ff]"
+      title: "GCC Integration",
+      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=400&auto=format&fit=crop",
+      desc: "Transitioning graduates into active Global Capability Centres with secure integrations, structured oversight, and redundant operations."
     },
     {
       step: "04",
-      icon: Award,
-      title: "Precision SLA Execution",
-      desc: "Our delivery teams operate under strict operational governance and robust cybersecurity protocols, guaranteeing 98% SLA compliance for complex enterprise tech integrations.",
-      accent: "from-brand-primary to-brand-secondary"
+      title: "Precision Execution",
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=400&auto=format&fit=crop",
+      desc: "Enforcing strict ITIL governance and robust cybersecurity protocols, assuring 98% SLA compliance for complex enterprise integrations."
     },
     {
       step: "05",
-      icon: Heart,
       title: "Socio-Economic Impact",
-      desc: "By establishing high-value technical careers in Uttarakhand, we prevent brain drain and reverse migration while fueling the growth of a resilient local digital ecosystem.",
-      accent: "from-brand-secondary to-brand-accent"
+      image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=400&auto=format&fit=crop",
+      desc: "Establishing high-value technical careers in Uttarakhand, preventing brain drain and reverse migration while building regional ecosystems."
     }
   ];
 
@@ -107,56 +102,64 @@ export function Story() {
         </div>
       </div>
 
-      {/* 2. The PineBrook Blueprint (5-Step Staggered Story Timeline with hover effects) */}
-      <div className="container mx-auto px-6 max-w-5xl py-24 relative z-10">
+      {/* 2. The PineBrook Blueprint (1x5 Horizontal 3D Flip Grid) */}
+      <div className="container mx-auto px-6 max-w-7xl py-24 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <span className="eyebrow text-xs text-brand-secondary block mb-3">OUR OPERATING MODEL</span>
           <h2 className="text-3xl md:text-4xl font-display font-semibold text-white mb-6">
             The PineBrook Blueprint
           </h2>
           <p className="text-brand-text-muted text-sm sm:text-base leading-relaxed">
-            Our end-to-end framework for sourcing talent, enforcing enterprise SLAs, and delivering top-tier operational engineering from regional technical hubs.
+            Hover over each step of our framework to reveal how we deliver high-performance regional engineering.
           </p>
         </div>
 
-        {/* Steps Grid */}
-        <div className="space-y-6">
-          {blueprintSteps.map((step, idx) => {
-            const Icon = step.icon;
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ type: "spring", duration: 0.6 }}
-                className="group p-8 rounded-2xl bg-[#0c0f17]/50 border border-brand-border hover:border-brand-primary/40 hover:bg-[#0c0f17]/80 hover:shadow-[0_8px_30px_rgba(0,122,255,0.06)] hover:scale-[1.01] transition-all duration-300 flex flex-col md:flex-row gap-6 items-start md:items-center relative overflow-hidden"
-              >
-                {/* Background glow accent on hover */}
-                <div className={`absolute top-0 left-0 w-2 h-full bg-gradient-to-b ${step.accent} opacity-40 group-hover:opacity-100 transition-opacity duration-300`} />
+        {/* 1x5 Horizontal Grid with 3D Flip Effect */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 [perspective:1000px]">
+          {blueprintSteps.map((step, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ type: "spring", duration: 0.6, delay: idx * 0.1 }}
+              className="relative w-full h-[320px] rounded-2xl cursor-pointer group"
+            >
+              {/* Card Inner Container for 3D rotation */}
+              <div className="absolute inset-0 w-full h-full rounded-2xl transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] shadow-xl">
                 
-                {/* Number Badge */}
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-brand-surface-low border border-brand-border flex items-center justify-center font-mono text-sm font-bold text-white group-hover:border-brand-secondary/40 transition-colors">
-                  {step.step}
+                {/* 1. FRONT SIDE: Blurred Image + Heading */}
+                <div className="absolute inset-0 w-full h-full rounded-2xl bg-brand-surface-container border border-white/10 overflow-hidden [backface-visibility:hidden] flex flex-col justify-end p-6">
+                  {/* Background Image */}
+                  <img
+                    src={step.image}
+                    alt={step.title}
+                    className="absolute inset-0 w-full h-full object-cover blur-[2px] opacity-25 group-hover:opacity-35 transition-opacity duration-300"
+                  />
+                  {/* Subtle vignette mask overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-surface via-brand-surface/40 to-transparent" />
+                  
+                  {/* Front Text */}
+                  <div className="relative z-10">
+                    <span className="font-mono text-xs font-bold text-brand-secondary block mb-2">{step.step}</span>
+                    <h3 className="text-base font-display font-bold text-white leading-snug">{step.title}</h3>
+                  </div>
                 </div>
 
-                {/* Icon Circle */}
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-brand-primary/10 border border-brand-primary/20 flex items-center justify-center text-brand-primary group-hover:scale-110 transition-transform duration-300">
-                  <Icon className="w-5 h-5 text-brand-secondary" />
+                {/* 2. BACK SIDE: Detailed Text Description */}
+                <div className="absolute inset-0 w-full h-full rounded-2xl bg-[#0c0f17]/95 border border-brand-primary/30 flex flex-col justify-between p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-[0_0_20px_rgba(0,122,255,0.1)]">
+                  <div>
+                    <span className="font-mono text-xs font-bold text-brand-primary block mb-3">{step.step}</span>
+                    <h3 className="text-sm font-display font-bold text-white mb-2 leading-tight">{step.title}</h3>
+                    <p className="text-xs text-brand-text-muted leading-relaxed">{step.desc}</p>
+                  </div>
+                  {/* Glowing blue accent bar on back bottom */}
+                  <div className="h-1 w-10 bg-brand-primary rounded-full" />
                 </div>
 
-                {/* Details */}
-                <div className="flex-grow">
-                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-brand-secondary transition-colors duration-300">
-                    {step.title}
-                  </h3>
-                  <p className="text-brand-text-muted text-sm leading-relaxed max-w-3xl">
-                    {step.desc}
-                  </p>
-                </div>
-              </motion.div>
-            );
-          })}
+              </div>
+            </motion.div>
+          ))}
         </div>
 
         {/* 3. Leadership Section */}
