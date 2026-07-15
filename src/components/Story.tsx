@@ -72,7 +72,7 @@ export function Story() {
         <div className="absolute top-[20%] left-[10%] w-[600px] h-[600px] bg-brand-primary/25 rounded-full blur-[140px] pointer-events-none" />
         <div className="absolute bottom-[5%] right-[10%] w-[600px] h-[600px] bg-brand-secondary/20 rounded-full blur-[140px] pointer-events-none" />
 
-        <div className="container mx-auto px-6 max-w-7xl relative z-10 text-center pt-20">
+        <div className="container mx-auto px-6 max-w-7xl relative z-10 text-center pt-20 -translate-y-30">
           <motion.span 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
