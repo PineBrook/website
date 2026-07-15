@@ -66,11 +66,11 @@ export function Story() {
           className="absolute inset-0 bg-[url('/images/himalayas.jpg')] bg-cover bg-center" 
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0f17]/105 via-brand-surface/70 to-brand-surface" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0f17]/50 via-brand-surface/40 to-[#121625]" />
         
         {/* Ambient Glows */}
-        <div className="absolute top-[30%] left-[10%] w-96 h-96 bg-brand-primary/15 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[10%] right-[10%] w-96 h-96 bg-brand-secondary/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-[20%] left-[10%] w-[600px] h-[600px] bg-brand-primary/25 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-[5%] right-[10%] w-[600px] h-[600px] bg-brand-secondary/20 rounded-full blur-[140px] pointer-events-none" />
 
         <div className="container mx-auto px-6 max-w-7xl relative z-10 text-center pt-20">
           <motion.span 
@@ -103,62 +103,66 @@ export function Story() {
       </div>
 
       {/* 2. The PineBrook Blueprint (1x5 Horizontal 3D Flip Grid) */}
-      <div className="container mx-auto px-6 max-w-7xl py-24 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <span className="eyebrow text-xs text-brand-secondary block mb-3">OUR OPERATING MODEL</span>
-          <h2 className="text-3xl md:text-4xl font-display font-semibold text-white mb-6">
-            The PineBrook Blueprint
-          </h2>
-          <p className="text-brand-text-muted text-sm sm:text-base leading-relaxed">
-            Hover over each step of our framework to reveal how we deliver high-performance engineering.
-          </p>
-        </div>
+      <div className="relative bg-[#121625] z-10">
+        {/* Central Ambient Blueprint Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-brand-primary/10 rounded-full blur-[150px] pointer-events-none z-0" />
+        
+        <div className="container mx-auto px-6 max-w-7xl py-24 relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <span className="eyebrow text-xs text-brand-secondary block mb-3">OUR OPERATING MODEL</span>
+            <h2 className="text-3xl md:text-4xl font-display font-semibold text-white mb-6">
+              The PineBrook Blueprint
+            </h2>
+            <p className="text-brand-text-muted text-sm sm:text-base leading-relaxed">
+              Hover over each step of our framework to reveal how we deliver high-performance engineering.
+            </p>
+          </div>
 
-        {/* 1x5 Horizontal Grid with 3D Flip Effect */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 [perspective:1000px]">
-          {blueprintSteps.map((step, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ type: "spring", duration: 0.6, delay: idx * 0.1 }}
-              className="relative w-full h-[300px] rounded-2xl cursor-pointer group"
-            >
-              {/* Card Inner Container for 3D rotation */}
-              <div className="absolute inset-0 w-full h-full rounded-2xl transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] shadow-xl">
-                
-                {/* 1. FRONT SIDE: Sharp Panoramic Split Image */}
-                <div className="absolute inset-0 w-full h-full rounded-2xl bg-brand-surface-container border border-white/10 overflow-hidden [backface-visibility:hidden] flex flex-col justify-end">
-                  {/* Background Image (Shared Panoramic split) */}
-                  <div className={`absolute inset-0 w-full h-full opacity-55 group-hover:opacity-75 transition-opacity duration-300 card-split-bg-${idx}`} />
-                  {/* Vignette mask overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0f17]/95 via-[#0c0f17]/20 to-transparent z-0" />
+          {/* 1x5 Horizontal Grid with 3D Flip Effect */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 [perspective:1000px]">
+            {blueprintSteps.map((step, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ type: "spring", duration: 0.6, delay: idx * 0.1 }}
+                className="relative w-full h-[300px] rounded-2xl cursor-pointer group"
+              >
+                {/* Card Inner Container for 3D rotation */}
+                <div className="absolute inset-0 w-full h-full rounded-2xl transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] shadow-xl">
                   
-                  {/* Title directly on vignette backdrop */}
-                  <div className="absolute inset-x-0 bottom-0 p-5 z-10">
-                    <h3 className="text-lg md:text-xl font-display font-bold text-white leading-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">{step.title}</h3>
+                  {/* 1. FRONT SIDE: Sharp Panoramic Split Image */}
+                  <div className="absolute inset-0 w-full h-full rounded-2xl bg-brand-surface-container border border-white/20 overflow-hidden [backface-visibility:hidden] flex flex-col justify-end">
+                    {/* Background Image (Shared Panoramic split) */}
+                    <div className={`absolute inset-0 w-full h-full opacity-80 group-hover:opacity-100 transition-opacity duration-300 card-split-bg-${idx}`} />
+                    {/* Vignette mask overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent z-0" />
+                    
+                    {/* Title directly on vignette backdrop */}
+                    <div className="absolute inset-x-0 bottom-0 p-5 z-10">
+                      <h3 className="text-lg md:text-xl font-display font-bold text-white leading-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">{step.title}</h3>
+                    </div>
                   </div>
-                </div>
 
-                {/* 2. BACK SIDE: Detailed Text Description */}
-                <div className="absolute inset-0 w-full h-full rounded-2xl bg-[#0c0f17]/95 border border-brand-primary/40 flex flex-col justify-between p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-[0_0_20px_rgba(0,122,255,0.1)]">
-                  <div>
-                    <h3 className="text-base md:text-lg font-display font-bold text-white mb-3 leading-tight">{step.title}</h3>
-                    <p className="text-[15px] text-brand-text-muted leading-relaxed">{step.desc}</p>
+                  {/* 2. BACK SIDE: Detailed Text Description */}
+                  <div className="absolute inset-0 w-full h-full rounded-2xl bg-[#181d30]/95 border border-brand-secondary/50 flex flex-col justify-between p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-[0_0_25px_rgba(90,200,250,0.15)]">
+                    <div>
+                      <h3 className="text-base md:text-lg font-display font-bold text-white mb-3 leading-tight">{step.title}</h3>
+                      <p className="text-[15px] text-brand-text-muted leading-relaxed">{step.desc}</p>
+                    </div>
+                    <div>
+                      {/* Number just above the _ */}
+                      <span className="font-mono text-m font-bold text-brand-primary block mb-2">{step.step}</span>
+                      {/* Glowing blue accent bar on back bottom */}
+                      <div className="h-1 w-10 bg-brand-primary rounded-full" />
+                    </div>
                   </div>
-                  <div>
-                    {/* Number just above the _ */}
-                    <span className="font-mono text-xs font-bold text-brand-primary block mb-2">{step.step}</span>
-                    {/* Glowing blue accent bar on back bottom */}
-                    <div className="h-1 w-10 bg-brand-primary rounded-full" />
-                  </div>
-                </div>
 
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
 
         {/* 3. Leadership Section */}
         <div className="border-t border-brand-border/50 pt-24 mt-32">
@@ -207,6 +211,7 @@ export function Story() {
           </div>
         </div>
 
+      </div>
       </div>
     </section>
   );
