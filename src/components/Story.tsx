@@ -60,7 +60,7 @@ export function Story() {
     <section className="bg-brand-surface relative overflow-hidden" id="mission">
       
       {/* 1. Immersive Himalayan Hero Section */}
-      <div className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+      <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Himalayas Image with Dark Masking */}
         <div 
           className="absolute inset-0 bg-[url('/images/himalayas.jpg')] bg-cover bg-center" 
