@@ -1,4 +1,5 @@
-import { motion } from "motion/react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { Users, Compass, Award, Shield, Linkedin } from "lucide-react";
 
 interface Leader {
@@ -10,6 +11,14 @@ interface Leader {
 }
 
 export function Story() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end end"]
+  });
+
+  const pathLength = useTransform(scrollYProgress, [0.05, 0.95], [0, 1]);
+
   const leaders = [
     {
       name: "Anoop Singh",
@@ -25,7 +34,7 @@ export function Story() {
     },
     {
       name: "Bharat Singh",
-      role: "",
+      role: "Technology Lead",
       bio: "Drives technology roadmap execution and precision AI engineering integrations, ensuring resilient architecture for enterprise workflows.",
       linkedin: "#"
     }
@@ -77,9 +86,104 @@ export function Story() {
         </div>
       </div>
 
-      {/* 2. Brand Story & Strategy Grid */}
-      <div className="container mx-auto px-6 max-w-7xl py-24 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-start mb-32">
+      {/* 2. Brand Story & Strategy Grid + Leadership Container */}
+      <div ref={containerRef} className="relative z-10">
+        
+        {/* Glowing Scroll Light Beam Overlay */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
+          {/* Desktop Swaying & Splitting Beam */}
+          <svg className="hidden md:block w-full h-full absolute inset-0" viewBox="0 0 1000 1200" preserveAspectRatio="none" fill="none">
+            {/* Ambient Background Blur Paths */}
+            <motion.path
+              d="M 500 0 Q 420 200 520 400 T 500 700 C 500 800, 160 850, 160 1050"
+              stroke="#007AFF"
+              strokeWidth="12"
+              strokeLinecap="round"
+              className="opacity-5 blur-[12px]"
+              style={{ pathLength }}
+            />
+            <motion.path
+              d="M 500 0 Q 420 200 520 400 T 500 700 C 500 800, 500 850, 500 1050"
+              stroke="#5AC8FA"
+              strokeWidth="12"
+              strokeLinecap="round"
+              className="opacity-5 blur-[12px]"
+              style={{ pathLength }}
+            />
+            <motion.path
+              d="M 500 0 Q 420 200 520 400 T 500 700 C 500 800, 840 850, 840 1050"
+              stroke="#007AFF"
+              strokeWidth="12"
+              strokeLinecap="round"
+              className="opacity-5 blur-[12px]"
+              style={{ pathLength }}
+            />
+
+            {/* Sharp Glowing Foreground Paths */}
+            <motion.path
+              d="M 500 0 Q 420 200 520 400 T 500 700 C 500 800, 160 850, 160 1050"
+              stroke="url(#beamBlueGrad)"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              style={{ pathLength }}
+            />
+            <motion.path
+              d="M 500 0 Q 420 200 520 400 T 500 700 C 500 800, 500 850, 500 1050"
+              stroke="url(#beamCyanGrad)"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              style={{ pathLength }}
+            />
+            <motion.path
+              d="M 500 0 Q 420 200 520 400 T 500 700 C 500 800, 840 850, 840 1050"
+              stroke="url(#beamBlueGrad)"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              style={{ pathLength }}
+            />
+
+            <defs>
+              <linearGradient id="beamBlueGrad" x1="0" y1="0" x2="0" y2="100%">
+                <stop stopColor="#007AFF" />
+                <stop offset="1" stopColor="#5AC8FA" />
+              </linearGradient>
+              <linearGradient id="beamCyanGrad" x1="0" y1="0" x2="0" y2="100%">
+                <stop stopColor="#5AC8FA" />
+                <stop offset="1" stopColor="#007AFF" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+          {/* Mobile Single Swaying Beam */}
+          <svg className="md:hidden w-full h-full absolute inset-0" viewBox="0 0 100 1200" preserveAspectRatio="none" fill="none">
+            {/* Ambient Background Blur Path */}
+            <motion.path
+              d="M 50 0 Q 30 200 70 400 T 50 800 T 50 1150"
+              stroke="#007AFF"
+              strokeWidth="10"
+              strokeLinecap="round"
+              className="opacity-5 blur-[8px]"
+              style={{ pathLength }}
+            />
+            {/* Sharp Foreground Path */}
+            <motion.path
+              d="M 50 0 Q 30 200 70 400 T 50 800 T 50 1150"
+              stroke="url(#mobileBeamGrad)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              style={{ pathLength }}
+            />
+            <defs>
+              <linearGradient id="mobileBeamGrad" x1="0" y1="0" x2="0" y2="100%">
+                <stop stopColor="#007AFF" />
+                <stop offset="1" stopColor="#5AC8FA" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <div className="container mx-auto px-6 max-w-7xl py-24 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-start mb-32">
           {/* Left Column: Heading */}
           <div>
             <span className="eyebrow text-xs text-brand-secondary block mb-3">FOUNDING VISION</span>
@@ -201,6 +305,7 @@ export function Story() {
           </div>
         </div>
 
+      </div>
       </div>
     </section>
   );
