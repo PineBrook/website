@@ -46,15 +46,15 @@ export function NotFound() {
             </div>
           </div>
           <h1 className="text-2xl sm:text-3xl font-display font-semibold text-white mb-3">
-            Page Not Found
+            Looks like you're off-grid.
           </h1>
           <p className="text-brand-text-muted text-sm leading-relaxed mb-8 max-w-xs">
-            The page you are looking for doesn't exist.
+            This page is off the map. Our mascot suggests heading back to base.
           </p>
 
           <Link to="/" className="w-full">
             <Button size="lg" className="w-full justify-center group" withArrow>
-              Return Home
+              Back to Base
             </Button>
           </Link>
         </motion.div>

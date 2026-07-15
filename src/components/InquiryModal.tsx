@@ -562,7 +562,7 @@ export function InquiryModal() {
                         <span>Processing...</span>
                       </>
                     ) : (
-                      <span>Inquire Now</span>
+                      <span>Send Message</span>
                     )}
                   </button>
                 </form>

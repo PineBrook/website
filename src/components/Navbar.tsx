@@ -68,7 +68,7 @@ export function Navbar() {
             className="group"
             onClick={openModal}
           >
-            Inquire
+            Get in Touch
           </Button>
         </div>
  
@@ -186,7 +186,7 @@ export function Navbar() {
                   openModal();
                 }}
               >
-                Inquire
+                Get in Touch
               </Button>
             </div>
           </motion.div>

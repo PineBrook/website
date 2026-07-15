@@ -72,7 +72,7 @@ export function LeadOffer() {
               withArrow
               onClick={openModal}
             >
-              Inquire
+              Let's Build Together
             </Button>
           </div>
         </motion.div>

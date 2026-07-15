@@ -63,7 +63,7 @@ export function Story() {
       <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Himalayas Image with Dark Masking */}
         <div 
-          className="absolute top-0 left-0 right-0 h-[calc(100%+10px)] bg-[url('/images/himalayas.jpg')] bg-cover bg-center" 
+          className="absolute top-0 left-0 right-0 h-[calc(100%+100px)] bg-[url('/images/himalayas.jpg')] bg-cover bg-center" 
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0c0f17]/50 via-brand-surface/40 to-[#121625]" />
