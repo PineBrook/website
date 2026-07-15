@@ -152,9 +152,9 @@ export function Story() {
                     </div>
                     <div>
                       {/* Number just above the _ */}
-                      <span className="font-mono text-m font-bold text-brand-primary block mb-2">{step.step}</span>
+                      <span className="font-mono text-m font-bold text-brand-primary block mb-1">{step.step}</span>
                       {/* Glowing blue accent bar on back bottom */}
-                      <div className="h-1 w-10 bg-brand-primary rounded-full" />
+                      <div className="h-0.5 w-10 bg-brand-primary rounded-full" />
                     </div>
                   </div>
 
@@ -180,7 +180,7 @@ export function Story() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6">
             {leaders.map((leader, i) => (
               <motion.div
                 key={i}
