@@ -350,7 +350,7 @@ export function InquiryModal() {
                   Inquiry Received
                 </h3>
                 <p className="text-brand-text-muted text-sm max-w-xs mb-8">
-                  You have already submitted an inquiry during this session. A PineBrook partner will contact you shortly.
+                  A PineBrook partner will contact you shortly.
                 </p>
                 <button
                   onClick={closeModal}

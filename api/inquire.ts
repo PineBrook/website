@@ -62,7 +62,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
 
   if (!webhookUrl) {
-    return res.status(500).json({ message: "Google Sheets WebApp Webhook URL is not configured in Vercel environment variables." });
+    return res.status(500).json({ message: "We ran into an issue! Try again in some time." });
   }
 
   try {
