@@ -1,50 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, Check, Loader2, ChevronDown } from "lucide-react";
+import { X, Check, Loader2, ChevronDown, Search } from "lucide-react";
 import { useInquiryModal } from "../contexts/InquiryModalContext";
+import { COUNTRIES, Country } from "../lib/countries";
 
 // Pre-compiled regex patterns for O(1) validation of bounded strings
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const PHONE_CHARS_REGEX = /^[0-9\s\-()]+$/;
-
-interface CountryCode {
-  code: string;
-  name: string;
-  dialCode: string;
-  flag: string;
-  placeholder: string;
-  validate: (val: string) => boolean;
-}
-
-const COUNTRIES: CountryCode[] = [
-  { 
-    code: "IN", name: "India", dialCode: "+91", flag: "🇮🇳", placeholder: "98765 43210", 
-    validate: (v) => v.replace(/\D/g, "").length === 10 && /^[6-9]/.test(v.replace(/\D/g, "")) 
-  },
-  { 
-    code: "US", name: "United States", dialCode: "+1", flag: "🇺🇸", placeholder: "(555) 000-0000", 
-    validate: (v) => v.replace(/\D/g, "").length === 10 
-  },
-  { 
-    code: "GB", name: "United Kingdom", dialCode: "+44", flag: "🇬🇧", placeholder: "7123 456789", 
-    validate: (v) => v.replace(/\D/g, "").length === 10 && v.replace(/\D/g, "").startsWith("7")
-  },
-  { 
-    code: "AE", name: "United Arab Emirates", dialCode: "+971", flag: "🇦🇪", placeholder: "50 123 4567", 
-    validate: (v) => v.replace(/\D/g, "").length === 9 && v.replace(/\D/g, "").startsWith("5")
-  },
-  { 
-    code: "SG", name: "Singapore", dialCode: "+65", flag: "🇸🇬", placeholder: "8123 4567", 
-    validate: (v) => v.replace(/\D/g, "").length === 8 && /^[89]/.test(v.replace(/\D/g, "")) 
-  },
-  { 
-    code: "DE", name: "Germany", dialCode: "+49", flag: "🇩🇪", placeholder: "170 1234567", 
-    validate: (v) => {
-      const len = v.replace(/\D/g, "").length;
-      return len >= 10 && len <= 11 && v.replace(/\D/g, "").startsWith("1");
-    }
-  },
-];
 
 interface FormFieldProps {
   label: string;
@@ -114,15 +76,31 @@ export function InquiryModal() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   
-  const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
+  // Default to India
+  const defaultCountry = useMemo(() => COUNTRIES.find(c => c.code === "IN") || COUNTRIES[0], []);
+  const [selectedCountry, setSelectedCountry] = useState<Country>(defaultCountry);
   const [showCountryDropdown, setShowCountryDropdown] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const modalRef = useRef<HTMLDivElement>(null);
   const firstNameRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const submitButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Filter countries in O(N) but since N is small (~200) and query is fast, it runs instantly
+  const filteredCountries = useMemo(() => {
+    const q = searchQuery.toLowerCase().trim();
+    if (!q) return COUNTRIES;
+    return COUNTRIES.filter(
+      (c) =>
+        c.name.toLowerCase().includes(q) ||
+        c.dialCode.includes(q) ||
+        c.code.toLowerCase().includes(q)
+    );
+  }, [searchQuery]);
 
   // Set initial focus & reset state
   useEffect(() => {
@@ -134,6 +112,7 @@ export function InquiryModal() {
     setStatus(hasSubmitted ? "success" : "idle");
     setErrorMessage("");
     setShowCountryDropdown(false);
+    setSearchQuery("");
 
     if (hasSubmitted) return;
 
@@ -143,18 +122,33 @@ export function InquiryModal() {
     }, 100);
   }, [isOpen, hasSubmitted]);
 
+  // Focus search input when dropdown opens
+  useEffect(() => {
+    if (showCountryDropdown) {
+      setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 50);
+    } else {
+      setSearchQuery("");
+    }
+  }, [showCountryDropdown]);
+
   // Handle ESC closing and click outside
   useEffect(() => {
     if (!isOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        closeModal();
+        if (showCountryDropdown) {
+          setShowCountryDropdown(false);
+        } else {
+          closeModal();
+        }
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, closeModal]);
+  }, [isOpen, closeModal, showCountryDropdown]);
 
   // O(1) Validation Logic
   const validateField = (fieldName: string, value: string, currentCountry = selectedCountry) => {
@@ -176,8 +170,22 @@ export function InquiryModal() {
         const cleanVal = value.trim();
         if (!PHONE_CHARS_REGEX.test(cleanVal)) {
           error = "Phone number can only contain digits, spaces, hyphens, and parentheses";
-        } else if (!currentCountry.validate(cleanVal)) {
-          error = `Invalid format for ${currentCountry.name} (e.g. ${currentCountry.placeholder})`;
+        } else {
+          const digits = cleanVal.replace(/\D/g, "");
+          // Special validations for a few common ones, standard ITU-T E.164 (6-15 digits) fallback for all others
+          if (currentCountry.code === "IN") {
+            if (digits.length !== 10 || !/^[6-9]/.test(digits)) {
+              error = "Invalid format for India (10 digits starting with 6-9)";
+            }
+          } else if (currentCountry.code === "US" || currentCountry.code === "CA") {
+            if (digits.length !== 10) {
+              error = "Invalid format for United States / Canada (10 digits)";
+            }
+          } else {
+            if (digits.length < 6 || digits.length > 15) {
+              error = "Invalid format (must be 6 to 15 digits)";
+            }
+          }
         }
       }
     }
@@ -208,7 +216,7 @@ export function InquiryModal() {
     }
   };
 
-  const selectCountry = (country: CountryCode) => {
+  const selectCountry = (country: Country) => {
     setSelectedCountry(country);
     setShowCountryDropdown(false);
     
@@ -407,6 +415,7 @@ export function InquiryModal() {
                         <AnimatePresence>
                           {showCountryDropdown && (
                             <>
+                              {/* Overlay backing to handle clicks outside */}
                               <div 
                                 className="fixed inset-0 z-40" 
                                 onClick={() => setShowCountryDropdown(false)}
@@ -415,20 +424,42 @@ export function InquiryModal() {
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: 10 }}
-                                className="absolute left-0 bottom-full mb-2 z-50 w-52 bg-[#0c0f17] border border-white/10 rounded-xl shadow-2xl overflow-hidden py-1.5"
+                                className="absolute left-0 bottom-full mb-2 z-50 w-64 bg-[#0c0f17] border border-white/10 rounded-xl shadow-2xl overflow-hidden p-2 flex flex-col gap-2"
                               >
-                                {COUNTRIES.map((country) => (
-                                  <button
-                                    key={country.code}
-                                    type="button"
-                                    onClick={() => selectCountry(country)}
-                                    className="w-full px-4 py-2 text-left text-sm text-white hover:bg-white/5 flex items-center gap-3 transition-colors cursor-pointer"
-                                  >
-                                    <span className="text-base">{country.flag}</span>
-                                    <span className="font-medium flex-1">{country.name}</span>
-                                    <span className="text-xs text-brand-text-muted">{country.dialCode}</span>
-                                  </button>
-                                ))}
+                                {/* Country Search Box */}
+                                <div className="relative flex items-center bg-white/[0.02] border border-white/10 rounded-lg px-2.5 py-1.5 focus-within:border-brand-primary transition-all">
+                                  <Search className="w-4 h-4 text-brand-text-muted mr-2" />
+                                  <input
+                                    ref={searchInputRef}
+                                    type="text"
+                                    placeholder="Search country..."
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    className="bg-transparent border-none text-white text-xs w-full focus:outline-none placeholder-brand-text-muted"
+                                  />
+                                </div>
+                                
+                                {/* Scrollable List */}
+                                <div className="max-h-48 overflow-y-auto custom-scrollbar flex flex-col gap-0.5 pr-1">
+                                  {filteredCountries.length > 0 ? (
+                                    filteredCountries.map((country) => (
+                                      <button
+                                        key={`${country.code}-${country.dialCode}`}
+                                        type="button"
+                                        onClick={() => selectCountry(country)}
+                                        className="w-full px-3 py-2 text-left text-xs text-white hover:bg-white/5 flex items-center gap-2.5 rounded-lg transition-colors cursor-pointer"
+                                      >
+                                        <span className="text-base">{country.flag}</span>
+                                        <span className="font-medium flex-1 truncate">{country.name}</span>
+                                        <span className="text-[10px] text-brand-text-muted font-semibold">{country.dialCode}</span>
+                                      </button>
+                                    ))
+                                  ) : (
+                                    <div className="text-[11px] text-brand-text-muted py-3 text-center">
+                                      No countries found
+                                    </div>
+                                  )}
+                                </div>
                               </motion.div>
                             </>
                           )}
@@ -450,7 +481,7 @@ export function InquiryModal() {
                               ? "border-red-500/50 focus:border-red-500" 
                               : "border-white/10 focus:border-brand-primary"
                           } rounded-lg text-white placeholder-transparent focus:outline-none transition-all duration-300 text-sm focus:shadow-[0_0_15px_rgba(0,122,255,0.15)] h-[50px]`}
-                          placeholder="Phone Number"
+                          placeholder={selectedCountry.placeholder}
                         />
                         <label
                           className={`absolute left-4 transition-all duration-300 pointer-events-none text-sm
@@ -459,7 +490,7 @@ export function InquiryModal() {
                               : "top-3.5 text-brand-text-muted"
                             } ${errors.phone ? "text-red-400/70" : ""}`}
                         >
-                          Phone Number
+                          {`Phone Number (${selectedCountry.placeholder})`}
                         </label>
                       </div>
                     </div>
