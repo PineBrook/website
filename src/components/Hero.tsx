@@ -13,7 +13,7 @@ export function Hero() {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-[0.18] mix-blend-screen"
+          className="absolute inset-0 w-full h-full object-cover opacity-[100] mix-blend-screen"
         >
           <source 
             src="/videos/hero-background.mp4" 
