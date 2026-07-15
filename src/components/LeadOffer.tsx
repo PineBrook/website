@@ -1,9 +1,10 @@
 import { motion } from "motion/react";
 import { Button } from "./Button";
 import { CheckCircle2 } from "lucide-react";
-import { openCal } from "../hooks/useCal";
+import { useInquiryModal } from "../contexts/InquiryModalContext";
 
 export function LeadOffer() {
+  const { openModal } = useInquiryModal();
   const deliverables = [
     "Technology & Architecture Audit",
     "Operational Gap Analysis",
@@ -69,9 +70,7 @@ export function LeadOffer() {
               size="lg" 
               className="w-full group" 
               withArrow
-              onClick={openCal}
-              data-cal-link="pinebrook"
-              data-cal-config='{"layout":"month_view"}'
+              onClick={openModal}
             >
               Inquire
             </Button>

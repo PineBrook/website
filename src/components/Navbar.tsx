@@ -4,10 +4,12 @@ import { Button } from "./Button";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Home } from "lucide-react";
 import { openCal } from "../hooks/useCal";
+import { useInquiryModal } from "../contexts/InquiryModalContext";
  
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { openModal } = useInquiryModal();
  
   useEffect(() => {
     const handleScroll = () => {
@@ -64,9 +66,7 @@ export function Navbar() {
         <div className="hidden md:flex items-center justify-end gap-4">
           <Button 
             className="group"
-            onClick={openCal}
-            data-cal-link="pinebrook"
-            data-cal-config='{"layout":"month_view"}'
+            onClick={openModal}
           >
             Inquire
           </Button>
@@ -181,9 +181,10 @@ export function Navbar() {
             <div className="flex flex-col gap-4 w-full max-w-sm mx-auto">
               <Button 
                 className="w-full justify-center group py-4 text-lg"
-                onClick={openCal}
-                data-cal-link="pinebrook"
-                data-cal-config='{"layout":"month_view"}'
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  openModal();
+                }}
               >
                 Inquire
               </Button>
