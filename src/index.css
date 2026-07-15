@@ -164,3 +164,19 @@ h1, h2, h3, h4, h5, h6 {
   animation: flow 10s linear infinite;
 }
 
+/* Panoramic image split classes across 5 cards */
+.card-split-bg-0, .card-split-bg-1, .card-split-bg-2, .card-split-bg-3, .card-split-bg-4 {
+  background-image: url('/images/himalayas.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 1024px) {
+  .card-split-bg-0 { background-size: 500% 100%; background-position: 0% center; }
+  .card-split-bg-1 { background-size: 500% 100%; background-position: 25% center; }
+  .card-split-bg-2 { background-size: 500% 100%; background-position: 50% center; }
+  .card-split-bg-3 { background-size: 500% 100%; background-position: 75% center; }
+  .card-split-bg-4 { background-size: 500% 100%; background-position: 100% center; }
+}
+

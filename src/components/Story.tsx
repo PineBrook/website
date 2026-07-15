@@ -110,12 +110,12 @@ export function Story() {
             The PineBrook Blueprint
           </h2>
           <p className="text-brand-text-muted text-sm sm:text-base leading-relaxed">
-            Hover over each step of our framework to reveal how we deliver high-performance regional engineering.
+            Hover over each step of our framework to reveal how we deliver high-performance engineering.
           </p>
         </div>
 
         {/* 1x5 Horizontal Grid with 3D Flip Effect */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 [perspective:1000px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 [perspective:1000px]">
           {blueprintSteps.map((step, idx) => (
             <motion.div
               key={idx}
@@ -123,21 +123,17 @@ export function Story() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ type: "spring", duration: 0.6, delay: idx * 0.1 }}
-              className="relative w-full h-[320px] rounded-2xl cursor-pointer group"
+              className="relative w-full h-[300px] rounded-2xl cursor-pointer group"
             >
               {/* Card Inner Container for 3D rotation */}
               <div className="absolute inset-0 w-full h-full rounded-2xl transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] shadow-xl">
                 
-                {/* 1. FRONT SIDE: Sharp Image */}
+                {/* 1. FRONT SIDE: Sharp Panoramic Split Image */}
                 <div className="absolute inset-0 w-full h-full rounded-2xl bg-brand-surface-container border border-white/10 overflow-hidden [backface-visibility:hidden] flex flex-col justify-end">
-                  {/* Background Image (Sharp) */}
-                  <img
-                    src={step.image}
-                    alt={step.title}
-                    className="absolute inset-0 w-full h-full object-cover opacity-55 group-hover:opacity-70 transition-opacity duration-300"
-                  />
+                  {/* Background Image (Shared Panoramic split) */}
+                  <div className={`absolute inset-0 w-full h-full opacity-55 group-hover:opacity-75 transition-opacity duration-300 card-split-bg-${idx}`} />
                   {/* Vignette mask overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0f17]/95 via-[#0c0f17]/40 to-transparent z-0" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0f17]/95 via-[#0c0f17]/20 to-transparent z-0" />
                   
                   {/* Title directly on vignette backdrop */}
                   <div className="absolute inset-x-0 bottom-0 p-5 z-10">
@@ -146,10 +142,10 @@ export function Story() {
                 </div>
 
                 {/* 2. BACK SIDE: Detailed Text Description */}
-                <div className="absolute inset-0 w-full h-full rounded-2xl bg-[#0c0f17]/95 border border-brand-primary/30 flex flex-col justify-between p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-[0_0_20px_rgba(0,122,255,0.1)]">
+                <div className="absolute inset-0 w-full h-full rounded-2xl bg-[#0c0f17]/95 border border-brand-primary/40 flex flex-col justify-between p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-[0_0_20px_rgba(0,122,255,0.1)]">
                   <div>
                     <h3 className="text-base md:text-lg font-display font-bold text-white mb-3 leading-tight">{step.title}</h3>
-                    <p className="text-[13px] text-brand-text-muted leading-relaxed">{step.desc}</p>
+                    <p className="text-[15px] text-brand-text-muted leading-relaxed">{step.desc}</p>
                   </div>
                   <div>
                     {/* Number just above the _ */}
