@@ -66,7 +66,7 @@ export function Story() {
           className="absolute inset-0 bg-[url('/images/himalayas.jpg')] bg-cover bg-center" 
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0f17]/80 via-brand-surface/70 to-brand-surface" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0f17]/105 via-brand-surface/70 to-brand-surface" />
         
         {/* Ambient Glows */}
         <div className="absolute top-[30%] left-[10%] w-96 h-96 bg-brand-primary/15 rounded-full blur-[120px] pointer-events-none" />
@@ -128,33 +128,35 @@ export function Story() {
               {/* Card Inner Container for 3D rotation */}
               <div className="absolute inset-0 w-full h-full rounded-2xl transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] shadow-xl">
                 
-                {/* 1. FRONT SIDE: Sharp Image + Frosted Text Container */}
+                {/* 1. FRONT SIDE: Sharp Image */}
                 <div className="absolute inset-0 w-full h-full rounded-2xl bg-brand-surface-container border border-white/10 overflow-hidden [backface-visibility:hidden] flex flex-col justify-end">
                   {/* Background Image (Sharp) */}
                   <img
                     src={step.image}
                     alt={step.title}
-                    className="absolute inset-0 w-full h-full object-cover opacity-45 group-hover:opacity-60 transition-opacity duration-300"
+                    className="absolute inset-0 w-full h-full object-cover opacity-55 group-hover:opacity-70 transition-opacity duration-300"
                   />
-                  {/* Faint vignette mask overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-surface/60 via-transparent to-transparent" />
+                  {/* Vignette mask overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0f17]/95 via-[#0c0f17]/40 to-transparent z-0" />
                   
-                  {/* Frosted text container at the bottom of the card */}
-                  <div className="absolute inset-x-0 bottom-0 p-5 bg-black/60 backdrop-blur-md border-t border-white/10 z-10">
-                    <span className="font-mono text-xs font-bold text-brand-secondary block mb-1">{step.step}</span>
-                    <h3 className="text-lg md:text-xl font-display font-bold text-white leading-tight">{step.title}</h3>
+                  {/* Title directly on vignette backdrop */}
+                  <div className="absolute inset-x-0 bottom-0 p-5 z-10">
+                    <h3 className="text-lg md:text-xl font-display font-bold text-white leading-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">{step.title}</h3>
                   </div>
                 </div>
 
                 {/* 2. BACK SIDE: Detailed Text Description */}
                 <div className="absolute inset-0 w-full h-full rounded-2xl bg-[#0c0f17]/95 border border-brand-primary/30 flex flex-col justify-between p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-[0_0_20px_rgba(0,122,255,0.1)]">
                   <div>
-                    <span className="font-mono text-xs font-bold text-brand-primary block mb-3">{step.step}</span>
                     <h3 className="text-base md:text-lg font-display font-bold text-white mb-3 leading-tight">{step.title}</h3>
                     <p className="text-[13px] text-brand-text-muted leading-relaxed">{step.desc}</p>
                   </div>
-                  {/* Glowing blue accent bar on back bottom */}
-                  <div className="h-1 w-10 bg-brand-primary rounded-full" />
+                  <div>
+                    {/* Number just above the _ */}
+                    <span className="font-mono text-xs font-bold text-brand-primary block mb-2">{step.step}</span>
+                    {/* Glowing blue accent bar on back bottom */}
+                    <div className="h-1 w-10 bg-brand-primary rounded-full" />
+                  </div>
                 </div>
 
               </div>
