@@ -267,13 +267,32 @@ export function InquiryModal() {
         phoneNumber: formData.phone ? formData.phone.trim() : "",
       };
 
-      const response = await fetch("/api/inquire", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      let response;
+      try {
+        response = await fetch("/api/inquire", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+      } catch (e) {
+        if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+          console.warn("API route failed to connect (Vite server running without Vercel CLI). Falling back to mock success.");
+          setSubmitted();
+          showToast("PineBrook team will reach out to you shortly. (Mock Success)");
+          setStatus("success");
+          return;
+        }
+        throw e;
+      }
 
       if (!response.ok) {
+        if (response.status === 404 && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")) {
+          console.warn("API route returned 404 (Vite server running without Vercel CLI). Falling back to mock success.");
+          setSubmitted();
+          showToast("PineBrook team will reach out to you shortly. (Mock Success)");
+          setStatus("success");
+          return;
+        }
         const data = await response.json();
         throw new Error(data.message || "Failed to submit inquiry");
       }
