@@ -61,24 +61,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
 
-  // Local development fallback / Mock if webhook is not configured
   if (!webhookUrl) {
-    console.log("Mocking Google Sheets Submission (GOOGLE_SHEETS_WEBHOOK_URL not configured):");
-    console.log(`- Timestamp: ${new Date().toISOString()}`);
-    console.log(`- First Name: ${firstname}`);
-    console.log(`- Last Name: ${lastname}`);
-    console.log(`- Email: ${email}`);
-    console.log(`- Phone Extension: ${phoneExtension}`);
-    console.log(`- Phone Number: ${phoneNumber}`);
-    
-    // Simulate slight delay
-    await new Promise((resolve) => setTimeout(resolve, 800));
-
-    return res.status(200).json({
-      success: true,
-      message: "Success (Mocked local save - set GOOGLE_SHEETS_WEBHOOK_URL to connect to real Google Sheet)",
-      data: { firstname, lastname, email, phoneExtension, phoneNumber },
-    });
+    return res.status(500).json({ message: "Google Sheets WebApp Webhook URL is not configured in Vercel environment variables." });
   }
 
   try {

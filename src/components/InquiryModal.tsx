@@ -267,34 +267,21 @@ export function InquiryModal() {
         phoneNumber: formData.phone ? formData.phone.trim() : "",
       };
 
-      let response;
-      try {
-        response = await fetch("/api/inquire", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-      } catch (e) {
-        if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
-          console.warn("API route failed to connect (Vite server running without Vercel CLI). Falling back to mock success.");
-          setSubmitted();
-          showToast("PineBrook team will reach out to you shortly. (Mock Success)");
-          setStatus("success");
-          return;
-        }
-        throw e;
-      }
+      const response = await fetch("/api/inquire", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
       if (!response.ok) {
-        if (response.status === 404 && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")) {
-          console.warn("API route returned 404 (Vite server running without Vercel CLI). Falling back to mock success.");
-          setSubmitted();
-          showToast("PineBrook team will reach out to you shortly. (Mock Success)");
-          setStatus("success");
-          return;
-        }
-        const data = await response.json();
-        throw new Error(data.message || "Failed to submit inquiry");
+        // Since Apps Script returning custom CORS can sometimes present as opaque or error out,
+        // we read response body if possible, or fallback to status text
+        let msg = "Failed to submit inquiry";
+        try {
+          const data = await response.json();
+          msg = data.message || msg;
+        } catch (_) {}
+        throw new Error(msg);
       }
 
       setSubmitted(); // Lock session
