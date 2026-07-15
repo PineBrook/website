@@ -74,7 +74,7 @@ export function CorePillars() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="p-10 rounded-[20px] bg-brand-surface-low border border-brand-border relative overflow-hidden transition-all duration-300 hover:border-brand-secondary hover:shadow-[0_0_20px_rgba(90,200,250,0.1)]"
+                  className="p-10 rounded-[20px] bg-brand-surface-low border border-brand-border relative overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:border-brand-secondary hover:shadow-[0_10px_30px_rgba(90,200,250,0.08)]"
                 >
                   <div className="absolute top-0 right-0 w-64 h-64 bg-brand-primary/5 rounded-full blur-[80px] pointer-events-none"></div>
                   
