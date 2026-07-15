@@ -1,5 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
+// Block repeat inquiries for 24 hours to prevent spam/abuse
+const INQUIRY_TIMEOUT_MS = 24 * 60 * 60 * 1000;
+
 interface ToastMessage {
   id: string;
   message: string;
@@ -24,8 +27,17 @@ export function InquiryModalProvider({ children }: { children: React.ReactNode }
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const submitted = sessionStorage.getItem("pb_inquiry_submitted") === "true";
-      setHasSubmitted(submitted);
+      const submittedAt = localStorage.getItem("pb_inquiry_submitted_at");
+      if (submittedAt) {
+        const timeDiff = Date.now() - parseInt(submittedAt, 10);
+        if (timeDiff < INQUIRY_TIMEOUT_MS) {
+          setHasSubmitted(true);
+        } else {
+          // Timeout expired, clean up
+          localStorage.removeItem("pb_inquiry_submitted_at");
+          setHasSubmitted(false);
+        }
+      }
     }
   }, []);
 
@@ -42,7 +54,7 @@ export function InquiryModalProvider({ children }: { children: React.ReactNode }
 
   const setSubmitted = () => {
     if (typeof window !== "undefined") {
-      sessionStorage.setItem("pb_inquiry_submitted", "true");
+      localStorage.setItem("pb_inquiry_submitted_at", Date.now().toString());
       setHasSubmitted(true);
     }
   };
