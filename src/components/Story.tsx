@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Mail } from "lucide-react";
+import { Mail, GraduationCap, Terminal, Globe, ShieldCheck, TrendingUp } from "lucide-react";
 
 export function Story() {
   const leaders = [
@@ -27,31 +27,31 @@ export function Story() {
     {
       step: "01",
       title: "Collegiate Sourcing",
-      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=400&auto=format&fit=crop",
+      icon: GraduationCap,
       desc: "Partnering directly with leading regional universities in Uttarakhand to identify and onboard top-tier engineering talent directly from campus."
     },
     {
       step: "02",
       title: "SLA Bootcamp",
-      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=400&auto=format&fit=crop",
+      icon: Terminal,
       desc: "An intensive technical boot camp focused on enterprise standards, production AI pipelines, and strict operations governance."
     },
     {
       step: "03",
       title: "GCC Integration",
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=400&auto=format&fit=crop",
+      icon: Globe,
       desc: "Transitioning graduates into active Global Capability Centres with secure integrations, structured oversight, and redundant operations."
     },
     {
       step: "04",
       title: "Precision Execution",
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=400&auto=format&fit=crop",
+      icon: ShieldCheck,
       desc: "Enforcing strict ITIL governance and robust cybersecurity protocols, assuring 98% SLA compliance for complex enterprise integrations."
     },
     {
       step: "05",
       title: "Socio-Economic Impact",
-      image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=400&auto=format&fit=crop",
+      icon: TrendingUp,
       desc: "Establishing high-value technical careers in Uttarakhand, preventing brain drain and reverse migration while building regional ecosystems."
     }
   ];
@@ -119,48 +119,57 @@ export function Story() {
 
           {/* 1x5 Horizontal Grid with 3D Flip Effect */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 [perspective:1000px]">
-            {blueprintSteps.map((step, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ type: "spring", duration: 0.6, delay: idx * 0.1 }}
-                className="relative w-full h-[300px] rounded-2xl cursor-pointer group"
-              >
-                {/* Card Inner Container for 3D rotation */}
-                <div className="absolute inset-0 w-full h-full rounded-2xl transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] shadow-xl">
-                  
-                  {/* 1. FRONT SIDE: Sharp Panoramic Split Image */}
-                  <div className="absolute inset-0 w-full h-full rounded-2xl bg-brand-surface-container border border-white/20 overflow-hidden [backface-visibility:hidden] flex flex-col justify-end">
-                    {/* Background Image (Shared Panoramic split) */}
-                    <div className={`absolute inset-0 w-full h-full opacity-80 group-hover:opacity-100 transition-opacity duration-300 card-split-bg-${idx}`} />
-                    {/* Vignette mask overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent z-0" />
+            {blueprintSteps.map((step, idx) => {
+              const Icon = step.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ type: "spring", duration: 0.6, delay: idx * 0.1 }}
+                  className="relative w-full h-[300px] rounded-2xl cursor-pointer group"
+                >
+                  {/* Card Inner Container for 3D rotation */}
+                  <div className="absolute inset-0 w-full h-full rounded-2xl transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] shadow-xl">
                     
-                    {/* Title directly on vignette backdrop */}
-                    <div className="absolute inset-x-0 bottom-0 p-5 z-10">
-                      <h3 className="text-lg md:text-xl font-display font-bold text-white leading-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">{step.title}</h3>
-                    </div>
-                  </div>
+                    {/* 1. FRONT SIDE: Premium Glassmorphic Card with Icon */}
+                    <div className="absolute inset-0 w-full h-full rounded-2xl bg-brand-surface-container border border-white/10 overflow-hidden [backface-visibility:hidden] flex flex-col justify-between p-6 hover:border-brand-primary/40 transition-colors duration-300">
+                      {/* Step count indicator */}
+                      <span className="font-mono text-4xl font-extrabold text-white/[0.03] tracking-wider absolute top-4 right-6 group-hover:text-brand-primary/10 transition-colors duration-300 select-none">{step.step}</span>
+                      
+                      {/* Center Icon */}
+                      <div className="flex-grow flex items-center justify-center relative">
+                        <div className="w-16 h-16 rounded-full bg-white/[0.02] border border-white/5 flex items-center justify-center relative group-hover:border-brand-primary/30 group-hover:bg-brand-primary/15 transition-all duration-500 shadow-inner">
+                          <div className="absolute inset-0 rounded-full bg-brand-primary/0 blur-md group-hover:bg-brand-primary/20 transition-all duration-500" />
+                          <Icon className="w-8 h-8 text-brand-text-muted group-hover:text-brand-secondary transition-colors duration-500 z-10" />
+                        </div>
+                      </div>
 
-                  {/* 2. BACK SIDE: Detailed Text Description */}
-                  <div className="absolute inset-0 w-full h-full rounded-2xl bg-[#181d30]/95 border border-brand-secondary/50 flex flex-col justify-between p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-[0_0_25px_rgba(90,200,250,0.15)]">
-                    <div>
-                      <h3 className="text-base md:text-lg font-display font-bold text-white mb-3 leading-tight">{step.title}</h3>
-                      <p className="text-[15px] text-brand-text-muted leading-relaxed">{step.desc}</p>
+                      {/* Card Title */}
+                      <div className="relative z-10">
+                        <h3 className="text-base md:text-lg font-display font-semibold text-white group-hover:text-brand-secondary transition-colors duration-300 leading-tight">{step.title}</h3>
+                      </div>
                     </div>
-                    <div>
-                      {/* Number just above the _ */}
-                      <span className="font-mono text-m font-bold text-brand-primary block mb-1">{step.step}</span>
-                      {/* Glowing blue accent bar on back bottom */}
-                      <div className="h-0.5 w-10 bg-brand-primary rounded-full" />
-                    </div>
-                  </div>
 
-                </div>
-              </motion.div>
-            ))}
+                    {/* 2. BACK SIDE: Detailed Text Description */}
+                    <div className="absolute inset-0 w-full h-full rounded-2xl bg-[#181d30]/95 border border-brand-secondary/50 flex flex-col justify-between p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-[0_0_25px_rgba(90,200,250,0.15)]">
+                      <div>
+                        <h3 className="text-base md:text-lg font-display font-bold text-white mb-3 leading-tight">{step.title}</h3>
+                        <p className="text-[15px] text-brand-text-muted leading-relaxed">{step.desc}</p>
+                      </div>
+                      <div>
+                        {/* Number just above the _ */}
+                        <span className="font-mono text-m font-bold text-brand-primary block mb-1">{step.step}</span>
+                        {/* Glowing blue accent bar on back bottom */}
+                        <div className="h-0.5 w-10 bg-brand-primary rounded-full" />
+                      </div>
+                    </div>
+
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
         {/* 3. Leadership Section */}
