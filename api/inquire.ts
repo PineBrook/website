@@ -52,11 +52,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(451).json({ message: "Method Not Allowed" });
   }
 
-  const { firstname, lastname, email, phoneExtension, phoneNumber } = req.body;
+  const { firstname, lastname, company, location, email, phoneExtension, phoneNumber } = req.body;
 
   // Validate request body
-  if (!firstname || (!email && !phoneNumber)) {
-    return res.status(400).json({ message: "First name and at least one contact method (email or phone) are required." });
+  if (!firstname || !company || !phoneExtension || !phoneNumber) {
+    return res.status(400).json({ message: "First name, Company, and Phone number are required." });
   }
 
   const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
@@ -71,7 +71,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ firstname, lastname, email, phoneExtension, phoneNumber }),
+      body: JSON.stringify({ firstname, lastname, company, location, email, phoneExtension, phoneNumber }),
     });
 
     if (!response.ok) {

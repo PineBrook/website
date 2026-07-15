@@ -11,6 +11,8 @@ function doPost(e) {
         "Time (GMT+5:30)", 
         "First Name", 
         "Last Name", 
+        "Company Name",    // New Column
+        "Location",        // New Column
         "Email", 
         "Phone Extension", 
         "Phone Number"
@@ -27,10 +29,12 @@ function doPost(e) {
 
     sheet.appendRow([ 
       nextId,
-      dateString, // Inserts formatted Date (e.g. 2026-07-15)
-      timeString, // Inserts formatted Time (e.g. 12:26:27)
+      dateString, 
+      timeString, 
       data.firstname || "",
       data.lastname || "",                                                           
+      data.company || "",  // New Field
+      data.location || "", // New Field
       data.email || "",  
       data.phoneExtension || "",                                                        
       data.phoneNumber || ""                                                           

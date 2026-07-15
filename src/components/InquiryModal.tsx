@@ -70,9 +70,9 @@ function FormField({ label, type, name, value, error, onChange, onBlur, onKeyDow
 
 export function InquiryModal() {
   const { isOpen, closeModal, hasSubmitted, setSubmitted, showToast } = useInquiryModal();
-  const [formData, setFormData] = useState({ firstName: "", lastName: "", email: "", phone: "" });
-  const [errors, setErrors] = useState({ firstName: "", lastName: "", email: "", phone: "", global: "" });
-  const [touched, setTouched] = useState({ firstName: false, lastName: false, email: false, phone: false });
+  const [formData, setFormData] = useState({ firstName: "", lastName: "", company: "", location: "", email: "", phone: "" });
+  const [errors, setErrors] = useState({ firstName: "", lastName: "", company: "", location: "", email: "", phone: "", global: "" });
+  const [touched, setTouched] = useState({ firstName: false, lastName: false, company: false, location: false, email: false, phone: false });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   
@@ -85,6 +85,8 @@ export function InquiryModal() {
   const modalRef = useRef<HTMLDivElement>(null);
   const firstNameRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
+  const companyRef = useRef<HTMLInputElement>(null);
+  const locationRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -106,9 +108,9 @@ export function InquiryModal() {
   useEffect(() => {
     if (!isOpen) return;
 
-    setFormData({ firstName: "", lastName: "", email: "", phone: "" });
-    setErrors({ firstName: "", lastName: "", email: "", phone: "", global: "" });
-    setTouched({ firstName: false, lastName: false, email: false, phone: false });
+    setFormData({ firstName: "", lastName: "", company: "", location: "", email: "", phone: "" });
+    setErrors({ firstName: "", lastName: "", company: "", location: "", email: "", phone: "", global: "" });
+    setTouched({ firstName: false, lastName: false, company: false, location: false, email: false, phone: false });
     setStatus(hasSubmitted ? "success" : "idle");
     setErrorMessage("");
     setShowCountryDropdown(false);
@@ -133,7 +135,7 @@ export function InquiryModal() {
     }
   }, [showCountryDropdown]);
 
-  // Handle ESC closing and click outside
+  // Handle ESC closing
   useEffect(() => {
     if (!isOpen) return;
 
@@ -159,6 +161,10 @@ export function InquiryModal() {
       } else if (value.trim().length < 2) {
         error = "First name must be at least 2 characters";
       }
+    } else if (fieldName === "company") {
+      if (!value.trim()) {
+        error = "Company name is compulsory";
+      }
     } else if (fieldName === "email") {
       if (value.trim()) {
         if (!EMAIL_REGEX.test(value)) {
@@ -166,7 +172,9 @@ export function InquiryModal() {
         }
       }
     } else if (fieldName === "phone") {
-      if (value.trim()) {
+      if (!value.trim()) {
+        error = "Phone number is compulsory";
+      } else {
         const cleanVal = value.trim();
         if (!PHONE_CHARS_REGEX.test(cleanVal)) {
           error = "Phone number can only contain digits, spaces, hyphens, and parentheses";
@@ -234,26 +242,23 @@ export function InquiryModal() {
 
     // Revalidate all fields
     const fNameError = validateField("firstName", formData.firstName);
+    const companyError = validateField("company", formData.company);
     const emailError = validateField("email", formData.email);
     const phoneError = validateField("phone", formData.phone);
-    let globalError = "";
-
-    // Validation: at least one of Email or Phone is compulsory
-    if (!formData.email.trim() && !formData.phone.trim()) {
-      globalError = "Either email or phone number is compulsory";
-    }
 
     setErrors({
       firstName: fNameError,
       lastName: "",
+      company: companyError,
+      location: "",
       email: emailError,
       phone: phoneError,
-      global: globalError,
+      global: "",
     });
 
-    setTouched({ firstName: true, lastName: true, email: true, phone: true });
+    setTouched({ firstName: true, lastName: true, company: true, location: true, email: true, phone: true });
 
-    if (fNameError || emailError || phoneError || globalError) {
+    if (fNameError || companyError || emailError || phoneError) {
       return;
     }
 
@@ -262,9 +267,11 @@ export function InquiryModal() {
       const payload = {
         firstname: formData.firstName.trim(),
         lastname: formData.lastName.trim(),
+        company: formData.company.trim(),
+        location: formData.location.trim(),
         email: formData.email.trim(),
-        phoneExtension: formData.phone ? selectedCountry.dialCode : "",
-        phoneNumber: formData.phone ? formData.phone.trim() : "",
+        phoneExtension: selectedCountry.dialCode,
+        phoneNumber: formData.phone.trim(),
       };
 
       const response = await fetch("/api/inquire", {
@@ -274,8 +281,6 @@ export function InquiryModal() {
       });
 
       if (!response.ok) {
-        // Since Apps Script returning custom CORS can sometimes present as opaque or error out,
-        // we read response body if possible, or fallback to status text
         let msg = "Failed to submit inquiry";
         try {
           const data = await response.json();
@@ -388,24 +393,37 @@ export function InquiryModal() {
                       error={errors.lastName}
                       onChange={handleChange}
                       onBlur={() => handleBlur("lastName")}
-                      onKeyDown={(e) => handleInputKeyDown(e, emailRef)}
+                      onKeyDown={(e) => handleInputKeyDown(e, companyRef)}
                     />
                   </div>
 
-                  {/* Email Address */}
-                  <FormField
-                    inputRef={emailRef}
-                    label="Email Address"
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    error={errors.email}
-                    onChange={handleChange}
-                    onBlur={() => handleBlur("email")}
-                    onKeyDown={(e) => handleInputKeyDown(e, phoneRef)}
-                  />
+                  {/* Company & Location Split Fields */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <FormField
+                      inputRef={companyRef}
+                      label="Company Name *"
+                      type="text"
+                      name="company"
+                      value={formData.company}
+                      error={errors.company}
+                      onChange={handleChange}
+                      onBlur={() => handleBlur("company")}
+                      onKeyDown={(e) => handleInputKeyDown(e, locationRef)}
+                    />
+                    <FormField
+                      inputRef={locationRef}
+                      label="Location"
+                      type="text"
+                      name="location"
+                      value={formData.location}
+                      error={errors.location}
+                      onChange={handleChange}
+                      onBlur={() => handleBlur("location")}
+                      onKeyDown={(e) => handleInputKeyDown(e, phoneRef)}
+                    />
+                  </div>
 
-                  {/* Phone with Country selector */}
+                  {/* Phone with Country selector (Compulsory) */}
                   <div className="mb-5 relative">
                     <div className="flex gap-2">
                       {/* Flag Dropdown Selector */}
@@ -483,7 +501,7 @@ export function InquiryModal() {
                           value={formData.phone}
                           onChange={handleChange}
                           onBlur={() => handleBlur("phone")}
-                          onKeyDown={(e) => handleInputKeyDown(e, submitButtonRef)}
+                          onKeyDown={(e) => handleInputKeyDown(e, emailRef)}
                           className={`peer w-full px-4 py-3.5 bg-white/[0.02] hover:bg-white/[0.04] border ${
                             errors.phone 
                               ? "border-red-500/50 focus:border-red-500" 
@@ -498,7 +516,7 @@ export function InquiryModal() {
                               : "top-3.5 text-brand-text-muted"
                             } ${errors.phone ? "text-red-400/70" : ""}`}
                         >
-                          {`Phone Number (${selectedCountry.placeholder})`}
+                          {`Phone Number * (${selectedCountry.placeholder})`}
                         </label>
                       </div>
                     </div>
@@ -513,11 +531,18 @@ export function InquiryModal() {
                     )}
                   </div>
 
-                  {errors.global && (
-                    <p className="text-xs text-red-400 mb-5 bg-red-950/20 border border-red-500/10 p-3 rounded-lg">
-                      {errors.global}
-                    </p>
-                  )}
+                  {/* Email Address (Optional) */}
+                  <FormField
+                    inputRef={emailRef}
+                    label="Email Address"
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    error={errors.email}
+                    onChange={handleChange}
+                    onBlur={() => handleBlur("email")}
+                    onKeyDown={(e) => handleInputKeyDown(e, submitButtonRef)}
+                  />
 
                   {status === "error" && (
                     <p className="text-xs text-red-400 mb-5 bg-red-950/20 border border-red-500/10 p-3 rounded-lg">
