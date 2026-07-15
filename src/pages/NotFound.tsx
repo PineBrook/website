@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { Button } from "../components/Button";
-import { HelpCircle } from "lucide-react";
 
 export function NotFound() {
   return (
@@ -43,13 +42,10 @@ export function NotFound() {
             
             {/* Custom Avatar Container */}
             <div className="relative w-20 h-20 rounded-full bg-brand-surface-container border border-white/15 flex items-center justify-center overflow-hidden shadow-inner">
-              <HelpCircle className="w-10 h-10 text-brand-secondary" />
+              <span className="text-6xl" role="img" aria-label="Otter Mascot">🦦</span>
             </div>
           </div>
 
-          <span className="font-mono text-xs font-semibold text-brand-secondary tracking-widest uppercase mb-2">
-            Error 404
-          </span>
           <h1 className="text-2xl sm:text-3xl font-display font-semibold text-white mb-3">
             Page Not Found
           </h1>
