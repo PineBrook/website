@@ -41,16 +41,15 @@ export function NotFound() {
             <div className="absolute inset-0 bg-brand-primary/10 rounded-full border border-brand-primary/30 animate-ping opacity-75" />
             
             {/* Custom Avatar Container */}
-            <div className="relative w-20 h-20 rounded-full bg-brand-surface-container border border-white/15 flex items-center justify-center overflow-hidden shadow-inner">
+            <div className="relative w-24 h-24 rounded-full bg-brand-surface-container border border-white/15 flex items-center justify-center overflow-hidden shadow-inner">
               <span className="text-6xl" role="img" aria-label="Otter Mascot">🦦</span>
             </div>
           </div>
-
           <h1 className="text-2xl sm:text-3xl font-display font-semibold text-white mb-3">
             Page Not Found
           </h1>
           <p className="text-brand-text-muted text-sm leading-relaxed mb-8 max-w-xs">
-            The page you are looking for doesn't exist, has been removed, or has changed address.
+            The page you are looking for doesn't exist.
           </p>
 
           <Link to="/" className="w-full">

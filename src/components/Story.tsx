@@ -1,103 +1,219 @@
 import { motion } from "motion/react";
-import { Button } from "./Button";
+import { Users, Compass, Award, Shield, Linkedin } from "lucide-react";
+
+interface Leader {
+  name: string;
+  role: string;
+  image: string;
+  bio: string;
+  linkedin: string;
+}
 
 export function Story() {
+  const leaders: Leader[] = [
+    {
+      name: "Yashvardhan",
+      role: "Founder & Managing Partner",
+      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop", // Professional female/male placeholder
+      bio: "Veteran GCC architect and operational strategist. Deliberately building scalable delivery teams and AI capability centers in regional ecosystems.",
+      linkedin: "#"
+    },
+    {
+      name: "Dr. Alok Sharma",
+      role: "Advisor, Talent & Academic Relations",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop", // Male corporate portrait placeholder
+      bio: "Bridges the gap between regional technical universities and enterprise readiness, designing curricula centered on AI, logic, and operational excellence.",
+      linkedin: "#"
+    },
+    {
+      name: "Vikram Negi",
+      role: "Director of Operations",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop",
+      bio: "Oversees local delivery centers, ensuring strict SLA compliance, infrastructure security, and high-performance managed teams.",
+      linkedin: "#"
+    }
+  ];
+
   return (
-    <section className="py-32 bg-brand-surface relative overflow-hidden" id="mission">
-      {/* Top Border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-border to-transparent"></div>
+    <section className="bg-brand-surface relative overflow-hidden" id="mission">
       
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          
-          {/* Left: Image / Visual */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden border border-brand-border group"
+      {/* 1. Immersive Himalayan Hero Section */}
+      <div className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+        {/* Background Himalayas Image with Dark Masking */}
+        <div 
+          className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1800&auto=format&fit=crop')] bg-cover bg-center" 
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0f17]/80 via-brand-surface/70 to-brand-surface" />
+        
+        {/* Ambient Glows */}
+        <div className="absolute top-[30%] left-[10%] w-96 h-96 bg-brand-primary/15 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[10%] right-[10%] w-96 h-96 bg-brand-secondary/10 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="container mx-auto px-6 max-w-7xl relative z-10 text-center pt-20">
+          <motion.span 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="eyebrow text-xs sm:text-sm text-brand-secondary tracking-widest block mb-4"
           >
-            {/* Using a placeholder gradient for the Himalayan visual */}
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-surface-high to-brand-surface-low"></div>
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544257127-14a51e605d5e?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay opacity-40 transition-opacity duration-700 group-hover:opacity-60"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-surface via-brand-surface/20 to-transparent"></div>
+            OUR MISSION & STORY
+          </motion.span>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white tracking-tight mb-6 max-w-4xl mx-auto leading-tight"
+          >
+            Building the Digital Frontier <br/>
+            <span className="bg-gradient-to-r from-white via-brand-accent to-brand-secondary bg-clip-text text-transparent">
+              From the Himalayas.
+            </span>
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg md:text-xl text-brand-text-muted max-w-2xl mx-auto leading-relaxed"
+          >
+            PineBrook fuses high-altitude determination with cutting-edge technical execution to deliver stable, sustainable, and scalable capabilities for global enterprises.
+          </motion.p>
+        </div>
+      </div>
+
+      {/* 2. Brand Story & Strategy Grid */}
+      <div className="container mx-auto px-6 max-w-7xl py-24 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-start mb-32">
+          {/* Left Column: Heading */}
+          <div>
+            <span className="eyebrow text-xs text-brand-secondary block mb-3">FOUNDING VISION</span>
+            <h2 className="text-3xl md:text-4xl font-display font-semibold text-white leading-snug">
+              Why We Build Away <br/>
+              From Saturated Tech Hubs.
+            </h2>
             
-            <div className="absolute bottom-0 left-0 right-0 p-10">
-              <div className="eyebrow text-xs text-brand-secondary mb-4">OUR MISSION</div>
-              <h3 className="text-3xl font-display font-bold text-white leading-tight">
-                Building a sustainable, world-class digital workforce from the Himalayas.
-              </h3>
-            </div>
-          </motion.div>
-
-          {/* Right: Content */}
-          <div className="flex flex-col justify-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-display font-semibold mb-6"
-            >
-              The Uttarakhand <br/>
-              <span className="text-brand-accent">Advantage.</span>
-            </motion.h2>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-brand-text-muted text-lg mb-10 leading-relaxed"
-            >
-              We are deliberately building capability away from saturated metros. By investing in regional talent, college partnerships, and local delivery centers, we prevent reverse migration while providing our global clients with a highly stable, dedicated, and scalable workforce.
-            </motion.p>
-
-            <div className="grid sm:grid-cols-2 gap-8 mb-12">
-              <div>
-                <h3 className="font-semibold text-white mb-4 text-lg">Community Impact</h3>
-                <ul className="space-y-3">
-                  {["Local Employment", "Skill Development", "Sustainable Growth"].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-brand-text-muted text-sm">
-                       <div className="w-1.5 h-1.5 rounded-full bg-brand-primary"></div>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-4 text-lg">Operational Edge</h3>
-                <ul className="space-y-3">
-                  {["Low Attrition Rates", "Dedicated Centers", "Inherent Synergy"].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-brand-text-muted text-sm">
-                       <div className="w-1.5 h-1.5 rounded-full bg-brand-secondary"></div>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+            {/* Value loop flow infographic */}
+            <div className="mt-12 p-8 rounded-2xl bg-brand-surface-container/40 border border-brand-border">
+              <span className="eyebrow text-[10px] text-brand-secondary block mb-4">THE VALUE LOOP</span>
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-brand-primary/10 border border-brand-primary/30 flex items-center justify-center text-xs font-mono text-brand-primary">1</div>
+                  <span className="text-sm font-medium text-white">Partner with local technical colleges in Uttarakhand.</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-brand-secondary/10 border border-brand-secondary/30 flex items-center justify-center text-xs font-mono text-brand-secondary">2</div>
+                  <span className="text-sm font-medium text-white">Intensive technical training aligned with enterprise SLAs.</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-xs font-mono text-brand-accent">3</div>
+                  <span className="text-sm font-medium text-white">Prevent brain drain/reverse migration via high-value local jobs.</span>
+                </div>
               </div>
             </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="p-6 rounded-xl bg-brand-surface-container border border-brand-border transition-all duration-300 hover:border-brand-secondary hover:shadow-[0_0_20px_rgba(90,200,250,0.1)]"
-            >
-              <div className="eyebrow text-[10px] text-brand-text-muted mb-4">THE VALUE CHAIN</div>
-              <div className="flex items-center gap-2 flex-wrap">
-                <div className="px-3 py-1.5 rounded bg-brand-surface-high border border-brand-border text-sm text-white">Talent</div>
-                <div className="text-brand-text-muted text-xs">→</div>
-                <div className="px-3 py-1.5 rounded bg-brand-surface-high border border-brand-border text-sm text-white">Training</div>
-                <div className="text-brand-text-muted text-xs">→</div>
-                <div className="px-3 py-1.5 rounded bg-brand-surface-high border border-brand-border text-sm text-white">Capability</div>
-                <div className="text-brand-text-muted text-xs">→</div>
-                <div className="px-3 py-1.5 rounded bg-brand-primary text-sm text-white font-medium shadow-[0_0_10px_rgba(0,122,255,0.3)]">Employment</div>
-              </div>
-            </motion.div>
           </div>
 
+          {/* Right Column: Detailed narrative cards */}
+          <div className="space-y-8">
+            <div className="p-8 rounded-2xl bg-brand-surface-low border border-brand-border/60 hover:border-brand-primary transition-all duration-300">
+              <div className="flex gap-4 items-start">
+                <div className="w-10 h-10 rounded-lg bg-brand-surface-high border border-brand-border flex items-center justify-center flex-shrink-0">
+                  <Compass className="w-5 h-5 text-brand-secondary" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-white mb-2">Sustainable Talent Pipelines</h3>
+                  <p className="text-brand-text-muted text-sm leading-relaxed">
+                    Metropolitan operations centers suffer from high attrition and unsustainable cost structures. By investing directly in regional talent ecosystems, PineBrook secures a dedicated, loyal team that guarantees continuous stability.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-brand-surface-low border border-brand-border/60 hover:border-brand-primary transition-all duration-300">
+              <div className="flex gap-4 items-start">
+                <div className="w-10 h-10 rounded-lg bg-brand-surface-high border border-brand-border flex items-center justify-center flex-shrink-0">
+                  <Award className="w-5 h-5 text-brand-secondary" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-white mb-2">Precision AI & SLA Driven</h3>
+                  <p className="text-brand-text-muted text-sm leading-relaxed">
+                    We believe location should enhance, not compromise, quality. Our managed centers enforce strict ITIL governance and robust cybersecurity protocols, assuring 98% SLA compliance for complex enterprise integrations.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-brand-surface-low border border-brand-border/60 hover:border-brand-primary transition-all duration-300">
+              <div className="flex gap-4 items-start">
+                <div className="w-10 h-10 rounded-lg bg-brand-surface-high border border-brand-border flex items-center justify-center flex-shrink-0">
+                  <Shield className="w-5 h-5 text-brand-secondary" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-white mb-2">Socio-Economic Development</h3>
+                  <p className="text-brand-text-muted text-sm leading-relaxed">
+                    Every operation established at PineBrook helps support regional families, fuels digital literacy, and demonstrates that world-class engineering centers can thrive away from saturated major cities.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+        {/* 3. Leadership Section */}
+        <div className="border-t border-brand-border/50 pt-24">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="eyebrow text-xs text-brand-secondary block mb-3">PINEBROOK LEADERSHIP</span>
+            <h2 className="text-3xl md:text-4xl font-display font-semibold text-white mb-4">
+              Embedded Leadership
+            </h2>
+            <p className="text-brand-text-muted text-sm sm:text-base">
+              Veteran technology builders and operators guiding our regional capability centers.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {leaders.map((leader, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-6 rounded-[20px] bg-brand-surface-low border border-brand-border flex flex-col h-full hover:scale-[1.01] hover:border-brand-secondary hover:shadow-[0_10px_30px_rgba(90,200,250,0.05)] transition-all duration-300"
+              >
+                {/* Photo container */}
+                <div className="aspect-[4/3] w-full rounded-xl overflow-hidden mb-6 bg-brand-surface-high border border-brand-border relative group">
+                  <img
+                    src={leader.image}
+                    alt={leader.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0f17]/90 via-[#0c0f17]/20 to-transparent opacity-60" />
+                </div>
+
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-lg font-bold text-white leading-none">{leader.name}</h3>
+                  <a
+                    href={leader.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-brand-text-muted hover:text-white transition-colors p-1"
+                    aria-label={`${leader.name} LinkedIn Profile`}
+                  >
+                    <Linkedin className="w-4 h-4" />
+                  </a>
+                </div>
+                
+                <span className="text-xs font-semibold eyebrow text-brand-secondary block mb-4">
+                  {leader.role}
+                </span>
+                
+                <p className="text-brand-text-muted text-xs leading-relaxed flex-grow">
+                  {leader.bio}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );
