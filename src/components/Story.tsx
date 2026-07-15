@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Linkedin } from "lucide-react";
+import { Mail } from "lucide-react";
 
 export function Story() {
   const leaders = [
@@ -7,19 +7,19 @@ export function Story() {
       name: "Anoop Singh",
       role: "Managing Partner",
       bio: "Veteran GCC architect and operational strategist. Deliberately building scalable delivery teams and AI capability centers in regional ecosystems.",
-      linkedin: "#"
+      email: "anoop.singh@pinebrooktechnologies.com"
     },
     {
       name: "Shobhit Tiwari",
       role: "Technology Lead",
       bio: "Oversees regional delivery centers and campus talent pipelines in Uttarakhand, securing strict SLA compliance and operational excellence.",
-      linkedin: "#"
+      email: "shobhit.tiwari@pinebrooktechnologies.com"
     },
     {
       name: "Bharat Singh",
       role: "Director of Operations",
       bio: "Drives technology roadmap execution and precision AI engineering integrations, ensuring resilient architecture for enterprise workflows.",
-      linkedin: "#"
+      email: "bharats@pinebrooktechnologies.com"
     }
   ];
 
@@ -78,7 +78,6 @@ export function Story() {
             animate={{ opacity: 1, y: 0 }}
             className="eyebrow text-xs sm:text-sm text-brand-secondary tracking-widest block mb-4"
           >
-            OUR MISSION & STORY
           </motion.span>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
@@ -194,13 +193,11 @@ export function Story() {
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-lg font-bold text-white leading-none">{leader.name}</h3>
                   <a
-                    href={leader.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={`mailto:${leader.email}`}
                     className="text-brand-text-muted hover:text-white transition-colors p-1"
-                    aria-label={`${leader.name} LinkedIn Profile`}
+                    aria-label={`Email ${leader.name}`}
                   >
-                    <Linkedin className="w-4 h-4" />
+                    <Mail className="w-4 h-4" />
                   </a>
                 </div>
                 
