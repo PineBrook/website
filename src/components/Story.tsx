@@ -11,13 +11,13 @@ export function Story() {
     },
     {
       name: "Shobhit Tiwari",
-      role: "Technology Lead",
+      role: "Director of Operations",
       bio: "Oversees regional delivery centers and campus talent pipelines in Uttarakhand, securing strict SLA compliance and operational excellence.",
       email: "shobhit.tiwari@pinebrooktechnologies.com"
     },
     {
       name: "Bharat Singh",
-      role: "Director of Operations",
+      role: "Technology Lead",
       bio: "Drives technology roadmap execution and precision AI engineering integrations, ensuring resilient architecture for enterprise workflows.",
       email: "bharats@pinebrooktechnologies.com"
     }
