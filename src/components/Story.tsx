@@ -63,7 +63,7 @@ export function Story() {
       <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Himalayas Image with Dark Masking */}
         <div 
-          className="absolute inset-0 bg-[url('/images/himalayas.jpg')] bg-cover bg-center" 
+          className="absolute top-0 left-0 right-0 bottom-[10px] bg-[url('/images/himalayas.jpg')] bg-cover bg-center" 
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0c0f17]/50 via-brand-surface/40 to-[#121625]" />
@@ -72,7 +72,7 @@ export function Story() {
         <div className="absolute top-[20%] left-[10%] w-[600px] h-[600px] bg-brand-primary/25 rounded-full blur-[140px] pointer-events-none" />
         <div className="absolute bottom-[5%] right-[10%] w-[600px] h-[600px] bg-brand-secondary/20 rounded-full blur-[140px] pointer-events-none" />
 
-        <div className="container mx-auto px-6 max-w-7xl relative z-10 text-center pt-20 -translate-y-40">
+        <div className="container mx-auto px-6 max-w-7xl relative z-10 text-center pt-20 -translate-y-15">
           <motion.span 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -94,7 +94,7 @@ export function Story() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-brand-text-muted max-w-2xl mx-auto leading-relaxed mt-16"
+            className="text-lg md:text-xl text-brand-text-muted max-w-2xl mx-auto leading-relaxed mt-45"
           >
             PineBrook fuses high-altitude determination with cutting-edge technical execution to deliver stable, sustainable, and scalable capabilities for global enterprises.
           </motion.p>
