@@ -1,10 +1,7 @@
-import { useRef, useState } from "react";
 import { motion } from "motion/react";
-import { Compass, Award, Shield, Linkedin } from "lucide-react";
+import { Compass, Award, Shield, Linkedin, GraduationCap, Zap, Heart } from "lucide-react";
 
 export function Story() {
-  const [activeStep, setActiveStep] = useState(0);
-
   const leaders = [
     {
       name: "Anoop Singh",
@@ -26,22 +23,41 @@ export function Story() {
     }
   ];
 
-  const valueLoopSteps = [
+  const blueprintSteps = [
     {
+      step: "01",
+      icon: GraduationCap,
       title: "Collegiate Sourcing",
-      desc: "Partner with regional institutions in Uttarakhand (like UTU) to identify talented engineering graduates directly from campus, bypassing saturated metropolitan job markets."
+      desc: "We partner directly with leading regional universities in Uttarakhand (like UTU) to identify and onboard top-tier engineering talent directly from campus, bypassing saturated metro recruiting cycles.",
+      accent: "from-brand-primary to-[#0055ff]"
     },
     {
+      step: "02",
+      icon: Zap,
       title: "SLA Bootcamp",
-      desc: "Immersive training program aligning core skills with Fortune 500 delivery standards, focusing on production AI pipelines, modern logic architectures, and rigorous operations governance."
+      desc: "Onboarded graduates enter an intensive technical boot camp focused on enterprise delivery standards, production AI pipelines, modern data architectures, and strict ITIL operations governance.",
+      accent: "from-brand-secondary to-[#00b0ff]"
     },
     {
-      title: "GCC Integration",
-      desc: "Transitioning boot camp graduates into active Global Capability Centres (GCC) under strict delivery governance, ensuring stable scale-out operations."
+      step: "03",
+      icon: Compass,
+      title: "Managed GCC Integration",
+      desc: "Boot camp graduates transition seamlessly into dedicated Global Capability Centres (GCC) with secure networking, structured oversight, and redundant operations.",
+      accent: "from-brand-accent to-[#8fa9ff]"
     },
     {
-      title: "Sustainable Employment",
-      desc: "Securing stable high-value technology jobs locally in Uttarakhand, preventing brain drain/reverse migration and building local digital ecosystems."
+      step: "04",
+      icon: Award,
+      title: "Precision SLA Execution",
+      desc: "Our delivery teams operate under strict operational governance and robust cybersecurity protocols, guaranteeing 98% SLA compliance for complex enterprise tech integrations.",
+      accent: "from-brand-primary to-brand-secondary"
+    },
+    {
+      step: "05",
+      icon: Heart,
+      title: "Socio-Economic Impact",
+      desc: "By establishing high-value technical careers in Uttarakhand, we prevent brain drain and reverse migration while fueling the growth of a resilient local digital ecosystem.",
+      accent: "from-brand-secondary to-brand-accent"
     }
   ];
 
@@ -91,189 +107,105 @@ export function Story() {
         </div>
       </div>
 
-      {/* 2. Brand Story & Strategy Grid + Leadership Container */}
-      <div className="relative z-10">
-        <div className="container mx-auto px-6 max-w-7xl py-24 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-start mb-32">
-            
-            {/* Left Column: Heading & Interactive Stepper */}
-            <div className="sticky top-28">
-              <span className="eyebrow text-xs text-brand-secondary block mb-3">FOUNDING VISION</span>
-              <h2 className="text-3xl md:text-4xl font-display font-semibold text-white leading-snug mb-6">
-                Why We Build Away <br/>
-                From Saturated Tech Hubs.
-              </h2>
-              <p className="text-brand-text-muted text-sm leading-relaxed mb-8 max-w-lg">
-                Saturated metropolitan corridors face high attrition and unsustainable cost dynamics. We target high-value engineering roles directly within regional technical ecosystems.
-              </p>
-              
-              {/* Interactive Value Loop Infographic (Next.js style stepper) */}
-              <div className="p-8 rounded-2xl bg-brand-surface-container/30 border border-brand-border backdrop-blur-md relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-brand-primary/5 rounded-full blur-[40px] pointer-events-none" />
-                <span className="eyebrow text-[10px] text-brand-secondary block mb-6">INTERACTIVE VALUE LOOP</span>
-                
-                {/* Stepper Buttons with connector line */}
-                <div className="flex justify-between items-center gap-2 mb-8 relative">
-                  <div className="absolute top-1/2 left-2 right-2 h-0.5 bg-brand-border/30 z-0 -translate-y-1/2" />
-                  
-                  {valueLoopSteps.map((_, idx) => (
-                    <button
-                      key={idx}
-                      type="button"
-                      onClick={() => setActiveStep(idx)}
-                      className={`relative z-10 w-10 h-10 rounded-full flex items-center justify-center text-xs font-mono font-bold border transition-all duration-300 cursor-pointer ${
-                        activeStep === idx
-                          ? idx === 1
-                            ? "bg-brand-secondary border-brand-secondary text-black shadow-[0_0_15px_rgba(90,200,250,0.4)]"
-                            : idx === 2
-                            ? "bg-brand-accent border-brand-accent text-black shadow-[0_0_15px_rgba(173,198,255,0.4)]"
-                            : "bg-brand-primary border-brand-primary text-white shadow-[0_0_15px_rgba(0,122,255,0.4)]"
-                          : "bg-brand-surface-low border-brand-border text-brand-text-muted hover:text-white"
-                      }`}
-                    >
-                      {idx + 1}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Step content with animation */}
-                <motion.div
-                  key={activeStep}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="min-h-[120px] flex flex-col justify-center"
-                >
-                  <span className={`text-[10px] eyebrow font-semibold tracking-wider block mb-2 ${
-                    activeStep === 1 
-                      ? "text-brand-secondary" 
-                      : activeStep === 2 
-                      ? "text-brand-accent" 
-                      : "text-brand-primary"
-                  }`}>
-                    STEP {activeStep + 1} • {valueLoopSteps[activeStep].title}
-                  </span>
-                  <p className="text-sm text-brand-text-muted leading-relaxed">
-                    {valueLoopSteps[activeStep].desc}
-                  </p>
-                </motion.div>
-              </div>
-            </div>
-
-            {/* Right Column: Waypoint-triggered Storyline Timeline */}
-            <div className="relative pl-8 border-l border-brand-border/40 ml-4 md:ml-6 space-y-12">
-              
-              {/* Waypoint 1 */}
-              <div className="relative">
-                {/* Node Badge */}
-                <div className="absolute -left-[49px] top-1.5 w-8 h-8 rounded-full bg-brand-surface border border-brand-primary/40 shadow-[0_0_12px_rgba(0,122,255,0.2)] flex items-center justify-center text-[10px] font-mono font-bold text-brand-primary">
-                  01
-                </div>
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ type: "spring", duration: 0.6 }}
-                  className="p-8 rounded-2xl bg-brand-surface-low border border-brand-border hover:border-brand-primary/40 hover:shadow-[0_8px_30px_rgba(0,122,255,0.04)] transition-all duration-300"
-                >
-                  <h3 className="text-lg font-bold text-white mb-2">Sustainable Talent Pipelines</h3>
-                  <p className="text-brand-text-muted text-sm leading-relaxed">
-                    Metropolitan operations centers suffer from high attrition and unsustainable cost structures. By investing directly in regional talent ecosystems, PineBrook secures a dedicated, loyal team that guarantees continuous stability.
-                  </p>
-                </motion.div>
-              </div>
-
-              {/* Waypoint 2 */}
-              <div className="relative">
-                {/* Node Badge */}
-                <div className="absolute -left-[49px] top-1.5 w-8 h-8 rounded-full bg-brand-surface border border-brand-secondary/40 shadow-[0_0_12px_rgba(90,200,250,0.2)] flex items-center justify-center text-[10px] font-mono font-bold text-brand-secondary">
-                  02
-                </div>
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ type: "spring", duration: 0.6 }}
-                  className="p-8 rounded-2xl bg-brand-surface-low border border-brand-border hover:border-brand-secondary/40 hover:shadow-[0_8px_30px_rgba(90,200,250,0.04)] transition-all duration-300"
-                >
-                  <h3 className="text-lg font-bold text-white mb-2">Precision AI & SLA Driven</h3>
-                  <p className="text-brand-text-muted text-sm leading-relaxed">
-                    We believe location should enhance, not compromise, quality. Our managed centers enforce strict ITIL governance and robust cybersecurity protocols, assuring 98% SLA compliance for complex enterprise integrations.
-                  </p>
-                </motion.div>
-              </div>
-
-              {/* Waypoint 3 */}
-              <div className="relative">
-                {/* Node Badge */}
-                <div className="absolute -left-[49px] top-1.5 w-8 h-8 rounded-full bg-brand-surface border border-brand-accent/40 shadow-[0_0_12px_rgba(173,198,255,0.2)] flex items-center justify-center text-[10px] font-mono font-bold text-brand-accent">
-                  03
-                </div>
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ type: "spring", duration: 0.6 }}
-                  className="p-8 rounded-2xl bg-brand-surface-low border border-brand-border hover:border-brand-accent/40 hover:shadow-[0_8px_30px_rgba(173,198,255,0.04)] transition-all duration-300"
-                >
-                  <h3 className="text-lg font-bold text-white mb-2">Socio-Economic Development</h3>
-                  <p className="text-brand-text-muted text-sm leading-relaxed">
-                    Every operation established at PineBrook helps support regional families, fuels digital literacy, and demonstrates that world-class engineering centers can thrive away from saturated major cities.
-                  </p>
-                </motion.div>
-              </div>
-            </div>
-
-          </div>
-
-          {/* 3. Leadership Section */}
-          <div className="border-t border-brand-border/50 pt-24">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <span className="eyebrow text-xs text-brand-secondary block mb-3">PINEBROOK LEADERSHIP</span>
-              <h2 className="text-3xl md:text-4xl font-display font-semibold text-white mb-4">
-                Embedded Leadership
-              </h2>
-              <p className="text-brand-text-muted text-sm sm:text-base">
-                Veteran technology builders and operators guiding our regional capability centers.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {leaders.map((leader, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="p-6 rounded-[20px] bg-brand-surface-low border border-brand-border flex flex-col h-full hover:scale-[1.01] hover:border-brand-secondary hover:shadow-[0_10px_30px_rgba(90,200,250,0.05)] transition-all duration-300"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-lg font-bold text-white leading-none">{leader.name}</h3>
-                    <a
-                      href={leader.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-brand-text-muted hover:text-white transition-colors p-1"
-                      aria-label={`${leader.name} LinkedIn Profile`}
-                    >
-                      <Linkedin className="w-4 h-4" />
-                    </a>
-                  </div>
-                  
-                  <span className="text-xs font-semibold eyebrow text-brand-secondary block mb-4">
-                    {leader.role}
-                  </span>
-                  
-                  <p className="text-brand-text-muted text-xs leading-relaxed flex-grow">
-                    {leader.bio}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
+      {/* 2. The PineBrook Blueprint (5-Step Staggered Story Timeline with hover effects) */}
+      <div className="container mx-auto px-6 max-w-5xl py-24 relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <span className="eyebrow text-xs text-brand-secondary block mb-3">OUR OPERATING MODEL</span>
+          <h2 className="text-3xl md:text-4xl font-display font-semibold text-white mb-6">
+            The PineBrook Blueprint
+          </h2>
+          <p className="text-brand-text-muted text-sm sm:text-base leading-relaxed">
+            Our end-to-end framework for sourcing talent, enforcing enterprise SLAs, and delivering top-tier operational engineering from regional technical hubs.
+          </p>
         </div>
+
+        {/* Steps Grid */}
+        <div className="space-y-6">
+          {blueprintSteps.map((step, idx) => {
+            const Icon = step.icon;
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ type: "spring", duration: 0.6 }}
+                className="group p-8 rounded-2xl bg-[#0c0f17]/50 border border-brand-border hover:border-brand-primary/40 hover:bg-[#0c0f17]/80 hover:shadow-[0_8px_30px_rgba(0,122,255,0.06)] hover:scale-[1.01] transition-all duration-300 flex flex-col md:flex-row gap-6 items-start md:items-center relative overflow-hidden"
+              >
+                {/* Background glow accent on hover */}
+                <div className={`absolute top-0 left-0 w-2 h-full bg-gradient-to-b ${step.accent} opacity-40 group-hover:opacity-100 transition-opacity duration-300`} />
+                
+                {/* Number Badge */}
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-brand-surface-low border border-brand-border flex items-center justify-center font-mono text-sm font-bold text-white group-hover:border-brand-secondary/40 transition-colors">
+                  {step.step}
+                </div>
+
+                {/* Icon Circle */}
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-brand-primary/10 border border-brand-primary/20 flex items-center justify-center text-brand-primary group-hover:scale-110 transition-transform duration-300">
+                  <Icon className="w-5 h-5 text-brand-secondary" />
+                </div>
+
+                {/* Details */}
+                <div className="flex-grow">
+                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-brand-secondary transition-colors duration-300">
+                    {step.title}
+                  </h3>
+                  <p className="text-brand-text-muted text-sm leading-relaxed max-w-3xl">
+                    {step.desc}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* 3. Leadership Section */}
+        <div className="border-t border-brand-border/50 pt-24 mt-32">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="eyebrow text-xs text-brand-secondary block mb-3">PINEBROOK LEADERSHIP</span>
+            <h2 className="text-3xl md:text-4xl font-display font-semibold text-white mb-4">
+              Embedded Leadership
+            </h2>
+            <p className="text-brand-text-muted text-sm sm:text-base">
+              Veteran technology builders and operators guiding our regional capability centers.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {leaders.map((leader, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-6 rounded-[20px] bg-brand-surface-low border border-brand-border flex flex-col h-full hover:scale-[1.01] hover:border-brand-secondary hover:shadow-[0_10px_30px_rgba(90,200,250,0.05)] transition-all duration-300"
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-lg font-bold text-white leading-none">{leader.name}</h3>
+                  <a
+                    href={leader.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-brand-text-muted hover:text-white transition-colors p-1"
+                    aria-label={`${leader.name} LinkedIn Profile`}
+                  >
+                    <Linkedin className="w-4 h-4" />
+                  </a>
+                </div>
+                
+                <span className="text-xs font-semibold eyebrow text-brand-secondary block mb-4">
+                  {leader.role}
+                </span>
+                
+                <p className="text-brand-text-muted text-xs leading-relaxed flex-grow">
+                  {leader.bio}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );
