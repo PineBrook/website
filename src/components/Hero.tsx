@@ -5,8 +5,14 @@ import { openCal } from "../hooks/useCal";
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-brand-surface-lowest">
-      {/* Background Decor - Premium SVG Tech Grid & Glowing Orbs */}
+      {/* Background Decor - Premium SVG Tech Grid, 4K Network Image, & Glowing Orbs */}
       <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* 4K Tech Network Background */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-screen"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=3840&auto=format&fit=crop')" }}
+          aria-hidden="true"
+        />
         {/* Fine-line Tech Blueprint Grid */}
         <svg 
           className="absolute inset-0 w-full h-full stroke-white/[0.025] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,white_40%,transparent_100%)]" 
