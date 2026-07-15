@@ -13,6 +13,7 @@ import { Mission } from "./pages/Mission";
 import { useCalEmbed } from "./hooks/useCal";
 import { InquiryModalProvider } from "./contexts/InquiryModalContext";
 import { InquiryModal } from "./components/InquiryModal";
+import { Toast } from "./components/Toast";
 
 export default function App() {
   useCalEmbed();
@@ -32,6 +33,7 @@ export default function App() {
           <Analytics />
           <SpeedInsights />
           <InquiryModal />
+          <Toast />
         </div>
       </Router>
     </InquiryModalProvider>
