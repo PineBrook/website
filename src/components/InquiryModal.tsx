@@ -267,7 +267,7 @@ export function InquiryModal() {
       const payload = {
         firstname: formData.firstName.trim(),
         lastname: formData.lastName.trim(),
-        company: formData.company.trim(),
+        companyName: formData.company.trim(),
         location: formData.location.trim(),
         email: formData.email.trim(),
         phoneExtension: selectedCountry.dialCode,
