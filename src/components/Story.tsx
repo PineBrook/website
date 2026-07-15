@@ -165,9 +165,14 @@ export function Story() {
           </div>
 
         {/* 3. Leadership Section */}
-        <div className="border-t border-brand-border/50 pt-24 mt-32">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="eyebrow text-xs text-brand-secondary block mb-3">PINEBROOK LEADERSHIP</span>
+        <div className="border-t border-brand-border/50 pt-24 mt-32 relative">
+          {/* Semi-circular glowing light sources from both ends */}
+          <div className="absolute top-1/2 left-0 -translate-y-1/2 w-48 h-[400px] rounded-r-full bg-brand-primary/20 blur-[95px] pointer-events-none z-0" />
+          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-48 h-[400px] rounded-l-full bg-brand-secondary/15 blur-[95px] pointer-events-none z-0" />
+          
+          <div className="relative z-10">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="eyebrow text-xs text-brand-secondary block mb-3">PINEBROOK LEADERSHIP</span>
             <h2 className="text-3xl md:text-4xl font-display font-semibold text-white mb-4">
               Embedded Leadership
             </h2>
@@ -209,6 +214,7 @@ export function Story() {
               </motion.div>
             ))}
           </div>
+        </div>
         </div>
 
       </div>
