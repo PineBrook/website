@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "motion/react";
 import { XCircle, CheckCircle2, Star } from "lucide-react";
 

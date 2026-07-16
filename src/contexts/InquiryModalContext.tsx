@@ -1,3 +1,5 @@
+"use client";
+
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 // Block repeat inquiries for 24 hours to prevent spam/abuse

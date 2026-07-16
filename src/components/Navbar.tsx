@@ -1,5 +1,7 @@
+"use client";
+
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Button } from "./Button";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Home } from "lucide-react";
@@ -29,7 +31,7 @@ export function Navbar() {
       >
       <div className="w-full max-w-7xl mx-auto flex items-center justify-between md:grid md:grid-cols-3">
         <div className="flex items-center justify-start">
-          <Link to="/" className="premium-wordmark-container bg-white/95 backdrop-blur-sm px-0.1 py-01 rounded-xl border border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.15)] transition-all duration-300 hover:bg-white flex items-center gap-0.5">
+          <Link href="/" className="premium-wordmark-container bg-white/95 backdrop-blur-sm px-0.1 py-01 rounded-xl border border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.15)] transition-all duration-300 hover:bg-white flex items-center gap-0.5">
             <div className="h-11 w-11 overflow-hidden relative flex-shrink-0">
               <img 
                 src="/logo.webp" 
@@ -54,7 +56,7 @@ export function Navbar() {
           {["Solutions", "Industries", "Mission"].map((item) => (
             <Link
               key={item}
-              to={item === "Mission" ? "/mission" : `/#${item.toLowerCase()}`}
+              href={item === "Mission" ? "/mission" : `/#${item.toLowerCase()}`}
               className="text-m font-medium text-white transition-colors relative group"
             >
               {item}
@@ -90,7 +92,7 @@ export function Navbar() {
             className="hidden md:flex fixed top-4 left-1/2 z-50 rounded-full bg-brand-surface-container/60 backdrop-blur-lg border border-brand-border/40 py-2.5 px-6 shadow-2xl items-center justify-center gap-4"
           >
             <Link 
-              to="/" 
+              href="/" 
               onClick={(e) => {
                 if (window.location.pathname === "/") {
                   e.preventDefault();
@@ -106,7 +108,7 @@ export function Navbar() {
             {["Solutions", "Industries", "Mission"].map((item) => (
               <Link
                 key={item}
-                to={item === "Mission" ? "/mission" : `/#${item.toLowerCase()}`}
+                href={item === "Mission" ? "/mission" : `/#${item.toLowerCase()}`}
                 className="text-m font-medium text-white transition-colors relative group px-2"
               >
                 {item}
@@ -143,7 +145,7 @@ export function Navbar() {
             className="fixed inset-0 z-50 bg-brand-surface p-6 flex flex-col"
           >
             <div className="flex items-center justify-between mb-8">
-              <Link to="/" onClick={() => setMobileMenuOpen(false)} className="premium-wordmark-container bg-white/95 backdrop-blur-sm px-0.1 py-01 rounded-xl border border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.15)] transition-all duration-300 hover:bg-white flex items-center gap-0.5">
+              <Link href="/" onClick={() => setMobileMenuOpen(false)} className="premium-wordmark-container bg-white/95 backdrop-blur-sm px-0.1 py-01 rounded-xl border border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.15)] transition-all duration-300 hover:bg-white flex items-center gap-0.5">
                 <div className="h-11 w-11 overflow-hidden relative flex-shrink-0">
                   <img 
                     src="/logo.webp" 
@@ -170,7 +172,7 @@ export function Navbar() {
               {["Solutions", "Industries", "Mission"].map((item) => (
                 <Link
                   key={item}
-                  to={item === "Mission" ? "/mission" : `/#${item.toLowerCase()}`}
+                  href={item === "Mission" ? "/mission" : `/#${item.toLowerCase()}`}
                   className="text-3xl font-display font-medium text-white hover:text-brand-primary transition-colors text-center"
                   onClick={() => setMobileMenuOpen(false)}
                 >

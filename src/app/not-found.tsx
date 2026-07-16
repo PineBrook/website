@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { motion } from "motion/react";
 import { Button } from "../components/Button";
 
-export function NotFound() {
+export default function NotFound() {
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-brand-surface-lowest px-6 overflow-hidden">
       {/* Background Decor */}
@@ -52,7 +54,7 @@ export function NotFound() {
             This page is off the map. Our mascot suggests heading back to base.
           </p>
 
-          <Link to="/" className="w-full">
+          <Link href="/" className="w-full">
             <Button size="lg" className="w-full justify-center group" withArrow>
               Back to Base
             </Button>

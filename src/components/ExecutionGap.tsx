@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { CreditCard, RefreshCw, Scale, Network, Shield, Settings, EyeOff, Users, GitMerge, X, Loader2, CheckCircle2 } from "lucide-react";
@@ -74,10 +76,14 @@ export function ExecutionGap() {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   // Modal Inquiry Form State
-  const [name, setName] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
-  const [company, setCompany] = useState("");
-  const [message, setMessage] = useState("");
+  const [phoneExtension, setPhoneExtension] = useState("+91");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [location, setLocation] = useState("");
+
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -121,8 +127,8 @@ export function ExecutionGap() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !company || !message) {
-      setErrorMessage("Please fill in all required fields.");
+    if (!firstname || !companyName || !phoneExtension || !phoneNumber) {
+      setErrorMessage("First Name, Company, and Phone Number are required.");
       setStatus("error");
       return;
     }
@@ -134,11 +140,13 @@ export function ExecutionGap() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name,
+          firstname,
+          lastname,
           email,
-          companyName: company,
-          location: "Challenge Modal",
-          message: `[Inquiry regarding: ${selectedChallenge?.title}]\n\n${message}`
+          phoneExtension,
+          phoneNumber,
+          companyName,
+          location: location || `Solution Info: ${selectedChallenge?.title}`
         })
       });
 
@@ -147,10 +155,12 @@ export function ExecutionGap() {
       if (response.ok && data.success) {
         setStatus("success");
         // Reset form
-        setName("");
+        setFirstname("");
+        setLastname("");
         setEmail("");
-        setCompany("");
-        setMessage("");
+        setPhoneNumber("");
+        setCompanyName("");
+        setLocation("");
       } else {
         setErrorMessage(data.message || "Submission failed. Please try again.");
         setStatus("error");
@@ -322,11 +332,11 @@ export function ExecutionGap() {
                 </div>
               </div>
 
-              {/* Right Side: Integrated Inquiry Component */}
+              {/* Right Side: Integrated Inquiry Component (Connected to Google Sheets Webhook) */}
               <div className="w-full md:w-[350px] p-8 sm:p-10 bg-[#080b11]/60 flex flex-col justify-center overflow-y-auto shrink-0">
                 <h4 className="text-lg font-display font-semibold text-white mb-2">Solve This Challenge</h4>
                 <p className="text-xs text-brand-text-muted mb-6">
-                  Get a tailored technical plan on how we can deploy this capability for your organization.
+                  Connect with our team to configure a custom capability center layout.
                 </p>
 
                 {status === "success" ? (
@@ -336,9 +346,9 @@ export function ExecutionGap() {
                     className="flex flex-col items-center text-center py-8"
                   >
                     <CheckCircle2 className="w-12 h-12 text-brand-secondary mb-4 animate-bounce" />
-                    <h5 className="text-white font-bold mb-2">Plan Request Received</h5>
+                    <h5 className="text-white font-bold mb-2">Inquiry Saved</h5>
                     <p className="text-xs text-brand-text-muted leading-relaxed">
-                      We've logged your request regarding <strong>{selectedChallenge.title}</strong> and will reach out with a blueprint.
+                      Your details for <strong>{selectedChallenge.title}</strong> have been logged successfully. We'll be in touch shortly.
                     </p>
                     <Button 
                       className="mt-6 w-full justify-center"
@@ -351,24 +361,89 @@ export function ExecutionGap() {
                     </Button>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                      <label htmlFor="modal-name" className="block text-[10px] font-semibold text-brand-text-muted uppercase tracking-wider mb-1.5">
-                        Name <span className="text-brand-secondary">*</span>
-                      </label>
-                      <input
-                        id="modal-name"
-                        type="text"
-                        required
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Your name"
-                        className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors"
-                      />
+                  <form onSubmit={handleSubmit} className="space-y-3.5">
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label htmlFor="modal-firstname" className="block text-[10px] font-semibold text-brand-text-muted uppercase tracking-wider mb-1">
+                          First Name <span className="text-brand-secondary">*</span>
+                        </label>
+                        <input
+                          id="modal-firstname"
+                          type="text"
+                          required
+                          value={firstname}
+                          onChange={(e) => setFirstname(e.target.value)}
+                          placeholder="First Name"
+                          className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="modal-lastname" className="block text-[10px] font-semibold text-brand-text-muted uppercase tracking-wider mb-1">
+                          Last Name
+                        </label>
+                        <input
+                          id="modal-lastname"
+                          type="text"
+                          value={lastname}
+                          onChange={(e) => setLastname(e.target.value)}
+                          placeholder="Last Name"
+                          className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors"
+                        />
+                      </div>
                     </div>
 
                     <div>
-                      <label htmlFor="modal-email" className="block text-[10px] font-semibold text-brand-text-muted uppercase tracking-wider mb-1.5">
+                      <label htmlFor="modal-company" className="block text-[10px] font-semibold text-brand-text-muted uppercase tracking-wider mb-1">
+                        Company Name <span className="text-brand-secondary">*</span>
+                      </label>
+                      <input
+                        id="modal-company"
+                        type="text"
+                        required
+                        value={companyName}
+                        onChange={(e) => setCompanyName(e.target.value)}
+                        placeholder="Company Name"
+                        className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-2">
+                      <div className="col-span-1">
+                        <label htmlFor="modal-ext" className="block text-[10px] font-semibold text-brand-text-muted uppercase tracking-wider mb-1">
+                          Ext <span className="text-brand-secondary">*</span>
+                        </label>
+                        <select
+                          id="modal-ext"
+                          value={phoneExtension}
+                          onChange={(e) => setPhoneExtension(e.target.value)}
+                          className="w-full bg-[#121625] border border-white/10 rounded-lg px-1.5 py-1.5 text-xs text-white focus:border-brand-primary outline-none transition-colors"
+                        >
+                          <option value="+91">IN (+91)</option>
+                          <option value="+1">US (+1)</option>
+                          <option value="+44">UK (+44)</option>
+                          <option value="+61">AU (+61)</option>
+                          <option value="+65">SG (+65)</option>
+                          <option value="+971">AE (+971)</option>
+                        </select>
+                      </div>
+                      <div className="col-span-2">
+                        <label htmlFor="modal-phone" className="block text-[10px] font-semibold text-brand-text-muted uppercase tracking-wider mb-1">
+                          Phone Number <span className="text-brand-secondary">*</span>
+                        </label>
+                        <input
+                          id="modal-phone"
+                          type="tel"
+                          required
+                          value={phoneNumber}
+                          onChange={(e) => setPhoneNumber(e.target.value)}
+                          placeholder="Phone Number"
+                          className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="modal-email" className="block text-[10px] font-semibold text-brand-text-muted uppercase tracking-wider mb-1">
                         Email Address
                       </label>
                       <input
@@ -377,37 +452,21 @@ export function ExecutionGap() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="you@company.com"
-                        className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors"
+                        className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="modal-company" className="block text-[10px] font-semibold text-brand-text-muted uppercase tracking-wider mb-1.5">
-                        Company Name <span className="text-brand-secondary">*</span>
+                      <label htmlFor="modal-location" className="block text-[10px] font-semibold text-brand-text-muted uppercase tracking-wider mb-1">
+                        Location
                       </label>
                       <input
-                        id="modal-company"
+                        id="modal-location"
                         type="text"
-                        required
-                        value={company}
-                        onChange={(e) => setCompany(e.target.value)}
-                        placeholder="Company"
-                        className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="modal-message" className="block text-[10px] font-semibold text-brand-text-muted uppercase tracking-wider mb-1.5">
-                        How can we help? <span className="text-brand-secondary">*</span>
-                      </label>
-                      <textarea
-                        id="modal-message"
-                        required
-                        rows={3}
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        placeholder="Briefly describe your requirements..."
-                        className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors resize-none"
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                        placeholder="e.g. London, UK"
+                        className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors"
                       />
                     </div>
 
@@ -425,10 +484,10 @@ export function ExecutionGap() {
                       {status === "submitting" ? (
                         <>
                           <Loader2 className="w-4 h-4 animate-spin" />
-                          <span>Sending Plan...</span>
+                          <span>Submitting...</span>
                         </>
                       ) : (
-                        <span>Request Custom Plan</span>
+                        <span>Get Started</span>
                       )}
                     </button>
                   </form>

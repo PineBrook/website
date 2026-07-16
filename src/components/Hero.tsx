@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "motion/react";
 import { Button } from "./Button";
 import { openCal } from "../hooks/useCal";

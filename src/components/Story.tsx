@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "motion/react";
 import { Mail, GraduationCap, Terminal, Globe, ShieldCheck, TrendingUp } from "lucide-react";
 
