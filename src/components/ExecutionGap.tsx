@@ -1,63 +1,88 @@
 import { useState, useEffect, useRef } from "react";
-import { motion } from "motion/react";
-import { CreditCard, RefreshCw, Scale, Network, Shield, Settings, EyeOff, Users, GitMerge } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import { CreditCard, RefreshCw, Scale, Network, Shield, Settings, EyeOff, Users, GitMerge, X, Loader2, CheckCircle2 } from "lucide-react";
 import { cn } from "../lib/utils";
+import { Button } from "./Button";
 
-const cards = [
+interface ChallengeCard {
+  icon: React.ComponentType<any>;
+  title: string;
+  description: string;
+  solution: string;
+}
+
+const cards: ChallengeCard[] = [
   {
     icon: CreditCard,
     title: "High IT Costs",
     description: "Bloated vendor contracts and shadow IT draining budgets without clear ROI or accountability.",
+    solution: "Vendor consolidation, cloud optimization audits, and direct regional capability center placement to reduce operational overhead by up to 40%."
   },
   {
     icon: RefreshCw,
     title: "Manual Processes",
     description: "Knowledge workers tied up in repetitive data entry instead of strategic work and innovation.",
+    solution: "Custom operational scripts, secure local LLM processing pipelines, and structured workflow automations that return hours of productivity to your core team."
   },
   {
     icon: Scale,
     title: "Poor Governance",
     description: "Lack of accountability and transparency in multi-vendor delivery environments across regions.",
+    solution: "Establishing unified ITIL governance frameworks, hourly dashboard check-ins, and dedicated project managers to secure strict SLA compliance."
   },
   {
     icon: Network,
     title: "Disconnected Systems",
     description: "Siloed platforms requiring manual reconciliation and creating dangerous data blind spots.",
+    solution: "API middleware integration, secure data bridging, and real-time database synchronization to automate information flow across your tools."
   },
   {
     icon: Shield,
     title: "Technology Debt",
     description: "Legacy platforms slowing down innovation and increasing maintenance overhead exponentially.",
+    solution: "Strategic codebase refactoring, modular containerization (Docker/Kubernetes), and systematic technology upgrades with zero-downtime cutovers."
   },
   {
     icon: Settings,
     title: "Lack of Automation",
     description: "Scaling requires proportional headcount increases—destroying margin growth and efficiency.",
+    solution: "Implementing automated testing, automated CI/CD code deployments, and programmatic cloud resource scaling to support business growth without staff bloat."
   },
   {
     icon: EyeOff,
     title: "Limited Visibility",
     description: "No real-time operational insights to make data-driven leadership decisions.",
+    solution: "Building real-time dashboard telemetry, unified log indexing, and customized automated executive reporting systems."
   },
   {
     icon: Users,
     title: "Talent Constraints",
     description: "Inability to attract or retain specialized engineering and operational talent.",
+    solution: "Sourcing dedicated developers from our Uttarakhand university pipeline, providing local stability and preventing high city-center turnover rates."
   },
   {
     icon: GitMerge,
     title: "Execution Bottlenecks",
     description: "Great strategies that fail at the critical point of practical implementation.",
+    solution: "Embedded technical architects, agile delivery leads, and structured daily checkpoints to turn strategy into operating reality."
   }
 ];
 
 export function ExecutionGap() {
   const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null);
+  const [selectedChallenge, setSelectedChallenge] = useState<ChallengeCard | null>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Modal Inquiry Form State
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
-      // Only run proximity check on mobile/tablet viewports
       if (window.innerWidth >= 768) {
         setActiveCardIndex(null);
         return;
@@ -73,7 +98,6 @@ export function ExecutionGap() {
         const cardCenter = rect.top + rect.height / 2;
         const distance = Math.abs(cardCenter - viewportCenter);
 
-        // Make sure the card is vertically centered on the viewport
         if (rect.top < window.innerHeight && rect.bottom > 0) {
           if (distance < minDistance) {
             minDistance = distance;
@@ -82,13 +106,11 @@ export function ExecutionGap() {
         }
       });
 
-      // Require card center to be reasonably close to viewport center to trigger active state
       setActiveCardIndex(closestIndex);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll);
-    // Trigger on mount
     setTimeout(handleScroll, 100);
 
     return () => {
@@ -96,6 +118,48 @@ export function ExecutionGap() {
       window.removeEventListener("resize", handleScroll);
     };
   }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name || !company || !message) {
+      setErrorMessage("Please fill in all required fields.");
+      setStatus("error");
+      return;
+    }
+
+    setStatus("submitting");
+
+    try {
+      const response = await fetch("/api/inquire", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          companyName: company,
+          location: "Challenge Modal",
+          message: `[Inquiry regarding: ${selectedChallenge?.title}]\n\n${message}`
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setStatus("success");
+        // Reset form
+        setName("");
+        setEmail("");
+        setCompany("");
+        setMessage("");
+      } else {
+        setErrorMessage(data.message || "Submission failed. Please try again.");
+        setStatus("error");
+      }
+    } catch (err) {
+      setErrorMessage("Network error. Please check your connection.");
+      setStatus("error");
+    }
+  };
 
   return (
     <section className="py-32 bg-brand-surface relative overflow-hidden" id="solutions">
@@ -121,6 +185,7 @@ export function ExecutionGap() {
           </motion.p>
         </div>
 
+        {/* 3x3 Half-height Cards Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
           {cards.map((card, index) => {
             const Icon = card.icon;
@@ -136,8 +201,9 @@ export function ExecutionGap() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
+                onClick={() => setSelectedChallenge(card)}
                 className={cn(
-                  "group relative flex flex-col items-center justify-between p-10 sm:p-12 h-[380px] rounded-2xl border border-white/10 overflow-hidden transition-all duration-300 z-10",
+                  "group relative flex flex-col items-center justify-center p-8 h-[200px] rounded-2xl border border-white/10 overflow-hidden transition-all duration-300 z-10 cursor-pointer",
                   isActive 
                     ? "bg-brand-surface-container/35 border-brand-secondary/50 shadow-[0_15px_35px_rgba(90,200,250,0.15)] -translate-y-2 scale-[1.03] z-20" 
                     : "bg-brand-surface-container/10 hover:bg-[#121625]/90 hover:border-brand-secondary/50 hover:shadow-[0_15px_35px_rgba(90,200,250,0.15)] hover:-translate-y-2 hover:scale-[1.03] hover:z-20"
@@ -146,65 +212,232 @@ export function ExecutionGap() {
                 {/* Hover/Active Gradient */}
                 <div 
                   className={cn(
-                    "absolute inset-0 bg-[radial-gradient(ellipse_100%_100%_at_50%_0%,rgba(255,255,255,0.1)_0%,transparent_60%)] transition-opacity duration-700 pointer-events-none",
+                    "absolute inset-0 bg-[radial-gradient(ellipse_100%_100%_at_50%_0%,rgba(255,255,255,0.06)_0%,transparent_60%)] transition-opacity duration-700 pointer-events-none",
                     isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                   )}
                 />
                 
-                {/* Top: Icon + Title */}
+                {/* Center Content: Icon + Title */}
                 <div 
                   className={cn(
-                    "flex flex-col items-center gap-3 relative z-10 pt-2 transform transition-transform duration-500",
-                    isActive ? "-translate-y-2" : "group-hover:-translate-y-2"
+                    "flex flex-col items-center gap-4 relative z-10 transform transition-transform duration-500",
+                    isActive ? "-translate-y-3" : "group-hover:-translate-y-3"
                   )}
                 >
                   <Icon 
                     className={cn(
-                      "w-8 h-8 text-white mb-1 transition-transform duration-500",
+                      "w-8 h-8 text-white transition-transform duration-500",
                       isActive ? "scale-110 text-brand-secondary" : "group-hover:scale-110 group-hover:text-brand-secondary"
                     )} 
                   />
-                  <h3 className="text-2xl font-display font-medium text-white">{card.title}</h3>
+                  <h3 className="text-xl font-display font-semibold text-white text-center leading-snug">{card.title}</h3>
                 </div>
 
-                {/* Bottom: Description */}
-                <div className="flex flex-col items-center text-center relative z-10 w-full h-[140px] justify-end">
-                  <div 
-                    className={cn(
-                      "transform transition-transform duration-500 flex flex-col items-center",
-                      isActive ? "-translate-y-8" : "group-hover:-translate-y-8"
-                    )}
-                  >
-                    <span 
-                      className={cn(
-                        "text-brand-text-muted text-xs font-semibold uppercase tracking-wider mb-4 transition-opacity duration-500",
-                        isActive ? "opacity-100 text-brand-secondary" : "opacity-80 group-hover:opacity-100"
-                      )}
-                    >
-                      Challenge {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <p className="text-white text-lg font-medium leading-snug max-w-[280px]">
-                      {card.description}
-                    </p>
-                  </div>
-                  
-                  {/* Read more link */}
-                  <div 
-                    className={cn(
-                      "absolute bottom-0 flex items-center gap-1 text-brand-secondary text-sm font-medium cursor-pointer transition-all duration-500",
-                      isActive 
-                        ? "opacity-100 translate-y-0 pointer-events-auto" 
-                        : "opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 pointer-events-none group-hover:pointer-events-auto"
-                    )}
-                  >
-                    Explore solution <span className="text-lg leading-none">&rsaquo;</span>
-                  </div>
+                {/* Explore link appearing on hover */}
+                <div 
+                  className={cn(
+                    "absolute bottom-6 flex items-center gap-1 text-brand-secondary text-xs font-semibold uppercase tracking-wider transition-all duration-500",
+                    isActive 
+                      ? "opacity-100 translate-y-0" 
+                      : "opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0"
+                  )}
+                >
+                  Explore solution <span className="text-sm leading-none">&rsaquo;</span>
                 </div>
               </motion.div>
             );
           })}
         </div>
       </div>
+
+      {/* Challenge & Solution Detail Modal with Inquire Component */}
+      <AnimatePresence>
+        {selectedChallenge && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10">
+            {/* Dark glass backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => {
+                setSelectedChallenge(null);
+                setStatus("idle");
+              }}
+              className="absolute inset-0 bg-[#080b11]/80 backdrop-blur-md cursor-pointer"
+            />
+
+            {/* Modal Body */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 30 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="relative w-full max-w-4xl bg-[#0c0f17]/95 border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,122,255,0.15)] overflow-hidden z-10 flex flex-col md:flex-row max-h-[90vh] md:max-h-[85vh]"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => {
+                  setSelectedChallenge(null);
+                  setStatus("idle");
+                }}
+                className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors p-2 z-20"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Left Side: Challenge & Solution Explanation */}
+              <div className="flex-1 p-8 sm:p-10 overflow-y-auto border-b md:border-b-0 md:border-r border-white/10">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-brand-primary/10 border border-brand-primary/20 flex items-center justify-center text-brand-secondary">
+                    {(() => {
+                      const Icon = selectedChallenge.icon;
+                      return <Icon className="w-6 h-6" />;
+                    })()}
+                  </div>
+                  <h3 className="text-2xl font-display font-semibold text-white leading-tight">
+                    {selectedChallenge.title}
+                  </h3>
+                </div>
+
+                <div className="space-y-6 pr-2">
+                  <div>
+                    <span className="text-[10px] eyebrow font-semibold text-brand-primary tracking-widest block mb-2">THE CHALLENGE</span>
+                    <p className="text-sm text-brand-text-muted leading-relaxed bg-white/5 p-4 rounded-xl border border-white/5">
+                      {selectedChallenge.description}
+                    </p>
+                  </div>
+
+                  <div>
+                    <span className="text-[10px] eyebrow font-semibold text-brand-secondary tracking-widest block mb-2">HOW WE SOLVE IT</span>
+                    <p className="text-sm text-white leading-relaxed font-medium">
+                      {selectedChallenge.solution}
+                    </p>
+                  </div>
+                  
+                  <div className="pt-4 border-t border-white/10 flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-brand-secondary shrink-0" />
+                    <span className="text-xs text-brand-text-muted">Enterprise-grade SLAs, redundant infrastructure, and locally embedded management.</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side: Integrated Inquiry Component */}
+              <div className="w-full md:w-[350px] p-8 sm:p-10 bg-[#080b11]/60 flex flex-col justify-center overflow-y-auto shrink-0">
+                <h4 className="text-lg font-display font-semibold text-white mb-2">Solve This Challenge</h4>
+                <p className="text-xs text-brand-text-muted mb-6">
+                  Get a tailored technical plan on how we can deploy this capability for your organization.
+                </p>
+
+                {status === "success" ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center text-center py-8"
+                  >
+                    <CheckCircle2 className="w-12 h-12 text-brand-secondary mb-4 animate-bounce" />
+                    <h5 className="text-white font-bold mb-2">Plan Request Received</h5>
+                    <p className="text-xs text-brand-text-muted leading-relaxed">
+                      We've logged your request regarding <strong>{selectedChallenge.title}</strong> and will reach out with a blueprint.
+                    </p>
+                    <Button 
+                      className="mt-6 w-full justify-center"
+                      onClick={() => {
+                        setSelectedChallenge(null);
+                        setStatus("idle");
+                      }}
+                    >
+                      Done
+                    </Button>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <label htmlFor="modal-name" className="block text-[10px] font-semibold text-brand-text-muted uppercase tracking-wider mb-1.5">
+                        Name <span className="text-brand-secondary">*</span>
+                      </label>
+                      <input
+                        id="modal-name"
+                        type="text"
+                        required
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Your name"
+                        className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="modal-email" className="block text-[10px] font-semibold text-brand-text-muted uppercase tracking-wider mb-1.5">
+                        Email Address
+                      </label>
+                      <input
+                        id="modal-email"
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="you@company.com"
+                        className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="modal-company" className="block text-[10px] font-semibold text-brand-text-muted uppercase tracking-wider mb-1.5">
+                        Company Name <span className="text-brand-secondary">*</span>
+                      </label>
+                      <input
+                        id="modal-company"
+                        type="text"
+                        required
+                        value={company}
+                        onChange={(e) => setCompany(e.target.value)}
+                        placeholder="Company"
+                        className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="modal-message" className="block text-[10px] font-semibold text-brand-text-muted uppercase tracking-wider mb-1.5">
+                        How can we help? <span className="text-brand-secondary">*</span>
+                      </label>
+                      <textarea
+                        id="modal-message"
+                        required
+                        rows={3}
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        placeholder="Briefly describe your requirements..."
+                        className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors resize-none"
+                      />
+                    </div>
+
+                    {status === "error" && (
+                      <p className="text-[11px] text-red-400 font-medium">
+                        {errorMessage}
+                      </p>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={status === "submitting"}
+                      className="w-full py-2.5 bg-brand-primary text-white font-semibold text-xs rounded-lg overflow-hidden transition-all duration-300 hover:bg-brand-primary/90 outline-none disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_10px_rgba(0,122,255,0.2)]"
+                    >
+                      {status === "submitting" ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Sending Plan...</span>
+                        </>
+                      ) : (
+                        <span>Request Custom Plan</span>
+                      )}
+                    </button>
+                  </form>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
