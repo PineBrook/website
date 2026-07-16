@@ -1,9 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "motion/react";
 import { Mail, GraduationCap, Terminal, Globe, ShieldCheck, TrendingUp } from "lucide-react";
+import { cn } from "../lib/utils";
 
 export function Story() {
+  const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
+
   const leaders = [
     {
       name: "Anoop Singh",
@@ -115,7 +119,7 @@ export function Story() {
               The PineBrook Blueprint
             </h2>
             <p className="text-brand-text-muted text-sm sm:text-base leading-relaxed">
-              Hover over each step of our framework to reveal how we deliver high-performance engineering.
+              Hover or tap each step of our operating model to reveal details.
             </p>
           </div>
 
@@ -130,10 +134,14 @@ export function Story() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ type: "spring", duration: 0.6, delay: idx * 0.1 }}
+                  onClick={() => setFlippedIndex(flippedIndex === idx ? null : idx)}
                   className="relative w-full h-[300px] rounded-2xl cursor-pointer group"
                 >
                   {/* Card Inner Container for 3D rotation */}
-                  <div className="absolute inset-0 w-full h-full rounded-2xl transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] shadow-xl">
+                  <div className={cn(
+                    "absolute inset-0 w-full h-full rounded-2xl transition-transform duration-700 [transform-style:preserve-3d] shadow-xl",
+                    flippedIndex === idx ? "[transform:rotateY(180deg)]" : "group-hover:[transform:rotateY(180deg)]"
+                  )}>
                     
                     {/* 1. FRONT SIDE: Premium Glassmorphic Card with Icon */}
                     <div className="absolute inset-0 w-full h-full rounded-2xl bg-brand-surface-container border border-white/10 overflow-hidden [backface-visibility:hidden] flex flex-col justify-between p-6 hover:border-brand-primary/40 transition-colors duration-300">
