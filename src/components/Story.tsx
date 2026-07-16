@@ -85,7 +85,7 @@ export function Story() {
             transition={{ delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white tracking-tight mb-6 max-w-4xl mx-auto leading-tight"
           >
-            BUILDING THE FRONTIER OF TECHNOLOGY <br/>
+            BUILDING FRONTIER TECHNOLOGY <br/>
             <span className="bg-gradient-to-r from-white via-brand-accent to-brand-secondary bg-clip-text text-transparent">
               FROM THE HIMALAYAS.
             </span>

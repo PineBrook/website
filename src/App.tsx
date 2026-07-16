@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Navbar } from "./components/Navbar";
@@ -21,7 +21,7 @@ export default function App() {
 
   return (
     <InquiryModalProvider>
-      <Router>
+      <BrowserRouter>
         <div className="min-h-screen bg-brand-surface selection:bg-brand-primary/30 selection:text-white">
           <Navbar />
           <main>
@@ -37,7 +37,7 @@ export default function App() {
           <InquiryModal />
           <Toast />
         </div>
-      </Router>
+      </BrowserRouter>
     </InquiryModalProvider>
   );
 }
