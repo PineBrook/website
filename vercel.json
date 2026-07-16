@@ -19,5 +19,6 @@
       ]
     }
   ],
-  "cleanUrls": true
+  "cleanUrls": true,
+  "outputDirectory": "out"
 }
