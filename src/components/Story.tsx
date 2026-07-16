@@ -85,9 +85,9 @@ export function Story() {
             transition={{ delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white tracking-tight mb-6 max-w-4xl mx-auto leading-tight"
           >
-            Building the Digital Frontier <br/>
+            BUILDING THE FRONTIER OF TECHNOLOGY <br/>
             <span className="bg-gradient-to-r from-white via-brand-accent to-brand-secondary bg-clip-text text-transparent">
-              From the Himalayas.
+              FROM THE HIMALAYAS.
             </span>
           </motion.h1>
           <motion.p 

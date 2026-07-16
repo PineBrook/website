@@ -19,5 +19,15 @@
       ]
     }
   ],
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/api/inquire",
+      "destination": "/api/inquire"
+    },
+    {
+      "source": "/((?!assets/|videos/|images/|api/|logo|pinebrook|robots.txt|sitemap.xml|favicon).*)",
+      "destination": "/index.html"
+    }
+  ]
 }
