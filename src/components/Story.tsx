@@ -7,19 +7,19 @@ export function Story() {
   const leaders = [
     {
       name: "Anoop Singh",
-      role: "Managing Partner",
+      role: "Founder & CEO",
       bio: "Veteran GCC architect and operational strategist. Deliberately building scalable delivery teams and AI capability centers in regional ecosystems.",
       email: "anoop.singh@pinebrooktechnologies.com"
     },
     {
       name: "Shobhit Tiwari",
-      role: "Director of Operations",
+      role: "Founder & COO",
       bio: "Oversees regional delivery centers and campus talent pipelines in Uttarakhand, securing strict SLA compliance and operational excellence.",
       email: "shobhit.tiwari@pinebrooktechnologies.com"
     },
     {
       name: "Bharat Singh",
-      role: "Technology Lead",
+      role: "Founder & CTO",
       bio: "Drives technology roadmap execution and precision AI engineering integrations, ensuring resilient architecture for enterprise workflows.",
       email: "bharats@pinebrooktechnologies.com"
     }

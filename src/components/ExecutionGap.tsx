@@ -6,6 +6,8 @@ import { CreditCard, RefreshCw, Scale, Network, Shield, Settings, EyeOff, Users,
 import { cn } from "../lib/utils";
 import { Button } from "./Button";
 
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
 interface ChallengeCard {
   icon: React.ComponentType<any>;
   title: string;
@@ -87,6 +89,22 @@ export function ExecutionGap() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
+  // Input Refs for focus traversal
+  const firstNameRef = useRef<HTMLInputElement>(null);
+  const lastNameRef = useRef<HTMLInputElement>(null);
+  const companyNameRef = useRef<HTMLInputElement>(null);
+  const phoneRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const locationRef = useRef<HTMLInputElement>(null);
+  const submitButtonRef = useRef<HTMLButtonElement>(null);
+
+  const handleInputKeyDown = (e: React.KeyboardEvent, nextRef: React.RefObject<HTMLInputElement | HTMLButtonElement | null>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      nextRef.current?.focus();
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.innerWidth >= 768) {
@@ -127,8 +145,33 @@ export function ExecutionGap() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!firstname || !companyName || !phoneExtension || !phoneNumber) {
+    if (!firstname.trim() || !companyName.trim() || !phoneExtension || !phoneNumber.trim()) {
       setErrorMessage("First Name, Company, and Phone Number are required.");
+      setStatus("error");
+      return;
+    }
+
+    if (firstname.trim().length < 2) {
+      setErrorMessage("First name must be at least 2 characters.");
+      setStatus("error");
+      return;
+    }
+
+    if (email.trim() && !EMAIL_REGEX.test(email.trim())) {
+      setErrorMessage("Please enter a valid email address.");
+      setStatus("error");
+      return;
+    }
+
+    const phoneDigits = phoneNumber.replace(/\D/g, "");
+    if (phoneDigits.length < 6 || phoneDigits.length > 15) {
+      setErrorMessage("Phone number must be between 6 and 15 digits.");
+      setStatus("error");
+      return;
+    }
+
+    if (phoneExtension === "+91" && (phoneDigits.length !== 10 || !/^[6-9]/.test(phoneDigits))) {
+      setErrorMessage("Invalid format for India (10 digits starting with 6-9).");
       setStatus("error");
       return;
     }
