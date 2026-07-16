@@ -22,11 +22,11 @@
   "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/api/inquire",
-      "destination": "/api/inquire"
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
     },
     {
-      "source": "/((?!assets/|videos/|images/|api/|logo|pinebrook|robots.txt|sitemap.xml|favicon).*)",
+      "source": "/:path*",
       "destination": "/index.html"
     }
   ]
