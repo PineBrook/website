@@ -411,11 +411,13 @@ export function ExecutionGap() {
                           First Name <span className="text-brand-secondary">*</span>
                         </label>
                         <input
+                          ref={firstNameRef}
                           id="modal-firstname"
                           type="text"
                           required
                           value={firstname}
                           onChange={(e) => setFirstname(e.target.value)}
+                          onKeyDown={(e) => handleInputKeyDown(e, lastNameRef)}
                           placeholder="First Name"
                           className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors"
                         />
@@ -425,10 +427,12 @@ export function ExecutionGap() {
                           Last Name
                         </label>
                         <input
+                          ref={lastNameRef}
                           id="modal-lastname"
                           type="text"
                           value={lastname}
                           onChange={(e) => setLastname(e.target.value)}
+                          onKeyDown={(e) => handleInputKeyDown(e, companyNameRef)}
                           placeholder="Last Name"
                           className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors"
                         />
@@ -440,11 +444,13 @@ export function ExecutionGap() {
                         Company Name <span className="text-brand-secondary">*</span>
                       </label>
                       <input
+                        ref={companyNameRef}
                         id="modal-company"
                         type="text"
                         required
                         value={companyName}
                         onChange={(e) => setCompanyName(e.target.value)}
+                        onKeyDown={(e) => handleInputKeyDown(e, phoneRef)}
                         placeholder="Company Name"
                         className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors"
                       />
@@ -474,11 +480,13 @@ export function ExecutionGap() {
                           Phone Number <span className="text-brand-secondary">*</span>
                         </label>
                         <input
+                          ref={phoneRef}
                           id="modal-phone"
                           type="tel"
                           required
                           value={phoneNumber}
-                          onChange={(e) => setPhoneNumber(e.target.value)}
+                          onChange={(e) => setPhoneNumber(e.target.value.replace(/[^0-9\s\-()]/g, ""))}
+                          onKeyDown={(e) => handleInputKeyDown(e, emailRef)}
                           placeholder="Phone Number"
                           className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors"
                         />
@@ -490,10 +498,12 @@ export function ExecutionGap() {
                         Email Address
                       </label>
                       <input
+                        ref={emailRef}
                         id="modal-email"
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        onKeyDown={(e) => handleInputKeyDown(e, locationRef)}
                         placeholder="you@company.com"
                         className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors"
                       />
@@ -504,10 +514,12 @@ export function ExecutionGap() {
                         Location
                       </label>
                       <input
+                        ref={locationRef}
                         id="modal-location"
                         type="text"
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
+                        onKeyDown={(e) => handleInputKeyDown(e, submitButtonRef)}
                         placeholder="e.g. London, UK"
                         className="w-full bg-[#121625]/60 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-white/30 focus:border-brand-primary outline-none transition-colors"
                       />
@@ -520,6 +532,7 @@ export function ExecutionGap() {
                     )}
 
                     <button
+                      ref={submitButtonRef}
                       type="submit"
                       disabled={status === "submitting"}
                       className="w-full py-2.5 bg-brand-primary text-white font-semibold text-xs rounded-lg overflow-hidden transition-all duration-300 hover:bg-brand-primary/90 outline-none disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_10px_rgba(0,122,255,0.2)]"
