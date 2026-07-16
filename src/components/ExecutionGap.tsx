@@ -378,9 +378,6 @@ export function ExecutionGap() {
               {/* Right Side: Integrated Inquiry Component (Connected to Google Sheets Webhook) */}
               <div className="w-full md:w-[350px] p-8 sm:p-10 bg-[#080b11]/60 flex flex-col justify-center overflow-y-auto shrink-0">
                 <h4 className="text-lg font-display font-semibold text-white mb-2">Solve This Challenge</h4>
-                <p className="text-xs text-brand-text-muted mb-6">
-                  Connect with our team to configure a custom capability center layout.
-                </p>
 
                 {status === "success" ? (
                   <motion.div
